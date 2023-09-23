@@ -1,36 +1,37 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function ChangeTheme() {
+function ChangeTheme({ isNavbar }) {
   const [theme, setTheme] = useState(() => {
-    if (window.matchMedia("(prefers-color-scheme:dark)").matches) {
-      return "dark";
-    }
-    return "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   });
 
-  useEffect(() => {
-    const htmlCheckBox = document.querySelector(".theme-checkbox");
-
-    if (theme === "dark") {
-      document.querySelector("html").classList.add("dark");
-      htmlCheckBox.checked = true;
-    } else {
-      document.querySelector("html").classList.remove("dark");
-      htmlCheckBox.checked = false;
-    }
-  }, [theme]);
-
-  const handleChangeTheme = () => {
+  const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
+
+  useEffect(() => {
+    const htmlElement = document.querySelector("html");
+    const checkbox = document.querySelector(
+      isNavbar ? ".theme-checkbox-navbar" : ".theme-checkbox"
+    );
+
+    if (theme === "dark") {
+      htmlElement.classList.add("dark");
+      checkbox.checked = true;
+    } else {
+      htmlElement.classList.remove("dark");
+      checkbox.checked = false;
+    }
+  }, [theme, isNavbar]);
 
   return (
     <input
       type="checkbox"
-      onClick={handleChangeTheme}
-      className="theme-checkbox"
+      checked={theme === "dark"}
+      onChange={toggleTheme}
+      className={`theme-checkbox${isNavbar ? "-navbar" : ""}`}
     />
   );
 }

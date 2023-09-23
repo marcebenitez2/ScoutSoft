@@ -14,7 +14,6 @@ function Login() {
 
   const navigate = useNavigate()
 
-  // La funcion de iniciar sesion no fue separa debido a que nada mas se utiliza en este componente
   const iniciarSesion = async (e) => {
     e.preventDefault()
     try {
@@ -33,7 +32,11 @@ function Login() {
         throw new Error("Error al iniciar sesión");
       }
       const responseData = await response.json();
-      console.log(responseData)
+      
+      sessionStorage.setItem("nombreUsuario", responseData.username);
+      sessionStorage.setItem("rolUsuario", responseData.rol);
+      sessionStorage.setItem("ramaUsuario", responseData.branch);
+
       setNombreUsuario(responseData.username);
       setRolUsuario(responseData.rol);
       setRamaUsuario(responseData.branch);
@@ -47,7 +50,7 @@ function Login() {
   return (
     <main className="w-screen h-screen flex items-center justify-center dark:bg-custon-black">
       <ChangeTheme />
-      <form className="w-2/5 h-2/4 bg-custon-red rounded-2xl flex flex-col items-center py-9 px-40 justify-between 2xln:px-20 xln:px-14 lgn:px-7 mdn:w-3/4 smn:w-5/6 smn:h-3/5">
+      <form className="w-2/5 h-2/4 bg-custon-red rounded-2xl flex flex-col items-center py-9 px-28 justify-between 2xln:px-20 xln:px-14 lgn:px-7 mdn:w-3/4 smn:w-5/6 smn:h-3/5">
         <h1 className="text-5xl font-bold text-white">Login</h1>
         <div className="flex flex-col w-full gap-2">
           <div className="flex flex-col w-full">

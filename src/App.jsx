@@ -6,24 +6,29 @@ import Error from "./pages/error";
 import Menu from "./pages/menu";
 import { useState } from "react";
 import UserContext from "./services/userContext";
+import Beneficiarios from "./pages/secciones/beneficiarios";
+import { checkLogin } from "./services/checkLogin";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(null);
   const [rolUsuario, setRolUsuario] = useState(null);
   const [ramaUsuario, setRamaUsuario] = useState(null);
-
+  let auth = checkLogin();
+  
   return (
     <UserContext.Provider value={{nombreUsuario,setNombreUsuario,rolUsuario,setRolUsuario,ramaUsuario,setRamaUsuario}}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/menu" element={<Menu />} />
           <Route path="*" element={<Error />} />
+          <Route path="/menu" element={auth ? <Menu/> : <Login/>}/>
+          <Route path="/menu/beneficiarios"element={auth ? <Beneficiarios/> : <Login/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
   );
 }
+
 
 export default App;
