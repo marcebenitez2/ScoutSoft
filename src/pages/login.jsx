@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useContext } from "react";
 import UserContext from "../services/userContext";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const { setNombreUsuario, setRolUsuario, setRamaUsuario } =
@@ -12,10 +14,10 @@ function Login() {
   const [usuario, setUsuario] = useState("");
   const [contra, setContra] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const iniciarSesion = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const data = {
         usuario: usuario,
@@ -32,16 +34,20 @@ function Login() {
         throw new Error("Error al iniciar sesión");
       }
       const responseData = await response.json();
-      
-      sessionStorage.setItem("nombreUsuario", responseData.username);
-      sessionStorage.setItem("rolUsuario", responseData.rol);
-      sessionStorage.setItem("ramaUsuario", responseData.branch);
 
-      setNombreUsuario(responseData.username);
-      setRolUsuario(responseData.rol);
-      setRamaUsuario(responseData.branch);
+      if (responseData.status === "success") {
+        sessionStorage.setItem("nombreUsuario", responseData.username);
+        sessionStorage.setItem("rolUsuario", responseData.rol);
+        sessionStorage.setItem("ramaUsuario", responseData.branch);
 
-      navigate('/menu')
+        setNombreUsuario(responseData.username);
+        setRolUsuario(responseData.rol);
+        setRamaUsuario(responseData.branch);
+
+        navigate("/menu");
+      } else {
+        toast.error("Datos incorrectos");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +71,7 @@ function Login() {
           <div className="flex flex-col w-full font-semibold">
             <label className="text-white text-xl">contra:</label>
             <input
-            type="password"
+              type="password"
               className="h-10 dark:bg-custon-black dark:text-white px-4 font-semibold"
               onChange={(e) => setContra(e.target.value)}
             />
@@ -84,6 +90,7 @@ function Login() {
           </span>
         </div>
       </form>
+      <ToastContainer />
     </main>
   );
 }

@@ -21,7 +21,7 @@ function Navbar() {
   };
 
   return (
-    <header className="w-full h-14 flex justify-between items-center bg-custon-red rounded-full px-4 text-white font-semibold mdn:gap-4">
+    <header className="w-full h-14 flex justify-between items-center bg-custon-red rounded-full px-4 text-white font-semibold mdn:gap-4 mdn:rounded-none mdn:px-0">
       <img src="florDeLiz.png" className="w-10 mdn:hidden" />
       <div className="flex w-full basis-6/12 justify-between mdn:basis-full">
         <Link to={"/menu"}>
