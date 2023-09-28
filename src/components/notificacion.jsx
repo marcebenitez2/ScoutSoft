@@ -1,8 +1,12 @@
 import React from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
-function Notificacion({ noti }) {
-  console.log(noti);
+function Notificacion({ noti, modal, seleccionada }) {
+  const seleccionar = (x) => {
+    modal(true);
+    seleccionada(x);
+  };
+
   return (
     <article
       className={`w-full h-full flex flex-col items-center gap-4 rounded-xl text-white py-2 px-2 justify-between ${
@@ -12,10 +16,10 @@ function Notificacion({ noti }) {
       <div className="w-full flex justify-between">
         <span>{noti.date.substring(5, 10)}</span>
         <h3 className="text-lg font-semibold">{noti.name}</h3>
-        {noti.active != 1 ? (
+        {noti.active !== "1" ? (
           <span>{noti.userSystem}</span>
         ) : (
-          <AiOutlineCheckCircle size={"25px"} />
+          <AiOutlineCheckCircle size={"25px"} onClick={() => seleccionar(noti)} />
         )}
       </div>
       <p>{noti.message}</p>
