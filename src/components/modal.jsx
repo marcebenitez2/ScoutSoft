@@ -1,7 +1,11 @@
 import React from "react";
 
 function Modal({ isOpen, toClose, seleccionada, texto }) {
-  console.log(seleccionada);
+  
+  const enviarCambios = () =>{
+    
+  }
+
   return (
     <main>
       {isOpen ? (
