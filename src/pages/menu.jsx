@@ -11,7 +11,7 @@ function Menu() {
   const [activas, setActivas] = useState([]);
   const [inactivas, setInactivas] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [seleccionada, setSeleccionada] = useState(null)
+  const [seleccionada, setSeleccionada] = useState(null);
 
   useEffect(() => {
     fetchBD(setNotificaciones, "http://localhost/notification.php");
@@ -25,10 +25,6 @@ function Menu() {
       notificaciones.filter((notificacion) => notificacion.active !== "1")
     );
   }, [notificaciones]);
-
-  useEffect(() => {
-    console.log(seleccionada)
-  }, [seleccionada])
 
   return (
     <main>
@@ -49,8 +45,8 @@ function Menu() {
               <div className="w-full h-full grid grid-cols-5 gap-x-4 gap-y-4 xln:grid-cols-3 lgn:grid-cols-2 smn:grid-cols-1  grid-rows-2">
                 {activas.map((noti) => (
                   <Notificacion
-                    noti={noti}
                     key={noti.id}
+                    noti={noti}
                     modal={setModalOpen}
                     seleccionada={setSeleccionada}
                   />
@@ -72,7 +68,12 @@ function Menu() {
           <span className="loader"></span>
         )}
       </div>
-      <Modal isOpen={modalOpen} toClose={setModalOpen} selecionada={seleccionada} texto={"Se dara por descartada la notificacion"}/>
+      <Modal
+        isOpen={modalOpen}
+        toClose={setModalOpen}
+        seleccionada={seleccionada}
+        texto={"Se dara por descartada la notificacion"}
+      />
     </main>
   );
 }

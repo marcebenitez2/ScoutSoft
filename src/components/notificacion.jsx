@@ -4,7 +4,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 function Notificacion({ noti, modal, seleccionada }) {
   const seleccionar = (x) => {
     modal(true);
-    seleccionada(x);
+    seleccionada(noti);
   };
 
   return (
@@ -19,7 +19,7 @@ function Notificacion({ noti, modal, seleccionada }) {
         {noti.active !== "1" ? (
           <span>{noti.userSystem}</span>
         ) : (
-          <AiOutlineCheckCircle size={"25px"} onClick={() => seleccionar(noti)} />
+          <AiOutlineCheckCircle size={"25px"} onClick={() => seleccionar()} />
         )}
       </div>
       <p>{noti.message}</p>
