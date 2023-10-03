@@ -10,10 +10,14 @@ import Beneficiarios from "./pages/secciones/beneficiarios";
 import { checkLogin } from "./services/checkLogin";
 
 function App() {
-  const [nombreUsuario, setNombreUsuario] = useState(null);
+  const [nombreUsuario, setNombreUsuario] = useState(
+    localStorage.getItem("nombreUsuario") || null
+  );
   const [rolUsuario, setRolUsuario] = useState(null);
   const [ramaUsuario, setRamaUsuario] = useState(null);
-  let auth = checkLogin();
+  const auth = checkLogin(); 
+
+  console.log(auth)
   
   return (
     <UserContext.Provider value={{nombreUsuario,setNombreUsuario,rolUsuario,setRolUsuario,ramaUsuario,setRamaUsuario}}>

@@ -36,6 +36,10 @@ function Login() {
       const responseData = await response.json();
 
       if (responseData.status === "success") {
+        localStorage.setItem("nombreUsuario", responseData.username);
+        localStorage.setItem("rolUsuario", responseData.rol);
+        localStorage.setItem("ramaUsuario", responseData.branch);
+
         sessionStorage.setItem("nombreUsuario", responseData.username);
         sessionStorage.setItem("rolUsuario", responseData.rol);
         sessionStorage.setItem("ramaUsuario", responseData.branch);

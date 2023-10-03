@@ -1,11 +1,19 @@
 import React from "react";
+import { updateBD } from "../services/updateBD";
+import UserContext from "../services/userContext";
+import { useContext } from "react";
 
 function Modal({ isOpen, toClose, seleccionada, texto }) {
-  console.log(seleccionada);
+  const { nombreUsuario } = useContext(UserContext);
 
   const enviarCambios = () => {
-    console.log(seleccionada);
-    console.log(texto);
+    const data = {
+      id: seleccionada.id,
+      nombre: seleccionada.name,
+      usuario: nombreUsuario,
+    };
+    console.log(data);
+    updateBD("http://localhost/changeNoti.php", data, nombreUsuario);
   };
 
   return (
@@ -27,7 +35,7 @@ function Modal({ isOpen, toClose, seleccionada, texto }) {
                 Cancelar
               </button>
               <button
-                onClick={() => enviarCambios}
+                onClick={enviarCambios}
                 className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5"
               >
                 Confirmar

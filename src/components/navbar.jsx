@@ -14,6 +14,10 @@ function Navbar() {
   const navigate = useNavigate();
 
   const logout = () => {
+    
+    localStorage.removeItem("nombreUsuario");
+    localStorage.removeItem("rolUsuario");
+    localStorage.removeItem("ramaUsuario");
     sessionStorage.removeItem("nombreUsuario");
     sessionStorage.removeItem("rolUsuario");
     sessionStorage.removeItem("ramaUsuario");
