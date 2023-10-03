@@ -1,10 +1,9 @@
 import React from "react";
 import { ramas } from "../services/ramas";
-import { FiEdit2 } from "react-icons/fi";
 import { useState } from "react";
 import { useEffect } from "react";
 
-function Tabla({ beneficiarios }) {
+function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
   const [beneficiariosCopia, setBeneficiariosCopia] = useState([]);
 
   const filtradoPorRama = (rama) => {
@@ -24,6 +23,11 @@ function Tabla({ beneficiarios }) {
     setBeneficiariosCopia(beneficiariosFiltrados);
   };
 
+  const seleccionarBeneficiario = (beneficiario) => {
+    setSeleccionada(beneficiario);
+    setModalOpen(true);
+  };
+
   useEffect(() => {
     beneficiarios.forEach((x) => {
       x.active = x.active === "1" ? "Si" : "No";
@@ -34,7 +38,7 @@ function Tabla({ beneficiarios }) {
   }, [beneficiarios]);
 
   return (
-    <section className="w-full h-full dark:text-white flex flex-col gap-4">
+    <section className="w-full h-full dark:text-white flex flex-col gap-4 overflow-x-auto">
       <div className="w-full flex justify-between">
         {ramas.map((rama) => (
           <span
@@ -68,7 +72,7 @@ function Tabla({ beneficiarios }) {
         </thead>
         <tbody className="w-full h-full">
           {beneficiariosCopia.map((beneficiario) => (
-            <tr className="w-full h-full text-center">
+            <tr className="w-full h-full text-center" key={beneficiario.id}>
               <td className="w-1/12 h-full">{beneficiario.name}</td>
               <td className="w-1/12 h-full">{beneficiario.birth}</td>
               <td className="w-1/12 h-full">{beneficiario.direction}</td>
@@ -79,11 +83,16 @@ function Tabla({ beneficiarios }) {
               <td className="w-1/12 h-full">{beneficiario.medical_file}</td>
               <td className="w-1/12 h-full">{beneficiario.cuota}</td>
               <td className="w-1/12 h-full">{beneficiario.active}</td>
-              <td>Editar</td>
+              <td onClick={() => seleccionarBeneficiario(beneficiario)}>
+                Editar
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <button className="bg-custon-red w-1/6 h-10 rounded-xl m-auto">
+        Agregar nuevo
+      </button>
     </section>
   );
 }

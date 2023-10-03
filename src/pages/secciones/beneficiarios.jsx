@@ -4,9 +4,12 @@ import { useEffect } from "react";
 import { fetchBD } from "../../services/fetchBD";
 import { useState } from "react";
 import Tabla from "../../components/tabla";
+import Modal from "../../components/modal";
 
 function Beneficiarios() {
   const [beneficiarios, setBeneficiarios] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [seleccionada, setSeleccionada] = useState(null);
 
   useEffect(() => {
     fetchBD(setBeneficiarios, "http://localhost/beneficiaries.php");
@@ -15,15 +18,26 @@ function Beneficiarios() {
   return (
     <main>
       <div
-        className={`w-screen min-h-screen dark:bg-custon-black flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden`}
+        className={`w-screen min-h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black `}
       >
         <Navbar />
-        <h1 className="text-3xl text-center dark:text-white">Beneficiarios</h1>
-        <button className="absolute right-20 top-20 bg-custon-red px-4 py-3 rounded-xl font-semibold dark:text-white mdn:right-10 mdn:top-16">
-          Agregar nuevo
-        </button>
-        <Tabla beneficiarios={beneficiarios} />
+        <div className={`w-full h-full ${modalOpen ? 'blur' : ""} flex flex-col gap-4`}>
+          <h1 className="text-3xl text-center dark:text-white">
+            Beneficiarios
+          </h1>
+          <Tabla
+            beneficiarios={beneficiarios}
+            setModalOpen={setModalOpen}
+            setSeleccionada={setSeleccionada}
+          />
+        </div>
       </div>
+      <Modal
+        isOpen={modalOpen}
+        toClose={setModalOpen}
+        seleccionada={seleccionada}
+        texto={"Editar"}
+      />
     </main>
   );
 }
