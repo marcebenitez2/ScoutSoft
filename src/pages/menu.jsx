@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { fetchBD } from "../services/fetchBD";
 import { useState } from "react";
 import Notificacion from "../components/notificacion";
-import Modal from "../components/modal";
+import ModalNotificaciones from "../components/modalNotificaciones";
 
 function Menu() {
   const [notificaciones, setNotificaciones] = useState([]);
@@ -68,7 +68,7 @@ function Menu() {
           <span className="loader"></span>
         )}
       </div>
-      <Modal
+      <ModalNotificaciones
         isOpen={modalOpen}
         toClose={setModalOpen}
         seleccionada={seleccionada}

@@ -3,7 +3,7 @@ import { updateBD } from "../services/updateBD";
 import UserContext from "../services/userContext";
 import { useContext } from "react";
 
-function Modal({ isOpen, toClose, seleccionada, texto }) {
+function ModalNotificaciones({ isOpen, toClose, seleccionada, texto }) {
   const { nombreUsuario } = useContext(UserContext);
 
   const enviarCambios = () => {
@@ -48,4 +48,4 @@ function Modal({ isOpen, toClose, seleccionada, texto }) {
   );
 }
 
-export default Modal;
+export default ModalNotificaciones;

@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { fetchBD } from "../../services/fetchBD";
 import { useState } from "react";
 import Tabla from "../../components/tabla";
-import Modal from "../../components/modal";
+import ModalBeneficiarios from "../../components/modalBeneficiarios";
+
 
 function Beneficiarios() {
   const [beneficiarios, setBeneficiarios] = useState([]);
@@ -32,11 +33,10 @@ function Beneficiarios() {
           />
         </div>
       </div>
-      <Modal
+      <ModalBeneficiarios
         isOpen={modalOpen}
         toClose={setModalOpen}
         seleccionada={seleccionada}
-        texto={"Editar"}
       />
     </main>
   );

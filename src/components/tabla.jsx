@@ -6,6 +6,8 @@ import { useEffect } from "react";
 function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
   const [beneficiariosCopia, setBeneficiariosCopia] = useState([]);
 
+
+  // Funcion para filtrar por rama 
   const filtradoPorRama = (rama) => {
     if (rama === "Todos") {
       return setBeneficiariosCopia(beneficiarios);
@@ -16,6 +18,8 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
     setBeneficiariosCopia(beneficiariosFiltrados);
   };
 
+
+  // Funcion para filtrar por campo de input
   const filtradoPorNombre = (nombre) => {
     const beneficiariosFiltrados = beneficiarios.filter((beneficiario) =>
       beneficiario.name.toLowerCase().includes(nombre.toLowerCase())
@@ -23,11 +27,21 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
     setBeneficiariosCopia(beneficiariosFiltrados);
   };
 
+
+  // Funcion para seleccionar beneficiario y editarlo
+  // Desde aca se puede abrir el modal
   const seleccionarBeneficiario = (beneficiario) => {
     setSeleccionada(beneficiario);
     setModalOpen(true);
   };
 
+  // Funcion para agregar un beneficiario nuevo
+  const agregarBeneficiario = () => {
+    setSeleccionada(null);
+    setModalOpen(true);
+  }
+
+  // Funcion para cambiar los valores de 0 y 1 por Si y No
   useEffect(() => {
     beneficiarios.forEach((x) => {
       x.active = x.active === "1" ? "Si" : "No";
@@ -90,7 +104,7 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
           ))}
         </tbody>
       </table>
-      <button className="bg-custon-red w-1/6 h-10 rounded-xl m-auto">
+      <button className="bg-custon-red w-1/6 h-10 rounded-xl m-auto" onClick={()=>agregarBeneficiario()}>
         Agregar nuevo
       </button>
     </section>
