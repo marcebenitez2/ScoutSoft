@@ -16,6 +16,8 @@ function Beneficiarios() {
     fetchBD(setBeneficiarios, "http://localhost/beneficiaries.php");
   }, []);
 
+  console.log(beneficiarios)
+
   return (
     <main>
       <div

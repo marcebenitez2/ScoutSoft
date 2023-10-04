@@ -1,12 +1,14 @@
-export async function postBD(data,url){
- try{
-    const response = await fetch(url,{
-        method:'POST',
-        headers:{ "Content-Type": "application/x-www-form-urlencoded" },
-        body:JSON.stringify(data)
-    })
+export async function postBD(data, url) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const responseData = await response.json(); // Espera la respuesta JSON
 
- }catch(error){
-    console.log(error)
- }
+    return responseData; // Devuelve la respuesta JSON
+  } catch (error) {
+    console.log(error);
+  }
 }

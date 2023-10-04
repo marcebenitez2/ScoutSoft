@@ -1,8 +1,62 @@
 import React from "react";
 import { ramas } from "../services/ramas";
+import { useState } from "react";
+import { postBD } from "../services/postBD";
 
 function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
-  console.log(seleccionada);
+  if (!isOpen) {
+    return null; // Si el modal no está abierto, no renderiza nada
+  }
+  const [id, setId] = useState(seleccionada ? seleccionada.id : null);
+  const [nombre, setNombre] = useState(seleccionada ? seleccionada.name : null);
+  const [nacimiento, setNacimiento] = useState(
+    seleccionada ? seleccionada.birth : null
+  );
+  const [direccion, setDireccion] = useState(
+    seleccionada ? seleccionada.direction : null
+  );
+  const [telefono, setTelefono] = useState(
+    seleccionada ? seleccionada.tel : null
+  );
+  const [mail, setMail] = useState(seleccionada ? seleccionada.mail : null);
+  const [rama, setRama] = useState(seleccionada ? seleccionada.branch : null);
+  const [personal, setPersonal] = useState(
+    seleccionada ? seleccionada.personal_file : null
+  );
+  const [medical, setMedical] = useState(
+    seleccionada ? seleccionada.medical_file : null
+  );
+  const [cuota, setCuota] = useState(seleccionada ? seleccionada.cuota : null);
+  const [activo, setActivo] = useState(
+    seleccionada ? seleccionada.active : null
+  );
+
+  const guardarCambios = () => {
+    // Convierte "on" y "off" en 1 y 0
+    const personalValue = personal === "Si" ? 1 : 0;
+    const medicalValue = medical === "Si" ? 1 : 0;
+    const activoValue = activo === "Si" ? 1 : 0;
+
+    const beneficiario = {
+      id,
+      nombre,
+      nacimiento,
+      direccion,
+      telefono,
+      mail,
+      rama,
+      personal: personalValue, // Asigna el valor convertido
+      medical: medicalValue, // Asigna el valor convertido
+      cuota,
+      activo: activoValue,
+    };
+
+    postBD(beneficiario,"http://localhost/addBeneficiarie.php")
+    toClose(false)
+    window.location.reload();
+
+
+  };
 
   return (
     <main>
@@ -17,7 +71,8 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <label>Nombre</label>
                 <input
                   className="bg-custon-black border rounded-md px-2 py-1"
-                  defaultValue={seleccionada ? seleccionada.name : ""}
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
                 />
               </article>
               <article className="flex flex-col items-center">
@@ -26,6 +81,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                   type="date"
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.birth : ""}
+                  onChange={(e) => setNacimiento(e.target.value)}
                 />
               </article>
               <article className="flex flex-col items-center">
@@ -33,6 +89,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <input
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.direction : ""}
+                  onChange={(e) => setDireccion(e.target.value)}
                 />
               </article>
               <article className="flex flex-col items-center">
@@ -40,6 +97,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <input
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.tel : ""}
+                  onChange={(e) => setTelefono(e.target.value)}
                 />
               </article>
             </div>
@@ -52,6 +110,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <input
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.mail : ""}
+                  onChange={(e) => setMail(e.target.value)}
                 />
               </article>
               <article className="flex flex-col items-center">
@@ -59,6 +118,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <select
                   className="bg-custon-black border"
                   defaultValue={seleccionada ? seleccionada.branch : ""}
+                  onChange={(e) => setRama(e.target.value)}
                 >
                   {ramas.map((rama) => (
                     <option key={rama.id}>{rama.nombre}</option>
@@ -70,13 +130,8 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <input
                   type="checkbox"
                   className="w-6 h-6"
-                  defaultChecked={
-                    seleccionada
-                      ? seleccionada.medical_file === "Si"
-                        ? true
-                        : false
-                      : false
-                  }
+                  checked={personal === "Si"} // Establecer el estado inicial en función de personal
+                  onChange={(e) => setPersonal(e.target.checked ? "Si" : "No")} // Actualizar el estado en el evento onChange
                 />
               </article>
               <article className="flex flex-col items-center">
@@ -84,13 +139,8 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <input
                   type="checkbox"
                   className="w-6 h-6"
-                  defaultChecked={
-                    seleccionada
-                      ? seleccionada.personal_file === "Si"
-                        ? true
-                        : false
-                      : false
-                  }
+                  checked={medical === "Si"} // Establecer el estado inicial en función de medical
+                  onChange={(e) => setMedical(e.target.checked ? "Si" : "No")} // Actualizar el estado en el evento onChange
                 />
               </article>
               <article className="flex flex-col items-center">
@@ -99,6 +149,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                   type="date"
                   className="bg-custon-black border"
                   defaultValue={seleccionada ? seleccionada.cuota : ""}
+                  onChange={(e) => setCuota(e.target.value)}
                 />
               </article>
               <article className="flex flex-col items-center">
@@ -106,13 +157,8 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 <input
                   type="checkbox"
                   className="w-6 h-6"
-                  defaultChecked={
-                    seleccionada
-                      ? seleccionada.activo === "Si"
-                        ? true
-                        : false
-                      : false
-                  }
+                  checked={activo === "Si"} // Establecer el estado inicial en función de activo
+                  onChange={(e) => setActivo(e.target.checked ? "Si" : "No")} // Actualizar el estado en el evento onChange
                 />
               </article>
             </div>
@@ -123,7 +169,10 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               >
                 Cancelar
               </button>
-              <button className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5">
+              <button
+                onClick={() => guardarCambios()}
+                className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5"
+              >
                 Guardar cambios
               </button>
             </div>
