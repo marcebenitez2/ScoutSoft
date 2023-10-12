@@ -8,6 +8,7 @@ import { useState } from "react";
 import UserContext from "./services/userContext";
 import Beneficiarios from "./pages/secciones/beneficiarios";
 import { checkLogin } from "./services/checkLogin";
+import Inventario from "./pages/secciones/inventario";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -28,6 +29,7 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="/menu" element={auth ? <Menu/> : <Login/>}/>
           <Route path="/menu/beneficiarios"element={auth ? <Beneficiarios/> : <Login/>}/>
+          <Route path="/menu/inventario"element={auth ? <Inventario/> : <Login/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>

@@ -14,6 +14,7 @@ function ModalNotificaciones({ isOpen, toClose, seleccionada, texto }) {
     };
     console.log(data);
     updateBD("http://localhost/changeNoti.php", data, nombreUsuario);
+    window.location.reload();
   };
 
   return (

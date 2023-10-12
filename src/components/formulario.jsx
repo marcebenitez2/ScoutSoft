@@ -9,53 +9,56 @@ function Formulario() {
   const [mensajeFormulario, setmensajeFormulario] = useState("");
 
   const enviar = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
       nombre: nombreFormulario,
       telefono: telefonoFormulario,
       correo: correoFormulario,
       mensaje: mensajeFormulario,
     };
-    let url = "http://localhost/sendMessage.php"
-    postBD(data,url);
+    let url = "http://localhost/sendMessage.php";
+    postBD(data, url);
+    window.location.reload();
   };
 
   return (
-    <form className="flex flex-col w-1/2">
-      <div className="flex flex-col">
-        <label className="text-2xl font-semibold">Nombre y Apellido</label>
-        <input
-          type="text"
-          className="h-8 px-4"
-          onChange={(e) => setnombreFormulario(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col">
-        <label className="text-2xl font-semibold">Telefono</label>
-        <input
-          type="tel"
-          className="h-8 px-4"
-          onChange={(e) => settelefonoFormulario(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col">
-        <label className="text-2xl font-semibold">Correo electronico</label>
-        <input
-          type="email"
-          className="h-8 px-4"
-          onChange={(e) => setcorreoFormulario(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col">
-        <label className="text-2xl font-semibold">Mensaje</label>
-        <textarea
-          className="px-4"
-          onChange={(e) => setmensajeFormulario(e.target.value)}
-        />
+    <form className="flex flex-col w-1/2 text-white gap-6">
+      <div>
+        <div className="flex flex-col">
+          <label className="text-2xl font-semibold">Nombre y Apellido</label>
+          <input
+            type="text"
+            className="h-8 px-4 rounded-md"
+            onChange={(e) => setnombreFormulario(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-2xl font-semibold">Telefono</label>
+          <input
+            type="tel"
+            className="h-8 px-4 rounded-md"
+            onChange={(e) => settelefonoFormulario(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-2xl font-semibold">Correo electronico</label>
+          <input
+            type="email"
+            className="h-8 px-4 rounded-md"
+            onChange={(e) => setcorreoFormulario(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-2xl font-semibold">Mensaje</label>
+          <textarea
+            className="px-4 rounded-md"
+            onChange={(e) => setmensajeFormulario(e.target.value)}
+          />
+        </div>
       </div>
       <button
-        className="m-auto w-1/3 h-10 bg-black text-white"
-        onClick={(e)=>enviar(e)}
+        className="m-auto w-1/3 h-10 bg-white text-black rounded-md"
+        onClick={(e) => enviar(e)}
       >
         Enviar
       </button>
