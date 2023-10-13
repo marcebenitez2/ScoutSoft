@@ -5,14 +5,14 @@ import { ImHome } from "react-icons/im";
 
 function InfoNav() {
   return (
-    <nav className="w-full h-12 fixed flex justify-between px-10 items-center bg-transparent text-white font-semibold ">
+    <nav className="w-full h-12 flex fixed justify-between px-10 items-center bg-red-600 text-white font-semibold ">
       <div>
-        <Link>
+        <Link to={'/'}>
           <ImHome size={30} />
         </Link>
       </div>
       <div className="flex gap-11">
-        <Link>
+        <Link to={'/nosotros'}>
           <span>Nosotros</span>
         </Link>
         <Link>

@@ -9,6 +9,7 @@ import UserContext from "./services/userContext";
 import Beneficiarios from "./pages/secciones/beneficiarios";
 import { checkLogin } from "./services/checkLogin";
 import Inventario from "./pages/secciones/inventario";
+import Nosotros from "./pages/HomePages/nosotros";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -25,6 +26,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />
           <Route path="/menu" element={auth ? <Menu/> : <Login/>}/>
