@@ -1,17 +1,34 @@
 import React from "react";
 import InfoNav from "../components/infoNav";
-import Formulario from "../components/formulario";
+import background from "/fotoFondo.jpg";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <main className="w-screen h-screen bg-custon-white bg-gradient-to-t from-red-200 to-red-600">
+    <main className="w-screen h-screen">
       <InfoNav />
-      <section className="pt-20 w-full flex flex-col px-10 gap-12 items-center">
-        <div className="font-semibold text-white text-center">
-          <h2 className="text-5xl">Grupo scout</h2>
-          <h1 className="text-7xl">San Miguel de Arcangel</h1>
+      <section
+        className="w-full h-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${background})` }}
+      >
+        <div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center">
+          <h1 className="text-white text-5xl">Grupo Scout</h1>
+          <h2 className="text-white text-6xl font-semibold text-center">
+            San Miguel de Arcangel
+          </h2>
+          <div className="flex mt-4">
+            <Link to={"/nosotros"}>
+              <button className="text-white font-semibold px-8 py-1">
+                sobre nosotros
+              </button>
+            </Link>
+            <Link to={'/formulario'}>
+              <button className="bg-red-600 text-white font-semibold rounded-lg px-8 py-1">
+                Consultanos!
+              </button>
+            </Link>
+          </div>
         </div>
-        <Formulario/>
       </section>
     </main>
   );

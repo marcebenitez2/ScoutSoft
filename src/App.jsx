@@ -11,6 +11,7 @@ import { checkLogin } from "./services/checkLogin";
 import Inventario from "./pages/secciones/inventario";
 import Nosotros from "./pages/HomePages/nosotros";
 import Scoutismo from "./pages/HomePages/scoutismo";
+import Consulta from "./pages/HomePages/consulta";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -26,9 +27,10 @@ function App() {
     <UserContext.Provider value={{nombreUsuario,setNombreUsuario,rolUsuario,setRolUsuario,ramaUsuario,setRamaUsuario}}>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/nosotros" element={<Nosotros/>} />
           <Route path="/scoutismo" element={<Scoutismo />} />
+          <Route path="/formulario" element={<Consulta />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />
           <Route path="/menu" element={auth ? <Menu/> : <Login/>}/>
