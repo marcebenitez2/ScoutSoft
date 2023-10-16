@@ -15,7 +15,7 @@ function InfoNav() {
         <Link to={'/nosotros'}>
           <span>Nosotros</span>
         </Link>
-        <Link>
+        <Link to={'/scoutismo'}>
           <span>Scoutismo</span>
         </Link>
         <Link>

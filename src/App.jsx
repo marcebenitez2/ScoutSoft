@@ -10,6 +10,7 @@ import Beneficiarios from "./pages/secciones/beneficiarios";
 import { checkLogin } from "./services/checkLogin";
 import Inventario from "./pages/secciones/inventario";
 import Nosotros from "./pages/HomePages/nosotros";
+import Scoutismo from "./pages/HomePages/scoutismo";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/scoutismo" element={<Scoutismo />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />
           <Route path="/menu" element={auth ? <Menu/> : <Login/>}/>
