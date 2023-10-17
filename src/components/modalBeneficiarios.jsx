@@ -2,6 +2,7 @@ import React from "react";
 import { ramas } from "../services/ramas";
 import { useState } from "react";
 import { postBD } from "../services/postBD";
+import { ToastContainer, toast } from "react-toastify";
 
 function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
   if (!isOpen) {
@@ -31,8 +32,22 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
     seleccionada ? seleccionada.active : null
   );
 
-  const guardarCambios = () => {
-    // Convierte "on" y "off" en 1 y 0
+  const guardarCambios = (e) => {
+    e.preventDefault();
+
+    if (
+      !nombre ||
+      !nacimiento ||
+      !direccion ||
+      !telefono ||
+      !mail ||
+      !rama ||
+      !cuota
+    ) {
+      toast.error("Rellena todos los campos");
+      return;
+    }
+
     const personalValue = personal === "Si" ? 1 : 0;
     const medicalValue = medical === "Si" ? 1 : 0;
     const activoValue = activo === "Si" ? 1 : 0;
@@ -51,18 +66,16 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
       activo: activoValue,
     };
 
-    postBD(beneficiario,"http://localhost/addBeneficiarie.php")
-    toClose(false)
+    postBD(beneficiario, "http://localhost/addBeneficiarie.php");
+    toClose(false);
     window.location.reload();
-
-
   };
 
   return (
     <main>
       {isOpen ? (
         <section className="h-screen w-screen top-0 left-0 flex items-center justify-center fixed dark:text-white">
-          <div className="w-1/2 h-1/2 bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center justify-between py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
+          <form className="w-1/2 h-1/2 bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center justify-between py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
             <h3 className="text-2xl">
               {seleccionada ? "Editar Beneficiario" : "Agregar nuevo"}
             </h3>
@@ -70,6 +83,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Nombre</label>
                 <input
+                  required
                   className="bg-custon-black border rounded-md px-2 py-1"
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
@@ -78,6 +92,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Nacimiento</label>
                 <input
+                  required
                   type="date"
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.birth : ""}
@@ -87,6 +102,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Direccion</label>
                 <input
+                  required
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.direction : ""}
                   onChange={(e) => setDireccion(e.target.value)}
@@ -95,6 +111,8 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Telefono</label>
                 <input
+                  required
+                  type="number"
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.tel : ""}
                   onChange={(e) => setTelefono(e.target.value)}
@@ -108,6 +126,8 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Mail</label>
                 <input
+                  required
+                  type="email"
                   className="bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.mail : ""}
                   onChange={(e) => setMail(e.target.value)}
@@ -128,6 +148,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Ficha personal</label>
                 <input
+                  required
                   type="checkbox"
                   className="w-6 h-6"
                   checked={personal === "Si"} // Establecer el estado inicial en función de personal
@@ -137,6 +158,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Ficha medica</label>
                 <input
+                  required
                   type="checkbox"
                   className="w-6 h-6"
                   checked={medical === "Si"} // Establecer el estado inicial en función de medical
@@ -146,6 +168,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Cuota</label>
                 <input
+                  required
                   type="date"
                   className="bg-custon-black border"
                   defaultValue={seleccionada ? seleccionada.cuota : ""}
@@ -155,6 +178,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
               <article className="flex flex-col items-center">
                 <label>Activo</label>
                 <input
+                  required
                   type="checkbox"
                   className="w-6 h-6"
                   checked={activo === "Si"} // Establecer el estado inicial en función de activo
@@ -170,15 +194,16 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                 Cancelar
               </button>
               <button
-                onClick={() => guardarCambios()}
+                onClick={(e) => guardarCambios(e)}
                 className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5"
               >
                 Guardar cambios
               </button>
             </div>
-          </div>
+          </form>
         </section>
       ) : null}
+      <ToastContainer />
     </main>
   );
 }

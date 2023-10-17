@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { postBD } from "../services/postBD";
+import { ToastContainer, toast } from "react-toastify";
 
 function Formulario() {
   const [nombreFormulario, setnombreFormulario] = useState("");
@@ -10,6 +11,15 @@ function Formulario() {
 
   const enviar = (e) => {
     e.preventDefault();
+    if (
+      !nombreFormulario ||
+      !telefonoFormulario ||
+      !correoFormulario ||
+      !mensajeFormulario
+    ) {
+      toast.error("Rellena todos los campos");
+      return;
+    }
     const data = {
       nombre: nombreFormulario,
       telefono: telefonoFormulario,
@@ -27,6 +37,7 @@ function Formulario() {
         <div className="flex flex-col">
           <label className="text-2xl font-semibold">Nombre y Apellido</label>
           <input
+            required
             type="text"
             className="h-8 px-4 rounded-md text-black"
             onChange={(e) => setnombreFormulario(e.target.value)}
@@ -35,6 +46,7 @@ function Formulario() {
         <div className="flex flex-col">
           <label className="text-2xl font-semibold">Telefono</label>
           <input
+            required
             type="tel"
             className="h-8 px-4 rounded-md text-black"
             onChange={(e) => settelefonoFormulario(e.target.value)}
@@ -43,6 +55,7 @@ function Formulario() {
         <div className="flex flex-col">
           <label className="text-2xl font-semibold">Correo electronico</label>
           <input
+            required
             type="email"
             className="h-8 px-4 rounded-md text-black"
             onChange={(e) => setcorreoFormulario(e.target.value)}
@@ -51,7 +64,7 @@ function Formulario() {
         <div className="flex flex-col">
           <label className="text-2xl font-semibold">Mensaje</label>
           <textarea
-            className="px-4 rounded-md"
+            className="px-4 rounded-md text-black"
             onChange={(e) => setmensajeFormulario(e.target.value)}
           />
         </div>
@@ -62,6 +75,7 @@ function Formulario() {
       >
         Enviar
       </button>
+      <ToastContainer/>
     </form>
   );
 }
