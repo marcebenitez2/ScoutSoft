@@ -97,8 +97,8 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
   return (
     <main>
       {isOpen ? (
-        <section className="h-screen w-screen top-0 left-0 flex items-center justify-center fixed dark:text-white">
-          <form className="w-1/2 h-1/2 bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center justify-between py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
+        <section className="h-screen w-screen top-0 left-0 flex items-center justify-center fixed dark:text-white text-black">
+          <form className="w-1/2 h-1/2 dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center justify-between py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
             <h3 className="text-2xl">
               {seleccionada ? "Editar Beneficiario" : "Agregar nuevo"}
             </h3>
@@ -107,7 +107,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <label>Nombre</label>
                 <input
                   required
-                  className="bg-custon-black border rounded-md px-2 py-1"
+                  className="dark:bg-custon-black border rounded-md px-2 py-1 "
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                 />
@@ -117,7 +117,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <input
                   required
                   typeof="number"
-                  className="bg-custon-black border rounded-md px-2 py-1"
+                  className="dark:bg-custon-black border rounded-md px-2 py-1"
                   value={dni}
                   onChange={(e) => setDni(e.target.value)}
                 />
@@ -127,7 +127,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <input
                   required
                   type="date"
-                  className="bg-custon-black border rounded-md px-2 py-1"
+                  className="dark:bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.birth : ""}
                   onChange={(e) => setNacimiento(e.target.value)}
                 />
@@ -136,7 +136,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <label>Direccion</label>
                 <input
                   required
-                  className="bg-custon-black border rounded-md px-2 py-1"
+                  className="dark:bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.direction : ""}
                   onChange={(e) => setDireccion(e.target.value)}
                 />
@@ -146,7 +146,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <input
                   required
                   type="number"
-                  className="bg-custon-black border rounded-md px-2 py-1"
+                  className="dark:bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.tel : ""}
                   onChange={(e) => setTelefono(e.target.value)}
                 />
@@ -161,7 +161,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <input
                   required
                   type="email"
-                  className="bg-custon-black border rounded-md px-2 py-1"
+                  className="dark:bg-custon-black border rounded-md px-2 py-1"
                   defaultValue={seleccionada ? seleccionada.mail : ""}
                   onChange={(e) => setMail(e.target.value)}
                 />
@@ -169,7 +169,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
               <article className="flex flex-col items-center">
                 <label>Rama</label>
                 <select
-                  className="bg-custon-black border"
+                  className="dark:bg-custon-black border"
                   defaultValue={seleccionada ? seleccionada.branch : ""}
                   onChange={(e) => setRama(e.target.value)}
                 >
@@ -203,7 +203,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <input
                   required
                   type="date"
-                  className="bg-custon-black border"
+                  className="dark:bg-custon-black border"
                   defaultValue={seleccionada ? seleccionada.cuota : ""}
                   onChange={(e) => setCuota(e.target.value)}
                 />
@@ -228,7 +228,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
               </button>
               <button
                 onClick={(e) => guardarCambios(e)}
-                className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5"
+                className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5 text-white"
               >
                 Guardar cambios
               </button>

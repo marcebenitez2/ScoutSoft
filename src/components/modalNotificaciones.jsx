@@ -31,7 +31,7 @@ function ModalNotificaciones({ isOpen, toClose, seleccionada, texto }) {
             <div className="flex w-full justify-center">
               <button
                 onClick={() => toClose(false)}
-                className="w-1/5 h-10 dark:text-white mdn:w-2/5"
+                className="w-1/5 h-10 text-white mdn:w-2/5"
               >
                 Cancelar
               </button>

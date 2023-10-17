@@ -56,7 +56,7 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
       <div className="w-full flex justify-between">
         {ramas.map((rama) => (
           <span
-            className="bg-custon-red w-24 h-9 flex items-center justify-center rounded-lg cursor-pointer"
+            className="bg-custon-red w-24 h-9 flex items-center justify-center rounded-lg cursor-pointer text-white"
             key={rama.id}
             onClick={() => filtradoPorRama(rama.nombre)}
           >
@@ -65,7 +65,7 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
         ))}
       </div>
       <input
-        className="bg-custon-black border px-4 py-2 rounded-xl"
+        className="dark:bg-custon-black border px-4 py-2 rounded-xl bg-white border-black dark:border-white"
         onChange={(e) => filtradoPorNombre(e.target.value)}
       />
       <table className="w-full h-full">
@@ -107,7 +107,7 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
         </tbody>
       </table>
       <button
-        className="bg-custon-red w-1/6 h-10 rounded-xl m-auto"
+        className="bg-custon-red w-1/6 h-10 rounded-xl m-auto text-white"
         onClick={() => agregarBeneficiario()}
       >
         Agregar nuevo
