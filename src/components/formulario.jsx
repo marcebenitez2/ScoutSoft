@@ -20,6 +20,17 @@ function Formulario() {
       toast.error("Rellena todos los campos");
       return;
     }
+
+    if (telefonoFormulario.length !== 10) {
+      toast.error("El telefono debe tener 10 digitos");
+      return;
+    }
+
+    if (!correoFormulario.includes("@")) {
+      toast.error("El correo electronico no es valido");
+      return;
+    }
+
     const data = {
       nombre: nombreFormulario,
       telefono: telefonoFormulario,
