@@ -4,12 +4,14 @@ import { useState } from "react";
 import { postBD } from "../services/postBD";
 import { ToastContainer, toast } from "react-toastify";
 
-function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
+function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
   if (!isOpen) {
     return null; // Si el modal no está abierto, no renderiza nada
   }
+
   const [id, setId] = useState(seleccionada ? seleccionada.id : null);
   const [nombre, setNombre] = useState(seleccionada ? seleccionada.name : null);
+  const [dni, setDni] = useState(seleccionada ? seleccionada.dni : null);
   const [nacimiento, setNacimiento] = useState(
     seleccionada ? seleccionada.birth : null
   );
@@ -48,6 +50,26 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
       return;
     }
 
+    if (dni.length !== 8) {
+      toast.error("El dni debe tener 8 digitos");
+      return;
+    }
+
+    if (telefono.length !== 10) {
+      toast.error("El telefono debe tener 10 digitos");
+      return;
+    }
+
+    if (!mail.includes("@") || !mail.includes(".")) {
+      toast.error("El mail no es valido");
+      return;
+    }
+
+    if (beneficiarios.find((beneficiario) => beneficiario.dni === dni)) {
+      toast.error("Ya existe un beneficiario con ese dni");
+      return;
+    }
+
     const personalValue = personal === "Si" ? 1 : 0;
     const medicalValue = medical === "Si" ? 1 : 0;
     const activoValue = activo === "Si" ? 1 : 0;
@@ -55,6 +77,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
     const beneficiario = {
       id,
       nombre,
+      dni,
       nacimiento,
       direccion,
       telefono,
@@ -87,6 +110,16 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada }) {
                   className="bg-custon-black border rounded-md px-2 py-1"
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
+                />
+              </article>
+              <article className="flex flex-col items-center">
+                <label>Dni</label>
+                <input
+                  required
+                  typeof="number"
+                  className="bg-custon-black border rounded-md px-2 py-1"
+                  value={dni}
+                  onChange={(e) => setDni(e.target.value)}
                 />
               </article>
               <article className="flex flex-col items-center">

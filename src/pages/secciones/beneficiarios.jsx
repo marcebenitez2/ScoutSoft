@@ -39,6 +39,7 @@ function Beneficiarios() {
         isOpen={modalOpen}
         toClose={setModalOpen}
         seleccionada={seleccionada}
+        beneficiarios={beneficiarios}
       />
     </main>
   );

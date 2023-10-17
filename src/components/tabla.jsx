@@ -72,6 +72,7 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
         <thead className="w-full h-full">
           <tr className="w-full h-full text-custon-red font-semibold">
             <th className="w-1/12 h-full">Nombre</th>
+            <th className="w-1/12 h-full">Documento</th>
             <th className="w-1/12 h-full">nacimiento</th>
             <th className="w-1/12 h-full">Direccion</th>
             <th className="w-1/12 h-full">Telefono</th>
@@ -88,6 +89,7 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
           {beneficiariosCopia.map((beneficiario) => (
             <tr className="w-full h-full text-center" key={beneficiario.id}>
               <td className="w-1/12 h-full">{beneficiario.name}</td>
+              <td className="w-1/12 h-full">{beneficiario.dni}</td>
               <td className="w-1/12 h-full">{beneficiario.birth}</td>
               <td className="w-1/12 h-full">{beneficiario.direction}</td>
               <td className="w-1/12 h-full">{beneficiario.tel}</td>
