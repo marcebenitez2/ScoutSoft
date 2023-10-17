@@ -2,10 +2,8 @@
 
 header("Access-Control-Allow-Origin: *");
 
-// Permitir los métodos que se utilizan en la solicitud (por ejemplo, POST)
 header("Access-Control-Allow-Methods: POST");
 
-// Permitir los encabezados específicos que se utilizan en la solicitud
 header("Access-Control-Allow-Headers: Content-Type");
 
 // Si la solicitud es del tipo OPTIONS, finaliza aquí para la respuesta de preflight
