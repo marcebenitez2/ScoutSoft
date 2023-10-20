@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2023 a las 22:34:34
+-- Tiempo de generación: 18-10-2023 a las 15:03:15
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.1.17
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,46 +58,47 @@ CREATE TABLE `beneficiaries` (
   `personal_file` tinyint(1) DEFAULT NULL,
   `medical_file` tinyint(1) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `cuota` date DEFAULT NULL
+  `cuota` date DEFAULT NULL,
+  `dni` varchar(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `beneficiaries`
 --
 
-INSERT INTO `beneficiaries` (`id`, `name`, `birth`, `direction`, `tel`, `mail`, `branch`, `personal_file`, `medical_file`, `active`, `cuota`) VALUES
-(1, 'Juan Benitez', '1990-05-15', 'Calle 123', 1234567890, 'juan.perez@email.com', 'Castores', 0, 0, 0, '2023-10-01'),
-(2, 'María López', '1985-03-20', 'Avenida 456', 9876543210, 'maria.lopez@email.com', 'Haditas', 0, 1, 1, '2023-09-15'),
-(3, 'Pedro Ramírez', '1992-08-10', 'Calle 789', 5555555555, 'pedro.ramirez@email.com', 'Manada', 1, 1, 0, '2023-10-05'),
-(4, 'Carlos Rodríguez', '1988-12-30', 'Avenida 789', 4444444444, 'carlos.rodriguez@email.com', 'Scout', 1, 0, 1, '2023-10-10'),
-(5, 'Ana Martínez', '1995-02-25', 'Calle 567', 9999999999, 'ana.martinez@email.com', 'Raider', 0, 1, 1, '2023-09-20'),
-(6, 'Laura González', '1983-07-18', 'Avenida 123', 7777777777, 'laura.gonzalez@email.com', 'Rover', 1, 1, 0, '2023-10-15'),
-(7, 'Alejandro Torres', '1993-09-05', 'Calle 456', 8888888888, 'alejandro.torres@email.com', 'Cocina', 1, 0, 1, '2023-10-20'),
-(8, 'Sofía Pérez', '1998-04-12', 'Avenida 678', 6666666666, 'sofia.perez@email.com', 'Todos', 0, 1, 1, '2023-09-25'),
-(9, 'Javier Sánchez', '1987-06-28', 'Calle 789', 3333333333, 'javier.sanchez@email.com', 'Castores', 1, 1, 0, '2023-10-25'),
-(10, 'Elena Rodríguez', '1991-11-08', 'Avenida 234', 2222222222, 'elena.rodriguez@email.com', 'Haditas', 1, 0, 1, '2023-10-30'),
-(11, 'Marcela Gómez', '1989-06-12', 'Calle 789', 5555555555, 'marcela.gomez@email.com', 'Scout', 1, 0, 1, '2023-11-05'),
-(12, 'Luisa Martínez', '1994-03-25', 'Avenida 567', 9999999999, 'luisa.martinez@email.com', 'Raider', 0, 1, 1, '2023-10-20'),
-(13, 'Roberto Pérez', '1986-08-08', 'Calle 123', 1234567890, 'roberto.perez@email.com', 'Rover', 1, 1, 0, '2023-11-10'),
-(14, 'Carmen López', '1997-02-15', 'Avenida 678', 6666666666, 'carmen.lopez@email.com', 'Cocina', 1, 0, 1, '2023-11-15'),
-(15, 'Miguel Ramírez', '1984-09-30', 'Calle 234', 2222222222, 'miguel.ramirez@email.com', 'Todos', 0, 1, 1, '2023-10-25'),
-(16, 'Isabel González', '1990-12-05', 'Avenida 123', 7777777777, 'isabel.gonzalez@email.com', 'Castores', 1, 0, 1, '2023-11-01'),
-(17, 'Andrés Torres', '1993-07-18', 'Calle 456', 8888888888, 'andres.torres@email.com', 'Haditas', 1, 1, 0, '2023-11-05'),
-(18, 'Carolina Sánchez', '1998-04-12', 'Avenida 789', 4444444444, 'carolina.sanchez@email.com', 'Manada', 0, 1, 1, '2023-11-10'),
-(19, 'Ricardo Rodríguez', '1987-06-28', 'Calle 567', 3333333333, 'ricardo.rodriguez@email.com', 'Scout', 1, 0, 1, '2023-11-15'),
-(20, 'Silvia Martínez', '1991-11-08', 'Avenida 234', 5555555555, 'silvia.martinez@email.com', 'Raider', 1, 1, 0, '2023-11-20'),
-(21, 'Lucía García', '1993-09-20', 'Calle 567', 5555555555, 'lucia.garcia@email.com', 'Rover', 1, 0, 1, '2023-11-05'),
-(22, 'Carlos Sánchez', '1998-04-12', 'Avenida 789', 4444444444, 'carlos.sanchez@email.com', 'Cocina', 0, 1, 1, '2023-11-10'),
-(23, 'Patricia Rodríguez', '1987-06-28', 'Calle 234', 3333333333, 'patricia.rodriguez@email.com', 'Todos', 1, 0, 1, '2023-11-15'),
-(24, 'Mariano Martínez', '1991-11-08', 'Avenida 123', 7777777777, 'mariano.martinez@email.com', 'Castores', 1, 1, 0, '2023-11-01'),
-(25, 'Natalia Torres', '1993-07-18', 'Calle 456', 8888888888, 'natalia.torres@email.com', 'Haditas', 0, 1, 1, '2023-11-05'),
-(26, 'Diego Ramírez', '1984-09-30', 'Calle 234', 2222222222, 'diego.ramirez@email.com', 'Manada', 1, 0, 1, '2023-11-10'),
-(27, 'Alicia González', '1990-12-05', 'Avenida 123', 6666666666, 'alicia.gonzalez@email.com', 'Scout', 1, 0, 1, '2023-11-15'),
-(28, 'Jorge Pérez', '1996-02-15', 'Calle 789', 9999999999, 'jorge.perez@email.com', 'Raider', 1, 1, 0, '2023-11-20'),
-(29, 'Marina López', '1986-08-08', 'Avenida 456', 1234567890, 'marina.lopez@email.com', 'Rover', 0, 1, 1, '2023-11-25'),
-(30, 'Héctor Martínez', '1995-03-25', 'Calle 567', 9876543210, 'hector.martinez@email.com', 'Cocina', 1, 0, 1, '2023-11-30'),
-(33, 'Marcelo Nahuel ', '2002-06-07', 'Balbo 4156', 3415690470, 'marcebenitez0607@gmail.com', 'Rover', 1, 1, 1, '2023-04-10'),
-(34, 'Nico pro', '2000-07-05', 'asldkja123', 123123123, 'nicoo@gmail.com', 'Cocina', 1, 1, 0, '2023-04-10');
+INSERT INTO `beneficiaries` (`id`, `name`, `birth`, `direction`, `tel`, `mail`, `branch`, `personal_file`, `medical_file`, `active`, `cuota`, `dni`) VALUES
+(1, 'Juan Benitez', '1990-05-15', 'Calle 123', 1234567890, 'juan.perez@email.com', 'Castores', 0, 0, 0, '2023-10-01', '98716522'),
+(2, 'María López', '1985-03-20', 'Avenida 456', 9876543210, 'maria.lopez@email.com', 'Haditas', 0, 1, 1, '2023-09-15', '63066527'),
+(3, 'Pedro Ramírez', '1992-08-10', 'Calle 789', 5555555555, 'pedro.ramirez@email.com', 'Manada', 1, 1, 0, '2023-10-05', '19183073'),
+(4, 'Carlos Rodríguez', '1988-12-30', 'Avenida 789', 4444444444, 'carlos.rodriguez@email.com', 'Scout', 1, 0, 1, '2023-10-10', '06715789'),
+(5, 'Ana Martínez', '1995-02-25', 'Calle 567', 9999999999, 'ana.martinez@email.com', 'Raider', 0, 1, 1, '2023-09-20', '76029729'),
+(6, 'Laura González', '1983-07-18', 'Avenida 123', 7777777777, 'laura.gonzalez@email.com', 'Rover', 1, 1, 0, '2023-10-15', '60001282'),
+(7, 'Alejandro Torres', '1993-09-05', 'Calle 456', 8888888888, 'alejandro.torres@email.com', 'Cocina', 1, 0, 1, '2023-10-20', '71917225'),
+(8, 'Sofía Pérez', '1998-04-12', 'Avenida 678', 6666666666, 'sofia.perez@email.com', 'Todos', 0, 1, 1, '2023-09-25', '79582285'),
+(9, 'Javier Sánchez', '1987-06-28', 'Calle 789', 3333333333, 'javier.sanchez@email.com', 'Castores', 1, 1, 0, '2023-10-25', '82159754'),
+(10, 'Elena Rodríguez', '1991-11-08', 'Avenida 234', 2222222222, 'elena.rodriguez@email.com', 'Haditas', 1, 0, 1, '2023-10-30', '72051916'),
+(11, 'Marcela Gómez', '1989-06-12', 'Calle 789', 5555555555, 'marcela.gomez@email.com', 'Scout', 1, 0, 1, '2023-11-05', '13780321'),
+(12, 'Luisa Martínez', '1994-03-25', 'Avenida 567', 9999999999, 'luisa.martinez@email.com', 'Raider', 0, 1, 1, '2023-10-20', '52745860'),
+(13, 'Roberto Pérez', '1986-08-08', 'Calle 123', 1234567890, 'roberto.perez@email.com', 'Rover', 1, 1, 0, '2023-11-10', '22388343'),
+(14, 'Carmen López', '1997-02-15', 'Avenida 678', 6666666666, 'carmen.lopez@email.com', 'Cocina', 1, 0, 1, '2023-11-15', '53704139'),
+(15, 'Miguel Ramírez', '1984-09-30', 'Calle 234', 2222222222, 'miguel.ramirez@email.com', 'Todos', 0, 1, 1, '2023-10-25', '01355669'),
+(16, 'Isabel González', '1990-12-05', 'Avenida 123', 7777777777, 'isabel.gonzalez@email.com', 'Castores', 1, 0, 1, '2023-11-01', '45665931'),
+(17, 'Andrés Torres', '1993-07-18', 'Calle 456', 8888888888, 'andres.torres@email.com', 'Haditas', 1, 1, 0, '2023-11-05', '24262651'),
+(18, 'Carolina Sánchez', '1998-04-12', 'Avenida 789', 4444444444, 'carolina.sanchez@email.com', 'Manada', 0, 1, 1, '2023-11-10', '84315466'),
+(19, 'Ricardo Rodríguez', '1987-06-28', 'Calle 567', 3333333333, 'ricardo.rodriguez@email.com', 'Scout', 1, 0, 1, '2023-11-15', '48789379'),
+(20, 'Silvia Martínez', '1991-11-08', 'Avenida 234', 5555555555, 'silvia.martinez@email.com', 'Raider', 1, 1, 0, '2023-11-20', '91000500'),
+(21, 'Lucía García', '1993-09-20', 'Calle 567', 5555555555, 'lucia.garcia@email.com', 'Rover', 1, 0, 1, '2023-11-05', '08634369'),
+(22, 'Carlos Sánchez', '1998-04-12', 'Avenida 789', 4444444444, 'carlos.sanchez@email.com', 'Cocina', 0, 1, 1, '2023-11-10', '70170346'),
+(23, 'Patricia Rodríguez', '1987-06-28', 'Calle 234', 3333333333, 'patricia.rodriguez@email.com', 'Todos', 1, 0, 1, '2023-11-15', '24948627'),
+(24, 'Mariano Martínez', '1991-11-08', 'Avenida 123', 7777777777, 'mariano.martinez@email.com', 'Castores', 1, 1, 0, '2023-11-01', '14232103'),
+(25, 'Natalia Torres', '1993-07-18', 'Calle 456', 8888888888, 'natalia.torres@email.com', 'Haditas', 0, 1, 1, '2023-11-05', '96314637'),
+(26, 'Diego Ramírez', '1984-09-30', 'Calle 234', 2222222222, 'diego.ramirez@email.com', 'Manada', 1, 0, 1, '2023-11-10', '38876880'),
+(27, 'Alicia González', '1990-12-05', 'Avenida 123', 6666666666, 'alicia.gonzalez@email.com', 'Scout', 1, 0, 1, '2023-11-15', '05440492'),
+(28, 'Jorge Pérez', '1996-02-15', 'Calle 789', 9999999999, 'jorge.perez@email.com', 'Raider', 1, 1, 0, '2023-11-20', '10571824'),
+(29, 'Marina López', '1986-08-08', 'Avenida 456', 1234567890, 'marina.lopez@email.com', 'Rover', 0, 1, 1, '2023-11-25', '36537648'),
+(30, 'Héctor Martínez', '1995-03-25', 'Calle 567', 9876543210, 'hector.martinez@email.com', 'Cocina', 1, 0, 1, '2023-11-30', '50972771'),
+(33, 'Marcelo Nahuel ', '2002-06-07', 'Balbo 4156', 3415690470, 'marcebenitez0607@gmail.com', 'Rover', 1, 1, 1, '2023-04-10', '45250915'),
+(34, 'Nico pro', '2000-07-05', 'asldkja123', 123123123, 'nicoo@gmail.com', 'Cocina', 1, 1, 0, '2023-04-10', '73336264');
 
 -- --------------------------------------------------------
 
