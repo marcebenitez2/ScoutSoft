@@ -5,7 +5,9 @@ function TablaInventario() {
 
 
     return (
-        
+        <section>
+            
+        </section>
     )
 }
 
