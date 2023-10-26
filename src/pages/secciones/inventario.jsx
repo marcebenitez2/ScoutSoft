@@ -4,10 +4,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { fetchBD } from "../../services/fetchBD";
 import TablaInventario from "../../components/tablaInventario";
+import ModalInventario from "../../components/modalInventario";
 
 function Inventario() {
   const [inventario, setInventario] = useState([]);
-  const [modalOpen, setmodalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [seleccionada, setSeleccionada] = useState(null);
 
   useEffect(() => {
@@ -15,8 +16,8 @@ function Inventario() {
   }, []);
 
   useEffect(() => {
-    console.log(inventario)
-  }, [inventario])
+    console.log(inventario);
+  }, [inventario]);
 
   return (
     <main>
@@ -24,9 +25,19 @@ function Inventario() {
         <Navbar />
         <div className="flex flex-col gap-4">
           <h1 className="text-3xl text-center dark:text-white">Inventario</h1>
-          <TablaInventario inventario={inventario} />
+          <TablaInventario
+            inventario={inventario}
+            setModalOpen={setModalOpen}
+            setSeleccionada={setSeleccionada}
+          />
         </div>
       </div>
+      <ModalInventario
+        isOpen={modalOpen}
+        toClose={setModalOpen}
+        seleccionada={seleccionada}
+        inventario={inventario}
+      />
     </main>
   );
 }

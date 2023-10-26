@@ -1,11 +1,24 @@
 import React from "react";
+import { useState } from "react";
 
-function TablaInventario({ inventario }) {
-  // Igual a la tabla de beneficiarios
+function TablaInventario({ inventario, setModalOpen, setSeleccionada }) {
+    const [inventarioCopia, setInventarioCopia] = useState([])
+
+  const filtradoPorNombre = (valor) => {
+    console.log(valor);
+  };
+
+  const seleccionarItem = (item) => {
+    setSeleccionada(item);
+    setModalOpen(true);
+  };
 
   return (
     <section className="dark:text-white w-full flex flex-col gap-4">
-      <input className="w-full bg-transparent border rounded-xl px-4 py-2 " />
+      <input
+        className="w-full bg-transparent border rounded-xl px-4 py-2 "
+        onChange={(e) => filtradoPorNombre(e.target.value)}
+      />
       <table className="w-full text-left">
         <thead>
           <tr className="font-semibold">
@@ -25,12 +38,14 @@ function TablaInventario({ inventario }) {
               <td>{item.available}</td>
               <td>{item.description}</td>
               <td>{item.branch}</td>
-              <td>editar</td>
+              <td onClick={() => seleccionarItem(item)}>editar</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button className="bg-custon-red w-1/6 h-10 rounded-xl m-auto text-white">Agregar nuevo</button>
+      <button className="bg-custon-red w-1/6 h-10 rounded-xl m-auto text-white">
+        Agregar nuevo
+      </button>
     </section>
   );
 }
