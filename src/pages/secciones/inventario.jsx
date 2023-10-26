@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar";
 import { useState } from "react";
 import { useEffect } from "react";
 import { fetchBD } from "../../services/fetchBD";
+import TablaInventario from "../../components/tablaInventario";
 
 function Inventario() {
   const [inventario, setInventario] = useState([]);
@@ -10,8 +11,8 @@ function Inventario() {
   const [seleccionada, setSeleccionada] = useState(null);
 
   useEffect(() => {
-    fetchBD(setInventario, "http://localhost/inventario.php")
-  }, [])
+    fetchBD(setInventario, "http://localhost/inventario.php");
+  }, []);
 
   return (
     <main>
@@ -19,6 +20,7 @@ function Inventario() {
         <Navbar />
         <div>
           <h1 className="text-3xl text-center dark:text-white">Inventario</h1>
+          <TablaInventario inventario={inventario} />
         </div>
       </div>
     </main>

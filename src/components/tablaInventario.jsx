@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TablaInventario() {
+function TablaInventario({inventario}) {
     // Igual a la tabla de beneficiarios
 
 
