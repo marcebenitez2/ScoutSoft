@@ -11,14 +11,18 @@ function Inventario() {
   const [seleccionada, setSeleccionada] = useState(null);
 
   useEffect(() => {
-    fetchBD(setInventario, "http://localhost/inventario.php");
+    fetchBD(setInventario, "http://localhost/inventory.php");
   }, []);
+
+  useEffect(() => {
+    console.log(inventario)
+  }, [inventario])
 
   return (
     <main>
       <div className="w-screen min-h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black ">
         <Navbar />
-        <div>
+        <div className="flex flex-col gap-4">
           <h1 className="text-3xl text-center dark:text-white">Inventario</h1>
           <TablaInventario inventario={inventario} />
         </div>
