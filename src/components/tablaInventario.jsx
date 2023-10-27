@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 function TablaInventario({ inventario, setModalOpen, setSeleccionada }) {
-    const [inventarioCopia, setInventarioCopia] = useState([])
+  const [inventarioCopia, setInventarioCopia] = useState([]);
 
   const filtradoPorNombre = (valor) => {
-    console.log(valor);
+    const inventarioFiltrado = inventario.filter((item) =>
+      item.name.toLowerCase().includes(valor.toLowerCase())
+    );
+    setInventarioCopia(inventarioFiltrado);
   };
 
   const seleccionarItem = (item) => {
     setSeleccionada(item);
     setModalOpen(true);
   };
+
+  useEffect(() => {
+    setInventarioCopia(inventario);
+  }, [inventario]);
 
   return (
     <section className="dark:text-white w-full flex flex-col gap-4">
@@ -31,14 +38,22 @@ function TablaInventario({ inventario, setModalOpen, setSeleccionada }) {
           </tr>
         </thead>
         <tbody>
-          {inventario.map((item) => (
+          {inventarioCopia.map((item) => (
             <tr key={item.id}>
               <td>{item.name}</td>
               <td>{item.stock}</td>
               <td>{item.available}</td>
-              <td>{item.description}</td>
+              <td
+                className={
+                  item.description.includes("sanas")
+                    ? "text-green-500"
+                    : "text-red-600 font-semibold"
+                }
+              >
+                {item.description}
+              </td>
               <td>{item.branch}</td>
-              <td onClick={() => seleccionarItem(item)}>editar</td>
+              <td onClick={() => seleccionarItem(item)} className="cursor-pointer">editar</td>
             </tr>
           ))}
         </tbody>

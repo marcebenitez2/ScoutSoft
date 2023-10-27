@@ -6,7 +6,6 @@ import { useState } from "react";
 import Tabla from "../../components/tabla";
 import ModalBeneficiarios from "../../components/modalBeneficiarios";
 
-
 function Beneficiarios() {
   const [beneficiarios, setBeneficiarios] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -16,7 +15,7 @@ function Beneficiarios() {
     fetchBD(setBeneficiarios, "http://localhost/beneficiaries.php");
   }, []);
 
-  console.log(beneficiarios)
+  console.log(beneficiarios);
 
   return (
     <main>
@@ -24,7 +23,11 @@ function Beneficiarios() {
         className={`w-screen min-h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black `}
       >
         <Navbar />
-        <div className={`w-full h-full ${modalOpen ? 'blur' : ""} flex flex-col gap-4`}>
+        <div
+          className={`w-full h-full ${
+            modalOpen ? "blur" : ""
+          } flex flex-col gap-4`}
+        >
           <h1 className="text-3xl text-center dark:text-white">
             Beneficiarios
           </h1>
