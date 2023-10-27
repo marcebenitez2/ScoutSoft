@@ -1,10 +1,21 @@
 import React, { useState } from "react";
+import { ramas } from "../services/ramas";
+import { StepDescription } from "@chakra-ui/react";
 
 function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
+  const [nombre, setNombre] = useState(
+    seleccionada ? seleccionada.name : null
+  );
+  const [stock, setStock] = useState(seleccionada ? seleccionada.stock : null);
+  const [disponible, setDisponible] = useState(
+    seleccionada ? seleccionada.available : null
+  );
+  const [descripcion, setDescripcion] = useState(
+    seleccionada ? seleccionada.description : null
+  );
+  const [rama, setRama] = useState(seleccionada ? seleccionada.branch : null);
 
-  
-
-
+  console.log(seleccionada);
   return (
     <main>
       {isOpen ? (
@@ -16,24 +27,48 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
             <div className="w-full flex flex-wrap">
               <label className="flex flex-col">
                 Nombre
-                <input type="text" />
+                <input
+                  className="dark:bg-custon-black border rounded-md px-2 py-1 "
+                  type="text"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                />
               </label>
               <label className="flex flex-col">
                 Stock
-                <input type="text" />
+                <input
+                  className="dark:bg-custon-black border rounded-md px-2 py-1 "
+                  type="number"
+                  value={stock}
+                  onChange={(e) => setStock(e.target.value)}
+                />
               </label>
               <label className="flex flex-col">
                 Disponible
-                <input type="text" />
+                <input
+                  className="dark:bg-custon-black border rounded-md px-2 py-1 "
+                  type="number"
+                  value={seleccionada.available}
+                  onChange={(e) => setDisponible(e.target.value)}
+                />
               </label>
               <label className="flex flex-col">
                 Descripcion
-                <textarea />
+                <textarea
+                  className="dark:bg-custon-black border rounded-md"
+                  onChange={(e) => StepDescription(e.target.value)}
+                  value={seleccionada.description}
+                />
               </label>
               <label className="flex flex-col">
                 Rama
-                <select name="" id="">
-                  <option value=""></option>
+                <select
+                  className="dark:bg-custon-black border"
+                  onChange={(e) => setRama(e.target.value)}
+                >
+                  {ramas.map((x) => (
+                    <option key={x.id}>{x.nombre}</option>
+                  ))}
                 </select>
               </label>
             </div>
