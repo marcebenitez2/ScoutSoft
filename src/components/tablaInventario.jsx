@@ -16,6 +16,11 @@ function TablaInventario({ inventario, setModalOpen, setSeleccionada }) {
     setModalOpen(true);
   };
 
+  const agregarItem = () => {
+    setSeleccionada(null);
+    setModalOpen(true)
+  }
+
   useEffect(() => {
     setInventarioCopia(inventario);
   }, [inventario]);
@@ -53,12 +58,17 @@ function TablaInventario({ inventario, setModalOpen, setSeleccionada }) {
                 {item.description}
               </td>
               <td>{item.branch}</td>
-              <td onClick={() => seleccionarItem(item)} className="cursor-pointer">editar</td>
+              <td
+                onClick={() => seleccionarItem(item)}
+                className="cursor-pointer"
+              >
+                editar
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button className="bg-custon-red w-1/6 h-10 rounded-xl m-auto text-white">
+      <button className="bg-custon-red w-1/6 h-10 rounded-xl m-auto text-white" onClick={()=>agregarItem()}>
         Agregar nuevo
       </button>
     </section>

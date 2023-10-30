@@ -6,6 +6,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
   if (!isOpen) {
     return null;
   }
+  const [id, setId] = useState(seleccionada ? seleccionada.id : null)
   const [nombre, setNombre] = useState(seleccionada ? seleccionada.name : null);
   const [stock, setStock] = useState(seleccionada ? seleccionada.stock : null);
   const [disponible, setDisponible] = useState(
@@ -25,6 +26,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
     }
 
     const item = {
+      id: id,
       nombre: nombre,
       stock: stock,
       disponible: disponible,
@@ -32,7 +34,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
       rama: rama,
     };
 
-    postBD(item, "");
+    postBD(item, "http://localhost/addItem.php");
     toClose(false);
     window.location.reload();
   };

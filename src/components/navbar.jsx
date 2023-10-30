@@ -40,7 +40,7 @@ function Navbar() {
           <span className="lgn:hidden">Inventario</span>
           <MdInventory2 className="lgn:block hidden text-4xl" />
         </Link>
-        <Link>
+        <Link to={'/menu/calendario'}>
           <span className="lgn:hidden">Calendario</span>
           <BsFillCalendarDateFill className="lgn:block hidden text-4xl" />
         </Link>

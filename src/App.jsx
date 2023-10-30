@@ -12,6 +12,7 @@ import Inventario from "./pages/secciones/inventario";
 import Nosotros from "./pages/HomePages/nosotros";
 import Scoutismo from "./pages/HomePages/scoutismo";
 import Consulta from "./pages/HomePages/consulta";
+import Calendario from "./pages/secciones/calendario";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -36,6 +37,7 @@ function App() {
           <Route path="/menu" element={auth ? <Menu/> : <Login/>}/>
           <Route path="/menu/beneficiarios"element={auth ? <Beneficiarios/> : <Login/>}/>
           <Route path="/menu/inventario"element={auth ? <Inventario/> : <Login/>}/>
+          <Route path="/menu/calendario"element={auth ? <Calendario/> : <Login/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
