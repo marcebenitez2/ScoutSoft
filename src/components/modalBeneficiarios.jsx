@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
   if (!isOpen) {
-    return null; // Si el modal no está abierto, no renderiza nada
+    return null; 
   }
 
   const [id, setId] = useState(seleccionada ? seleccionada.id : null);
