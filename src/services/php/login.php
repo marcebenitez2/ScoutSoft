@@ -1,20 +1,12 @@
 <?php 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type");
-
-$servername = "localhost";
-$username = "root";
-$port = 3306;
-$password = "";
-$bdname = "scout";
+require 'config.php';
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 $data = json_decode(file_get_contents('php://input'), true);
 $usuarioInput = $data['usuario'];
 $contraInput = $data['contra'];
 
 
-$conn = new mysqli($servername, $username, $password, $bdname,$port);
 
 $sql = "SELECT * FROM accounts WHERE username = '$usuarioInput' AND password = '$contraInput'";
 

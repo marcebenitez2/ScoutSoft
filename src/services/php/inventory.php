@@ -1,18 +1,8 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
+require 'config.php';
 
-header("Access-Control-Allow-Methods: POST");
-
-header("Access-Control-Allow-Headers: Content-Type");
-
-$servername = "localhost";
-$port = 3306;
-$username = "root";
-$password = "";
-$bdname = "scout";
-
-$conn = new mysqli($servername, $username, $password, $bdname, $port);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("error de conexión: " . $conn->connect_error);

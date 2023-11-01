@@ -1,20 +1,10 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-
-header("Access-Control-Allow-Methods: POST");
-
-header("Access-Control-Allow-Headers: Content-Type");
-
+require 'config.php';
 // Si la solicitud es del tipo OPTIONS, finaliza aquí para la respuesta de preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "scout";
 
 $conn = new mysqli($servername,$username, $password, $dbname);
 

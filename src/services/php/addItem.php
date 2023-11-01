@@ -1,7 +1,7 @@
 <?php
-require 'config.php'; // Reemplaza con 'include' si es apropiado
+require 'config.php'; 
 
-// El resto de tu código aquí
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {

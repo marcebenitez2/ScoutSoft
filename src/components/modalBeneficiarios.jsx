@@ -1,12 +1,12 @@
 import React from "react";
 import { ramas } from "../services/ramas";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { postBD } from "../services/postBD";
 import { ToastContainer, toast } from "react-toastify";
 
 function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
   if (!isOpen) {
-    return null; 
+    return null;
   }
 
   const [id, setId] = useState(seleccionada ? seleccionada.id : null);
@@ -22,7 +22,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
     seleccionada ? seleccionada.tel : null
   );
   const [mail, setMail] = useState(seleccionada ? seleccionada.mail : null);
-  const [rama, setRama] = useState(seleccionada ? seleccionada.branch : null);
+  const [rama, setRama] = useState(seleccionada ? seleccionada.branch : "Manada");
   const [personal, setPersonal] = useState(
     seleccionada ? seleccionada.personal_file : null
   );
@@ -36,7 +36,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
 
   const guardarCambios = (e) => {
     e.preventDefault();
-
+    console.log(nombre, nacimiento, direccion, telefono, mail, rama, cuota);
     if (
       !nombre ||
       !nacimiento ||
@@ -65,8 +65,11 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
       return;
     }
 
-    if (beneficiarios.find((beneficiario) => beneficiario.dni === dni)) {
-      toast.error("Ya existe un beneficiario con ese dni");
+    if (
+      dni !== seleccionada?.dni &&
+      beneficiarios.some((beneficiario) => beneficiario.dni === dni)
+    ) {
+      toast.error("Ya existe un beneficiario con ese DNI");
       return;
     }
 
@@ -93,6 +96,10 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
     toClose(false);
     window.location.reload();
   };
+
+  useEffect(() => {
+    console.log(dni);
+  }, [dni]);
 
   return (
     <main>
