@@ -1,6 +1,10 @@
 import React from "react";
 import Navbar from "../../components/navbar";
 import { useState } from "react";
+import InfoEvento from "../../components/infoEvento";
+import ListaEvento from "../../components/listaEvento";
+import Calendar from "react-calendar";
+import "../../calendario.css";
 
 function Calendario() {
   const [eventos, setEventos] = useState([]);
@@ -8,20 +12,22 @@ function Calendario() {
   const [seleccionada, setSeleccionada] = useState(null);
 
   return (
-    <main>
+    <main className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white ">
+      <Navbar />
       <div
-        className={`w-screen min-h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black `}
+        className={`w-full h-full ${
+          modalOpen ? "blur" : ""
+        } flex flex-col gap-4`}
       >
-        <Navbar />
-        <div
-          className={`w-full h-full ${
-            modalOpen ? "blur" : ""
-          } flex flex-col gap-4`}
-        >
-          <h1 className="text-3xl text-center dark:text-white">Calendario</h1>
-          <div className="flex">
-          
+        <h1 className="text-3xl text-center dark:text-white">Calendario</h1>
+        <div className="flex w-full h-full">
+          <div className="flex flex-col h-full w-full justify-between">
+            <div className="w-full h-full flex items-center justify-center">
+              <Calendar />
+            </div>
+            <InfoEvento />
           </div>
+          <ListaEvento />
         </div>
       </div>
     </main>
