@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { ramas } from "../services/ramas";
+import { parse, format } from "date-fns";
 
-function ModalCalendario({ isOpen, toClose, fecha, eventos }) {
+function ModalCalendario({
+  isOpen,
+  toClose,
+  fechaSeleccionada,
+  eventos,
+  seleccionado,
+}) {
   if (!isOpen) {
     return null;
   }
+  const [nombre, setNombre] = useState(seleccionado ? seleccionado.nombre : "");
+  const [lugar, setLugar] = useState(seleccionado ? seleccionado.lugar : "");
+  const [fecha, setFecha] = useState(
+    seleccionado
+      ? seleccionado.fecha
+      : format(
+          parse(
+            fechaSeleccionada,
+            "EEE MMM dd yyyy HH:mm:ss 'GMT'xxx",
+            new Date()
+          ),
+          "yyyy-MM-dd"
+        )
+  );
+  const [inicio, setInicio] = useState(seleccionado ? seleccionado.inicio : "");
+  const [fin, setFin] = useState(seleccionado ? seleccionado.fin : "");
+  const [rama, setRama] = useState(seleccionado ? seleccionado.rama : "");
+  const [tipo, setTipo] = useState(seleccionado ? seleccionado.tipo : "");
+  const [descripcion, setDescripcion] = useState(
+    seleccionado ? seleccionado.descripcion : ""
+  );
+
+  console.log(fecha);
+
+  const guardarCambios = (e) => {
+    e.preventDefault();
+    console.log(nombre, lugar, fecha, inicio, fin, rama, tipo, descripcion);
+  };
+
   return (
     <main>
       {isOpen ? (
@@ -18,6 +54,8 @@ function ModalCalendario({ isOpen, toClose, fecha, eventos }) {
                   <input
                     className="dark:bg-custon-black border rounded-md px-2 py-1"
                     type="text"
+                    defaultValue={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
                   />
                 </label>
                 <label className="flex flex-col w-full">
@@ -25,27 +63,47 @@ function ModalCalendario({ isOpen, toClose, fecha, eventos }) {
                   <input
                     className="dark:bg-custon-black border rounded-md px-2 py-1 "
                     type="text"
+                    defaultValue={lugar}
+                    onChange={(e) => setLugar(e.target.value)}
                   />
                 </label>
               </div>
               <div className="w-full flex justify-between flex-wrap">
                 <label className="flex flex-col">
                   Fecha
-                  <input className="dark:bg-custon-black border rounded-md px-2 py-1 " value={fecha}/>
+                  <input
+                    className="dark:bg-custon-black border rounded-md px-2 py-1"
+                    value={fecha}
+                    type="date"
+                    onChange={(e) => setFecha(e.target.value)}
+                  />
                 </label>
+
                 <label className="flex flex-col">
                   Hora inicio
-                  <input className="dark:bg-custon-black border rounded-md px-2 py-1 " />
+                  <input
+                    className="dark:bg-custon-black border rounded-md px-2 py-1"
+                    defaultValue={inicio}
+                    type="time"
+                  />
                 </label>
                 <label className="flex flex-col">
                   Hora fin
-                  <input className="dark:bg-custon-black border rounded-md px-2 py-1 " />
+                  <input
+                    className="dark:bg-custon-black border rounded-md px-2 py-1"
+                    defaultValue={fin}
+                    type="time"
+                  />
                 </label>
               </div>
               <div className="flex w-full gap-2">
                 <label className="flex flex-col w-full">
                   Rama
-                  <select className="dark:bg-custon-black border rounded-md">
+                  <select
+                    className="dark:bg-custon-black border rounded-md"
+                    defaultValue={rama}
+                    onChange={setRama}
+                  >
                     {ramas.map((x) => (
                       <option key={x.id}>{x.nombre}</option>
                     ))}
@@ -53,7 +111,11 @@ function ModalCalendario({ isOpen, toClose, fecha, eventos }) {
                 </label>
                 <label className="flex flex-col w-full">
                   Tipo de evento
-                  <select className="dark:bg-custon-black border rounded-md">
+                  <select
+                    className="dark:bg-custon-black border rounded-md"
+                    defaultValue={tipo}
+                    onChange={setTipo}
+                  >
                     <option>Evento</option>
                     <option>Salida</option>
                     <option>Consejo</option>
@@ -65,6 +127,8 @@ function ModalCalendario({ isOpen, toClose, fecha, eventos }) {
                 <textarea
                   className="dark:bg-custon-black border rounded-md h-32 "
                   style={{ resize: "none" }}
+                  defaultValue={descripcion}
+                  onChange={(e) => setDescripcion(e.target.value)}
                 />
               </label>
               <div className="flex w-full justify-center">

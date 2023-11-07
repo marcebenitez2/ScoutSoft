@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2023 a las 18:15:11
+-- Tiempo de generación: 07-11-2023 a las 17:30:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -67,7 +67,7 @@ CREATE TABLE `beneficiaries` (
 --
 
 INSERT INTO `beneficiaries` (`id`, `name`, `birth`, `direction`, `tel`, `mail`, `branch`, `personal_file`, `medical_file`, `active`, `cuota`, `dni`) VALUES
-(1, 'Lucas quaroni', '1990-05-15', 'asdasd', 1234567890, 'juan.perez@email.com', 'Castores', 1, 0, 0, '2023-10-01', '11111111'),
+(1, 'Lucas  Queso', '1990-05-15', 'asdasd', 1234567890, 'juan.perez@email.com', 'Castores', 1, 0, 0, '2023-10-01', '11111111'),
 (2, 'María López', '1985-03-20', 'Avenida 456', 9876543210, 'maria.lopez@email.com', 'Haditas', 0, 1, 1, '2023-09-15', '28071519'),
 (3, 'Pedro Ramírez', '1992-08-10', 'Calle 789', 5555555555, 'pedro.ramirez@email.com', 'Manada', 1, 1, 0, '2023-10-05', '41687658'),
 (4, 'Carlos Rodríguez', '1988-12-30', 'Avenida 789', 4444444444, 'carlos.rodriguez@email.com', 'Scout', 1, 0, 1, '2023-10-10', '24223736'),
@@ -101,8 +101,9 @@ INSERT INTO `beneficiaries` (`id`, `name`, `birth`, `direction`, `tel`, `mail`, 
 (34, 'Nico pro', '2000-07-05', 'asldkja123', 123123123, 'nicoo@gmail.com', 'Cocina', 1, 1, 0, '2023-04-10', '86836153'),
 (35, 'Mateo Cioppa', '2006-09-18', 'asdasdasd 233323', 123123123123, 'asdasd@asd.com', 'Haditas', 1, 1, 0, '2333-12-31', '62141174'),
 (36, 'Mateo', '2232-12-31', 'asd 12313', 1231231231, 'mateo@gnmaui.com', 'Manada', 1, 1, 1, '2111-12-12', '40197416'),
-(37, 'Nacho Pro', '2002-06-09', 'casa blanca 1212', 1231231231, 'nacho@gmail.com', 'Cocina', 1, 1, 0, '3123-12-31', '94563559'),
-(38, 'EL marvo', '1231-12-12', 'marvo 123', 123123123123, 'asd@asd.com', 'Scout', 1, 1, 1, '1311-12-31', '72225553');
+(37, 'Nachoooo', '2002-06-09', 'casa blanca 1212', 1231231231, 'nacho@gmail.com', 'Cocina', 1, 1, 0, '3123-12-31', '44232236'),
+(38, 'la larva', '1231-12-12', 'marvo 123', 3415690350, 'asd@asd.com', 'Scout', 1, 1, 1, '1311-12-31', '72225553'),
+(39, 'Lucas', '2922-02-09', 'asda 23', 3415693020, 'lucas@gmail.com', 'Castores', 0, 1, 1, '2222-02-02', '44232211');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,8 @@ CREATE TABLE `calendary` (
   `location` varchar(50) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
   `type` enum('evento','salida','reunion') DEFAULT NULL,
-  `document` blob DEFAULT NULL
+  `document` blob DEFAULT NULL,
+  `branch` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -159,6 +161,27 @@ CREATE TABLE `inventory` (
   `description` varchar(100) DEFAULT NULL,
   `branch` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `name`, `stock`, `available`, `description`, `branch`) VALUES
+(11, 'Carpones ', 5, 2, 'Todas sanas', 'Manada'),
+(12, 'Carpas canadienses', 10, 6, 'Carpas tipo canadiense', 'Castores'),
+(13, 'Carpas iglúes', 10, 4, 'Carpas de tipo iglú', 'Haditas'),
+(14, 'Hachas', 10, 7, 'Hachas para campamento', 'Scout'),
+(15, 'Parrillas', 10, 3, 'Parrillas para asar', 'Raider'),
+(16, 'Linternas', 10, 8, 'Linternas portátiles', 'Manada'),
+(17, 'Colchonetas', 10, 2, 'Colchonetas inflables', 'Cocina'),
+(18, 'Mochilas', 10, 9, 'Mochilas para excursiones', 'Scout'),
+(19, 'Sillas plegables', 10, 4, 'Sillas portátiles', 'Todos'),
+(20, 'Termos', 10, 5, 'Termos para bebidas', 'Rover'),
+(21, 'Carpones', 10, 5, 'Holaaaa', 'Todos'),
+(22, 'Carpones', 10, 5, 'Holaaaa', 'Todos'),
+(23, 'sarasaa', 123, 21, 'adasdasdas asdasd asd asd', 'Haditas'),
+(24, 'Lucas?', 3, 2, 'Tierne dos patas rotas', 'Manada'),
+(25, 'Funciona?', 10, 1, 'Todas sanas', 'Todos');
 
 -- --------------------------------------------------------
 
@@ -235,7 +258,8 @@ ALTER TABLE `branchs`
 -- Indices de la tabla `calendary`
 --
 ALTER TABLE `calendary`
-  ADD PRIMARY KEY (`title`);
+  ADD PRIMARY KEY (`title`),
+  ADD KEY `fk_branch` (`branch`);
 
 --
 -- Indices de la tabla `inventory`
@@ -266,19 +290,19 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT de la tabla `beneficiaries`
 --
 ALTER TABLE `beneficiaries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
@@ -295,6 +319,12 @@ ALTER TABLE `accounts`
 --
 ALTER TABLE `beneficiaries`
   ADD CONSTRAINT `beneficiaries_ibfk_1` FOREIGN KEY (`branch`) REFERENCES `branchs` (`namebranch`);
+
+--
+-- Filtros para la tabla `calendary`
+--
+ALTER TABLE `calendary`
+  ADD CONSTRAINT `fk_branch` FOREIGN KEY (`branch`) REFERENCES `branchs` (`namebranch`);
 
 --
 -- Filtros para la tabla `inventory`

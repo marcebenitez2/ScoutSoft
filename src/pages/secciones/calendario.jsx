@@ -38,9 +38,10 @@ function Calendario() {
         </div>
       </div>
       <ModalCalendario
+        seleccionado={seleccionada}
         isOpen={modalOpen}
         toClose={setModalOpen}
-        fecha={fecha}
+        fechaSeleccionada={fecha}
         eventos={eventos}
       />
     </main>
