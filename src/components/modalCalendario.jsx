@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ramas } from "../services/ramas";
-import { parse, format } from "date-fns";
 
 function ModalCalendario({
   isOpen,
@@ -12,19 +11,12 @@ function ModalCalendario({
   if (!isOpen) {
     return null;
   }
+
+  console.log(fechaSeleccionada);
   const [nombre, setNombre] = useState(seleccionado ? seleccionado.nombre : "");
   const [lugar, setLugar] = useState(seleccionado ? seleccionado.lugar : "");
   const [fecha, setFecha] = useState(
-    seleccionado
-      ? seleccionado.fecha
-      : format(
-          parse(
-            fechaSeleccionada,
-            "EEE MMM dd yyyy HH:mm:ss 'GMT'xxx",
-            new Date()
-          ),
-          "yyyy-MM-dd"
-        )
+    seleccionado ? seleccionado.fecha : fechaSeleccionada
   );
   const [inicio, setInicio] = useState(seleccionado ? seleccionado.inicio : "");
   const [fin, setFin] = useState(seleccionado ? seleccionado.fin : "");
@@ -33,8 +25,6 @@ function ModalCalendario({
   const [descripcion, setDescripcion] = useState(
     seleccionado ? seleccionado.descripcion : ""
   );
-
-  console.log(fecha);
 
   const guardarCambios = (e) => {
     e.preventDefault();
@@ -85,6 +75,7 @@ function ModalCalendario({
                     className="dark:bg-custon-black border rounded-md px-2 py-1"
                     defaultValue={inicio}
                     type="time"
+                    onChange={(e) => setInicio(e.target.value)}
                   />
                 </label>
                 <label className="flex flex-col">
@@ -93,6 +84,7 @@ function ModalCalendario({
                     className="dark:bg-custon-black border rounded-md px-2 py-1"
                     defaultValue={fin}
                     type="time"
+                    onChange={(e) => setFin(e.target.value)}
                   />
                 </label>
               </div>
@@ -102,7 +94,7 @@ function ModalCalendario({
                   <select
                     className="dark:bg-custon-black border rounded-md"
                     defaultValue={rama}
-                    onChange={setRama}
+                    onChange={(e)=>setRama(e.target.value)}
                   >
                     {ramas.map((x) => (
                       <option key={x.id}>{x.nombre}</option>
@@ -114,7 +106,7 @@ function ModalCalendario({
                   <select
                     className="dark:bg-custon-black border rounded-md"
                     defaultValue={tipo}
-                    onChange={setTipo}
+                    onChange={(e)=>setTipo(e.target.value)}
                   >
                     <option>Evento</option>
                     <option>Salida</option>

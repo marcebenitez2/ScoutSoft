@@ -6,6 +6,7 @@ import ListaEvento from "../../components/listaEvento";
 import Calendar from "react-calendar";
 import "../../calendario.css";
 import ModalCalendario from "../../components/modalCalendario";
+import {format } from "date-fns"; // Importa date-fns
 
 function Calendario() {
   const [eventos, setEventos] = useState([]);
@@ -13,13 +14,14 @@ function Calendario() {
   const [seleccionada, setSeleccionada] = useState(null);
   const [fecha, setFecha] = useState(new Date());
 
-  function abrirModal(value) {
-    setFecha(value);
+  function onClickDay(value) {
+    const fechaSeleccionada = format(value, "yyyy-MM-dd");
+    setFecha(fechaSeleccionada);
     setModalOpen(true);
   }
 
   return (
-    <main className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white ">
+    <main className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white">
       <Navbar />
       <div
         className={`w-full h-full ${
@@ -30,7 +32,7 @@ function Calendario() {
         <div className="flex w-full h-full">
           <div className="flex flex-col h-full w-full justify-between">
             <div className="w-full h-full flex items-center justify-center">
-              <Calendar onClickDay={(value) => abrirModal(value)} />
+              <Calendar onClickDay={onClickDay} />
             </div>
             <InfoEvento />
           </div>
@@ -41,7 +43,7 @@ function Calendario() {
         seleccionado={seleccionada}
         isOpen={modalOpen}
         toClose={setModalOpen}
-        fechaSeleccionada={fecha}
+        fechaSeleccionada={fecha} // Pasa la fecha convertida
         eventos={eventos}
       />
     </main>
