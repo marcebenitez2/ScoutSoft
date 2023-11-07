@@ -31,6 +31,11 @@ html {
   background-color: white; /* Color del fondo */
 }
 
+.table-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
 
 /* Toogle */
 

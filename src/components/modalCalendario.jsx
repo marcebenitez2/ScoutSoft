@@ -9,7 +9,7 @@ function ModalCalendario({ isOpen, toClose, fecha, eventos }) {
     <main>
       {isOpen ? (
         <section className="h-screen w-screen top-0 left-0 flex items-center justify-center fixed dark:text-white text-black">
-          <form className="w-2/5 h-1/2 dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
+          <form className="w-2/5 h-3/5 dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
             <h3 className="text-2xl">Agregar evento</h3>
             <div className="flex flex-col gap-4 w-full">
               <div className="flex w-full justify-between gap-2">
@@ -28,10 +28,10 @@ function ModalCalendario({ isOpen, toClose, fecha, eventos }) {
                   />
                 </label>
               </div>
-              <div className="w-full flex justify-between">
+              <div className="w-full flex justify-between flex-wrap">
                 <label className="flex flex-col">
                   Fecha
-                  <input className="dark:bg-custon-black border rounded-md px-2 py-1 " />
+                  <input className="dark:bg-custon-black border rounded-md px-2 py-1 " value={fecha}/>
                 </label>
                 <label className="flex flex-col">
                   Hora inicio

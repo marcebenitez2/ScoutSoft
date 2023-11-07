@@ -45,3 +45,8 @@ abbr{
   font-weight: 900;
   font-size: larger;
 }
+
+.react-calendar__navigation__label__labelText {
+  font-size: 1.5rem;
+  font-weight: 900;
+}

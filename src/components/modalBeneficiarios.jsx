@@ -1,6 +1,6 @@
 import React from "react";
 import { ramas } from "../services/ramas";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { postBD } from "../services/postBD";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -8,35 +8,23 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
   if (!isOpen) {
     return null;
   }
-
-  const [id, setId] = useState(seleccionada ? seleccionada.id : null);
-  const [nombre, setNombre] = useState(seleccionada ? seleccionada.name : null);
-  const [dni, setDni] = useState(seleccionada ? seleccionada.dni : null);
-  const [nacimiento, setNacimiento] = useState(
-    seleccionada ? seleccionada.birth : null
-  );
-  const [direccion, setDireccion] = useState(
-    seleccionada ? seleccionada.direction : null
-  );
-  const [telefono, setTelefono] = useState(
-    seleccionada ? seleccionada.tel : null
-  );
-  const [mail, setMail] = useState(seleccionada ? seleccionada.mail : null);
+  const [id, setId] = useState(seleccionada ? seleccionada.id : "");
+  const [nombre, setNombre] = useState(seleccionada ? seleccionada.name : "");
+  const [dni, setDni] = useState(seleccionada ? seleccionada.dni : "");
+  const [nacimiento, setNacimiento] = useState(seleccionada ? seleccionada.birth : "");
+  const [direccion, setDireccion] = useState(seleccionada ? seleccionada.direction : "");
+  const [telefono, setTelefono] = useState(seleccionada ? seleccionada.tel : "");
+  const [mail, setMail] = useState(seleccionada ? seleccionada.mail : "");
   const [rama, setRama] = useState(seleccionada ? seleccionada.branch : "Manada");
-  const [personal, setPersonal] = useState(
-    seleccionada ? seleccionada.personal_file : null
-  );
-  const [medical, setMedical] = useState(
-    seleccionada ? seleccionada.medical_file : null
-  );
-  const [cuota, setCuota] = useState(seleccionada ? seleccionada.cuota : null);
-  const [activo, setActivo] = useState(
-    seleccionada ? seleccionada.active : null
-  );
+  const [personal, setPersonal] = useState(seleccionada ? seleccionada.personal_file : "");
+  const [medical, setMedical] = useState(seleccionada ? seleccionada.medical_file : "");
+  const [cuota, setCuota] = useState(seleccionada ? seleccionada.cuota : "");
+  const [activo, setActivo] = useState(seleccionada ? seleccionada.active : "");
+  
 
   const guardarCambios = (e) => {
     e.preventDefault();
-    console.log(nombre, nacimiento, direccion, telefono, mail, rama, cuota);
+    console.log(id,dni,nombre,nacimiento,direccion,telefono,mail,rama,personal,medical,cuota,activo);
     if (
       !nombre ||
       !nacimiento ||
@@ -115,7 +103,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 <input
                   required
                   className="dark:bg-custon-black border rounded-md px-2 py-1 "
-                  value={nombre}
+                 defaultValue={seleccionada ? seleccionada.name : ""}
                   onChange={(e) => setNombre(e.target.value)}
                 />
               </article>
@@ -125,7 +113,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                   required
                   typeof="number"
                   className="dark:bg-custon-black border rounded-md px-2 py-1"
-                  value={dni}
+                  defaultValue={seleccionada ? seleccionada.dni : ""}
                   onChange={(e) => setDni(e.target.value)}
                 />
               </article>
