@@ -8,7 +8,7 @@ if ($conn->connect_error) {
     die("error de conexión: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM beneficiaries";
+$sql = "SELECT * FROM calendary";
 
 $results = $conn->query($sql);
 
@@ -23,4 +23,6 @@ if ($results->num_rows > 0) {
 }
 
 $conn->close();
+
+
 ?>

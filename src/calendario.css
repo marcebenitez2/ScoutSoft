@@ -50,3 +50,8 @@ abbr{
   font-size: 1.5rem;
   font-weight: 900;
 }
+
+.react-calendar__month-view__weekdays__weekday, .react-calendar__month-view__weekdays__weekday--weekend{
+  text-decoration: none;
+}
+

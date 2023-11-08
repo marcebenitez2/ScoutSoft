@@ -1,34 +1,55 @@
 import React, { useState } from "react";
 import { ramas } from "../services/ramas";
+import { ToastContainer, toast } from "react-toastify";
+import { postBD } from "../services/postBD";
 
 function ModalCalendario({
   isOpen,
   toClose,
   fechaSeleccionada,
+  eventoSeleccionado,
   eventos,
-  seleccionado,
 }) {
   if (!isOpen) {
     return null;
   }
+  console.log(eventoSeleccionado)
 
-  console.log(fechaSeleccionada);
-  const [nombre, setNombre] = useState(seleccionado ? seleccionado.nombre : "");
-  const [lugar, setLugar] = useState(seleccionado ? seleccionado.lugar : "");
+  const [nombre, setNombre] = useState(eventoSeleccionado ? eventoSeleccionado.title : "");
+  const [lugar, setLugar] = useState(eventoSeleccionado ? eventoSeleccionado.location : "");
   const [fecha, setFecha] = useState(
-    seleccionado ? seleccionado.fecha : fechaSeleccionada
+    eventoSeleccionado ? eventoSeleccionado.date : fechaSeleccionada
   );
-  const [inicio, setInicio] = useState(seleccionado ? seleccionado.inicio : "");
-  const [fin, setFin] = useState(seleccionado ? seleccionado.fin : "");
-  const [rama, setRama] = useState(seleccionado ? seleccionado.rama : "");
-  const [tipo, setTipo] = useState(seleccionado ? seleccionado.tipo : "");
+  const [inicio, setInicio] = useState(eventoSeleccionado ? eventoSeleccionado.startTime : "");
+  const [fin, setFin] = useState(eventoSeleccionado ? eventoSeleccionado.endTime : "");
+  const [rama, setRama] = useState(eventoSeleccionado ? eventoSeleccionado.branch : "Todos");
+  const [tipo, setTipo] = useState(eventoSeleccionado ? eventoSeleccionado.type : "Evento");
   const [descripcion, setDescripcion] = useState(
-    seleccionado ? seleccionado.descripcion : ""
+    eventoSeleccionado ? eventoSeleccionado.description : ""
   );
 
   const guardarCambios = (e) => {
     e.preventDefault();
     console.log(nombre, lugar, fecha, inicio, fin, rama, tipo, descripcion);
+    if (!nombre || !lugar || !fecha || !inicio || !fin || !rama || !tipo) {
+      toast.error("Rellena todos los campos");
+      return;
+    }
+
+    const evento = {
+      nombre: nombre,
+      fecha: fecha,
+      inicio: inicio,
+      fin: fin,
+      lugar: lugar,
+      descripcion: descripcion,
+      tipo: tipo,
+      rama: rama,
+    };
+
+    postBD(evento, "http://localhost/addEvent.php");
+    toClose(false);
+    window.location.reload();
   };
 
   return (
@@ -94,7 +115,7 @@ function ModalCalendario({
                   <select
                     className="dark:bg-custon-black border rounded-md"
                     defaultValue={rama}
-                    onChange={(e)=>setRama(e.target.value)}
+                    onChange={(e) => setRama(e.target.value)}
                   >
                     {ramas.map((x) => (
                       <option key={x.id}>{x.nombre}</option>
@@ -106,7 +127,7 @@ function ModalCalendario({
                   <select
                     className="dark:bg-custon-black border rounded-md"
                     defaultValue={tipo}
-                    onChange={(e)=>setTipo(e.target.value)}
+                    onChange={(e) => setTipo(e.target.value)}
                   >
                     <option>Evento</option>
                     <option>Salida</option>
@@ -141,6 +162,7 @@ function ModalCalendario({
           </form>
         </section>
       ) : null}
+      <ToastContainer />
     </main>
   );
 }

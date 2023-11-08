@@ -6,19 +6,26 @@ import ListaEvento from "../../components/listaEvento";
 import Calendar from "react-calendar";
 import "../../calendario.css";
 import ModalCalendario from "../../components/modalCalendario";
-import {format } from "date-fns"; // Importa date-fns
+import { format } from "date-fns"; // Importa date-fns
+import { fetchBD } from "../../services/fetchBD";
 
 function Calendario() {
   const [eventos, setEventos] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [seleccionada, setSeleccionada] = useState(null);
   const [fecha, setFecha] = useState(new Date());
+  const [eventoSeleccionado, setEventoSeleccionado] = useState(null);
 
+  // Funcion para seleccionar un dia del calendario (dia vacio) y agregarle un evento
   function onClickDay(value) {
     const fechaSeleccionada = format(value, "yyyy-MM-dd");
     setFecha(fechaSeleccionada);
+    setEventoSeleccionado(null);
     setModalOpen(true);
   }
+
+  useEffect(() => {
+    fetchBD(setEventos, "http://localhost/calendary.php");
+  }, []);
 
   return (
     <main className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white">
@@ -34,16 +41,23 @@ function Calendario() {
             <div className="w-full h-full flex items-center justify-center">
               <Calendar onClickDay={onClickDay} />
             </div>
-            <InfoEvento />
+            <InfoEvento
+              eventoSeleccionado={eventoSeleccionado}
+              isOpen={setModalOpen}
+            />
           </div>
-          <ListaEvento />
+          <ListaEvento
+            eventos={eventos}
+            setEventoSeleccionado={setEventoSeleccionado}
+            eventoSeleccionado={eventoSeleccionado}
+          />
         </div>
       </div>
       <ModalCalendario
-        seleccionado={seleccionada}
         isOpen={modalOpen}
         toClose={setModalOpen}
-        fechaSeleccionada={fecha} // Pasa la fecha convertida
+        fechaSeleccionada={fecha}
+        eventoSeleccionado={eventoSeleccionado}
         eventos={eventos}
       />
     </main>
