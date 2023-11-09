@@ -13,32 +13,61 @@ function ModalCalendario({
   if (!isOpen) {
     return null;
   }
-  console.log(eventoSeleccionado)
 
-  const [nombre, setNombre] = useState(eventoSeleccionado ? eventoSeleccionado.title : "");
-  const [lugar, setLugar] = useState(eventoSeleccionado ? eventoSeleccionado.location : "");
+  const [id, setId] = useState(
+    eventoSeleccionado ? eventoSeleccionado.id : null
+  );
+  const [nombre, setNombre] = useState(
+    eventoSeleccionado ? eventoSeleccionado.title : null
+  );
+  const [lugar, setLugar] = useState(
+    eventoSeleccionado ? eventoSeleccionado.location : null
+  );
   const [fecha, setFecha] = useState(
     eventoSeleccionado ? eventoSeleccionado.date : fechaSeleccionada
   );
-  const [inicio, setInicio] = useState(eventoSeleccionado ? eventoSeleccionado.startTime : "");
-  const [fin, setFin] = useState(eventoSeleccionado ? eventoSeleccionado.endTime : "");
-  const [rama, setRama] = useState(eventoSeleccionado ? eventoSeleccionado.branch : "Todos");
-  const [tipo, setTipo] = useState(eventoSeleccionado ? eventoSeleccionado.type : "Evento");
+  const [fechaFin, setFechaFin] = useState(
+    eventoSeleccionado ? eventoSeleccionado.endDate : fechaSeleccionada
+  );
+  const [inicio, setInicio] = useState(
+    eventoSeleccionado ? eventoSeleccionado.startTime : null
+  );
+  const [fin, setFin] = useState(
+    eventoSeleccionado ? eventoSeleccionado.endTime : null
+  );
+  const [rama, setRama] = useState(
+    eventoSeleccionado ? eventoSeleccionado.branch : "Todos"
+  );
+  const [tipo, setTipo] = useState(
+    eventoSeleccionado ? eventoSeleccionado.type : "Evento"
+  );
   const [descripcion, setDescripcion] = useState(
     eventoSeleccionado ? eventoSeleccionado.description : ""
   );
 
   const guardarCambios = (e) => {
     e.preventDefault();
-    console.log(nombre, lugar, fecha, inicio, fin, rama, tipo, descripcion);
+    console.log(
+      nombre,
+      lugar,
+      fecha,
+      fechaFin,
+      inicio,
+      fin,
+      rama,
+      tipo,
+      descripcion
+    );
     if (!nombre || !lugar || !fecha || !inicio || !fin || !rama || !tipo) {
       toast.error("Rellena todos los campos");
       return;
     }
 
     const evento = {
+      id: id,
       nombre: nombre,
       fecha: fecha,
+      fechaFin: fechaFin,
       inicio: inicio,
       fin: fin,
       lugar: lugar,
@@ -51,6 +80,25 @@ function ModalCalendario({
     toClose(false);
     window.location.reload();
   };
+
+  const eliminarEvento = (e) => {
+    e.preventDefault();
+    const evento = {
+      id: id,
+      nombre: nombre,
+      fecha: fecha,
+      fechaFin: fechaFin,
+      inicio: inicio,
+      fin: fin,
+      lugar: lugar,
+      descripcion: descripcion,
+      tipo: tipo,
+      rama: rama,
+    }
+    postBD(evento, "http://localhost/deleteEvent.php");
+    toClose(false);
+    window.location.reload();
+  }
 
   return (
     <main>
@@ -87,6 +135,15 @@ function ModalCalendario({
                     value={fecha}
                     type="date"
                     onChange={(e) => setFecha(e.target.value)}
+                  />
+                </label>
+                <label className="flex flex-col">
+                  Fecha fin
+                  <input
+                    className="dark:bg-custon-black border rounded-md px-2 py-1"
+                    value={fechaFin}
+                    type="date"
+                    onChange={(e) => setFechaFin(e.target.value)}
                   />
                 </label>
 
@@ -144,7 +201,7 @@ function ModalCalendario({
                   onChange={(e) => setDescripcion(e.target.value)}
                 />
               </label>
-              <div className="flex w-full justify-center">
+              <div className="flex w-full justify-center gap-2">
                 <button
                   className="w-1/5 h-10 dark:text-white mdn:w-2/5"
                   onClick={() => toClose(false)}
@@ -158,6 +215,9 @@ function ModalCalendario({
                   Guardar Cambios
                 </button>
               </div>
+              {eventoSeleccionado ? (
+                <button className="w-1/3 py-2 m-auto" onClick={(e)=>eliminarEvento(e)}>Eliminar</button>
+              ) : null}
             </div>
           </form>
         </section>

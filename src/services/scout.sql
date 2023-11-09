@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2023 a las 17:30:29
+-- Tiempo de generación: 09-11-2023 a las 00:04:58
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -136,6 +136,7 @@ INSERT INTO `branchs` (`namebranch`) VALUES
 --
 
 CREATE TABLE `calendary` (
+  `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `date` date DEFAULT NULL,
   `startTime` time DEFAULT NULL,
@@ -143,9 +144,17 @@ CREATE TABLE `calendary` (
   `location` varchar(50) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
   `type` enum('evento','salida','reunion') DEFAULT NULL,
-  `document` blob DEFAULT NULL,
-  `branch` varchar(30) DEFAULT NULL
+  `branch` varchar(30) DEFAULT NULL,
+  `endDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `calendary`
+--
+
+INSERT INTO `calendary` (`id`,`title`, `date`, `startTime`, `endTime`, `location`, `description`, `type`, `branch`, `endDate`) VALUES
+(1,'Campamento aniversario', '2023-12-02', '07:00:00', '15:00:00', 'Zavalla', 'Campamento de zavalla aniversario. Salen en colectivo a la manana que nos pasa a buscar por el grupo', 'evento', 'Todos', NULL),
+(2,'Campamento de verano', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Agua de oro', 'Campamento de fin de año. Quiza lleguemos un poco mas tarde', 'salida', 'Todos', '2024-01-10');
 
 -- --------------------------------------------------------
 
@@ -227,7 +236,7 @@ CREATE TABLE `plans` (
   `id` int(11) NOT NULL,
   `title` varchar(100) DEFAULT NULL,
   `branch` varchar(30) DEFAULT NULL,
-  `event` varchar(100) DEFAULT NULL
+  `event` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -258,8 +267,8 @@ ALTER TABLE `branchs`
 -- Indices de la tabla `calendary`
 --
 ALTER TABLE `calendary`
-  ADD PRIMARY KEY (`title`),
-  ADD KEY `fk_branch` (`branch`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `branch` (`branch`);
 
 --
 -- Indices de la tabla `inventory`
@@ -292,6 +301,9 @@ ALTER TABLE `plans`
 ALTER TABLE `beneficiaries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
+
+ALTER TABLE `calendary`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `inventory`
 --
@@ -342,7 +354,7 @@ ALTER TABLE `notifications`
 -- Filtros para la tabla `plans`
 --
 ALTER TABLE `plans`
-  ADD CONSTRAINT `plans_ibfk_1` FOREIGN KEY (`event`) REFERENCES `calendary` (`title`);
+  ADD CONSTRAINT `plans_ibfk_1` FOREIGN KEY (`event`) REFERENCES `calendary` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

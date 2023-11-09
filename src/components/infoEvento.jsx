@@ -10,11 +10,13 @@ function InfoEvento({ eventoSeleccionado , isOpen}) {
           <div className="flex w-full">
             <div className="flex flex-col gap-2 w-full">
               <p>Fecha: {eventoSeleccionado.date}</p>
+              <p>Fecha fin:{eventoSeleccionado.endDate}</p>
               <p>Hora inicio: {eventoSeleccionado.startTime}</p>
-              <p>Hora Fin: {eventoSeleccionado.endTime}</p>
-              <p>Lugar: {eventoSeleccionado.location}</p>
+              <p>Hora fin: {eventoSeleccionado.endTime}</p>
             </div>
             <div className="flex flex-col w-full">
+              <p>Lugar: {eventoSeleccionado.location}</p>
+              <p>Rama: {eventoSeleccionado.branch}</p>
               <p>Tipo: {eventoSeleccionado.type}</p>
               <p>Descripcion: {eventoSeleccionado.description}</p>
             </div>
