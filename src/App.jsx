@@ -13,6 +13,7 @@ import Nosotros from "./pages/HomePages/nosotros";
 import Scoutismo from "./pages/HomePages/scoutismo";
 import Consulta from "./pages/HomePages/consulta";
 import Calendario from "./pages/secciones/calendario";
+import Planificaciones from "./pages/secciones/planificaciones";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -38,6 +39,7 @@ function App() {
           <Route path="/menu/beneficiarios"element={auth ? <Beneficiarios/> : <Login/>}/>
           <Route path="/menu/inventario"element={auth ? <Inventario/> : <Login/>}/>
           <Route path="/menu/calendario"element={auth ? <Calendario/> : <Login/>}/>
+          <Route path="/menu/planificaciones"element={auth ? <Planificaciones/> : <Login/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
