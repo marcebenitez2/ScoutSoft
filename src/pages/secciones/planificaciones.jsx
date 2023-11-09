@@ -1,9 +1,6 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Navbar from "../../components/navbar";
-import { useState } from "react";
 import PlanificacionesGrilla from "../../components/planificacionesGrilla";
-import { useEffect } from "react";
-import { fetchPlanificacionesFireBase } from "../../services/fetchFirebase";
 import { fetchBD } from "../../services/fetchBD";
 import ModalAgregarArchivo from "../../components/modalAgregarArchivo";
 
@@ -13,7 +10,6 @@ function Planificaciones() {
 
   useEffect(() => {
     fetchBD(setArchivos, "http://localhost/plans.php");
-    fetchPlanificacionesFireBase();
   }, []);
 
   return (

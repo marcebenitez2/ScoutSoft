@@ -1,22 +1,57 @@
 import React from "react";
 import { fetchBD } from "../services/fetchBD";
+import { postBD } from "../services/postBD";
 import { useState } from "react";
 import { useEffect } from "react";
 import { ramas } from "../services/ramas";
+import { postPlanificacionesFireBase } from "../services/fetchFirebase";
 
 function ModalAgregarArchivo({ isOpen, toClose }) {
   if (!isOpen) {
     return null;
   }
 
+  const [titulo, setTitulo] = useState("");
+  const [evento, setEvento] = useState(null);
+  const [rama, setRama] = useState("Todos");
+  const [archivo, setArchivo] = useState(null);
+
+  const guardarCambios = (e) => {
+    e.preventDefault();
+
+    if (!titulo || !rama || !archivo) {
+      alert("Rellena todos los campos");
+      return;
+    }
+
+    console.log(archivo);
+
+    postPlanificacionesFireBase(archivo)
+      .then((url) => {
+        console.log(url);
+
+        const item = {
+          titulo: titulo,
+          evento: evento,
+          rama: rama,
+          archivo: url,
+        };
+
+        console.log(item);
+
+        postBD(item, "http://localhost/addPlans.php");
+        toClose(false);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error al enviar a Firebase Storage:", error);
+      });
+  };
+
   const [eventos, setEventos] = useState(null);
   useEffect(() => {
     fetchBD(setEventos, "http://localhost/calendary.php");
   }, []);
-
-  useEffect(() => {
-    console.log(eventos);
-  }, [eventos]);
 
   return (
     <main>
@@ -29,32 +64,51 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
                 Titulo
                 <input
                   type="text"
+                  value={titulo}
+                  onChange={(e) => setTitulo(e.target.value)}
                   className="dark:bg-custon-black border rounded-md px-2 py-1 "
                 />
               </label>
               {eventos ? (
                 <label className="flex flex-col">
                   Evento
-                  <select className="dark:bg-custon-black border rounded-md px-2 py-1">
-                    <option>Ninguna</option>
+                  <select
+                    className="dark:bg-custon-black border rounded-md px-2 py-1"
+                    value={evento}
+                    onChange={(e) => setEvento(e.target.value)}
+                  >
+                    <option>Ninguno</option>
                     {eventos.map((evento) => (
-                      <option>{evento.title}</option>
+                      <option key={evento.id} value={evento.id}>
+                        {evento.title}
+                      </option>
                     ))}
                   </select>
                 </label>
               ) : null}
               <label className="flex flex-col">
                 Rama
-                <select className="dark:bg-custon-black border rounded-md px-2 py-1">
+                <select
+                  className="dark:bg-custon-black border rounded-md px-2 py-1"
+                  value={rama}
+                  onChange={(e) => setRama(e.target.value)}
+                >
                   {ramas.map((rama) => (
-                    <option>{rama.nombre}</option>
+                    <option key={rama.id}>{rama.nombre}</option>
                   ))}
                 </select>
               </label>
               <label className="flex flex-col">
                 Archivo
-                <input type="file" />
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    console.log(e.target.files[0]);
+                    setArchivo(e.target.files[0]);
+                  }}
+                />
               </label>
+
               <div className="w-full flex justify-center">
                 <button
                   onClick={() => toClose(false)}
@@ -62,7 +116,10 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
                 >
                   Cancelar
                 </button>
-                <button className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5 text-white">
+                <button
+                  className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5 text-white"
+                  onClick={(e) => guardarCambios(e)}
+                >
                   Guardar cambios
                 </button>
               </div>

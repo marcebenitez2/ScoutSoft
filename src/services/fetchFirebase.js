@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,11 +17,19 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+export const postPlanificacionesFireBase = async (item) => {
+  const storage = getStorage(app);
+  const planificacionesRef = ref(storage, `${item.name}`);
 
+  // Sube el contenido del archivo usando uploadBytes
+  await uploadBytes(planificacionesRef, item);
 
-export const fetchPlanificacionesFireBase = async () => {
-    const storage = getStorage(app);
-    const planificacionesRef = ref(storage, 'Planificacion-Prueba.docx');
-    const url = await getDownloadURL(planificacionesRef);
-    console.log(url);
+  // Obtiene la URL de descarga
+  const url = await getDownloadURL(planificacionesRef);
+  console.log(url);
+  return url;
 }
+
+
+
+
