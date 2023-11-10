@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/navbar";
 import PlanificacionesGrilla from "../../components/planificacionesGrilla";
 import { fetchBD } from "../../services/fetchBD";
@@ -23,10 +23,13 @@ function Planificaciones() {
         <h1 className="text-3xl text-center dark:text-white">
           Planificaciones
         </h1>
-        <button onClick={()=>setModalOpen(true)} className="bg-custon-red w-fit px-4 py-1 absolute right-20">
+        <button
+          onClick={() => setModalOpen(true)}
+          className="bg-custon-red w-fit px-4 py-1 absolute right-20"
+        >
           Agregar
         </button>
-        <PlanificacionesGrilla archivos={archivos} />
+        {archivos ? <PlanificacionesGrilla archivos={archivos} /> : null}
       </div>
       <ModalAgregarArchivo isOpen={modalOpen} toClose={setModalOpen} />
     </main>

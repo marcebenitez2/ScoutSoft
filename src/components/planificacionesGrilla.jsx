@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function PlanificacionesGrilla({ archivos }) {
   const [buscador, setBuscador] = useState("");
-  const [copia, setCopia] = useState(archivos);
+  const [copia, setCopia] = useState([]);
 
   const filtro = (busqueda) => {
     setBuscador(busqueda);
@@ -20,8 +20,8 @@ function PlanificacionesGrilla({ archivos }) {
   };
 
   useEffect(() => {
-    console.log(buscador);
-  }, [buscador]);
+    setCopia(archivos);
+  }, []);
 
   return (
     <section className="w-full h-full flex flex-col gap-4">
@@ -29,15 +29,15 @@ function PlanificacionesGrilla({ archivos }) {
         className="w-full bg-transparent border rounded-lg px-3 py-1"
         onChange={(e) => filtro(e.target.value)}
       />
-      {archivos ? (
+      {copia ? (
         <div className="w-full h-full grid grid-cols-6 gap-x-4 grid-rows-2">
           {copia.map((archivo) => (
             <a
               className="bg-white flex flex-col text-black justify-center items-center rounded-lg gap-4 hoja"
               href={archivo.url}
             >
-              <span className="font-semibold">{archivo.title}</span>
-              <span className="font-semibold">{archivo.branch}</span>
+              <span className="font-semibold text-3xl text-center">{archivo.title}</span>
+              <span className="font-semibold text-xl text-center">{archivo.branch}</span>
             </a>
           ))}
         </div>
