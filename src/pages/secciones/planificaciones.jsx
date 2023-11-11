@@ -3,10 +3,12 @@ import Navbar from "../../components/navbar";
 import PlanificacionesGrilla from "../../components/planificacionesGrilla";
 import { fetchBD } from "../../services/fetchBD";
 import ModalAgregarArchivo from "../../components/modalAgregarArchivo";
+import ModalEliminarArchivo from "../../components/modalEliminarArchivo";
 
 function Planificaciones() {
   const [modalOpen, setModalOpen] = useState(false);
   const [archivos, setArchivos] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     fetchBD(setArchivos, "http://localhost/plans.php");
@@ -17,21 +19,30 @@ function Planificaciones() {
       <Navbar />
       <div
         className={`w-full h-full ${
-          modalOpen ? "blur" : ""
+          modalOpen || deleteModalOpen ? "blur" : ""
         } flex flex-col gap-4`}
       >
         <h1 className="text-3xl text-center dark:text-white">
           Planificaciones
         </h1>
-        <button
-          onClick={() => setModalOpen(true)}
-          className="bg-custon-red w-fit px-4 py-1 absolute right-20"
-        >
-          Agregar
-        </button>
+        <div className="flex absolute right-20 ">
+          <button
+            className="px-4 py-1"
+            onClick={() => setDeleteModalOpen(true)}
+          >
+            Eliminar
+          </button>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="bg-custon-red px-4 py-1 "
+          >
+            Agregar
+          </button>
+        </div>
         {archivos ? <PlanificacionesGrilla archivos={archivos} /> : null}
       </div>
       <ModalAgregarArchivo isOpen={modalOpen} toClose={setModalOpen} />
+      <ModalEliminarArchivo isOpen={deleteModalOpen} toClose={setDeleteModalOpen} archivos={archivos}/>
     </main>
   );
 }
