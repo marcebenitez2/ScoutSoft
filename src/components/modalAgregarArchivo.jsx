@@ -40,8 +40,8 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
         console.log(item);
 
         postBD(item, "http://localhost/addPlans.php");
-        // toClose(false);
-        // window.location.reload();
+        toClose(false);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error al enviar a Firebase Storage:", error);
