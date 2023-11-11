@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2023 a las 00:04:58
+-- Tiempo de generación: 11-11-2023 a las 15:22:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -152,9 +152,9 @@ CREATE TABLE `calendary` (
 -- Volcado de datos para la tabla `calendary`
 --
 
-INSERT INTO `calendary` (`id`,`title`, `date`, `startTime`, `endTime`, `location`, `description`, `type`, `branch`, `endDate`) VALUES
-(1,'Campamento aniversario', '2023-12-02', '07:00:00', '15:00:00', 'Zavalla', 'Campamento de zavalla aniversario. Salen en colectivo a la manana que nos pasa a buscar por el grupo', 'evento', 'Todos', NULL),
-(2,'Campamento de verano', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Agua de oro', 'Campamento de fin de año. Quiza lleguemos un poco mas tarde', 'salida', 'Todos', '2024-01-10');
+INSERT INTO `calendary` (`id`, `title`, `date`, `startTime`, `endTime`, `location`, `description`, `type`, `branch`, `endDate`) VALUES
+(1, 'Campamento aniversario', '2023-12-02', '07:00:00', '15:00:00', 'Zavalla', 'Campamento de zavalla aniversario. Salen en colectivo a la manana que nos pasa a buscar por el grupo', 'evento', 'Todos', NULL),
+(2, 'Campamento de verano', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Agua de oro', 'Campamento de fin de año. Quiza lleguemos un poco mas tarde', 'salida', 'Todos', '2024-01-10');
 
 -- --------------------------------------------------------
 
@@ -236,8 +236,17 @@ CREATE TABLE `plans` (
   `id` int(11) NOT NULL,
   `title` varchar(100) DEFAULT NULL,
   `branch` varchar(30) DEFAULT NULL,
-  `event` int(11) DEFAULT NULL
+  `event` int(11) DEFAULT NULL,
+  `url` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `plans`
+--
+
+INSERT INTO `plans` (`id`, `title`, `branch`, `event`, `url`) VALUES
+(1, 'Planificacion campamento', 'Todos', NULL, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Planificacion-Prueba.docx?alt=media&token=421a670d-9ce9-48eb-b544-6f94bf896791'),
+(16, 'cvb', 'Manada', 1, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/ACargarPlanificacion.docx?alt=media&token=ecf04bad-d184-4783-827d-4ceadf9b3aba');
 
 --
 -- Índices para tablas volcadas
@@ -301,9 +310,12 @@ ALTER TABLE `plans`
 ALTER TABLE `beneficiaries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
-
+--
+-- AUTO_INCREMENT de la tabla `calendary`
+--
 ALTER TABLE `calendary`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
 -- AUTO_INCREMENT de la tabla `inventory`
 --
@@ -316,9 +328,12 @@ ALTER TABLE `inventory`
 ALTER TABLE `notifications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
-
+--
+-- AUTO_INCREMENT de la tabla `plans`
+--
 ALTER TABLE `plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- Restricciones para tablas volcadas
 --

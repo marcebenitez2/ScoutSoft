@@ -36,6 +36,10 @@ html {
   max-width: 100%;
 }
 
+.max-h-custom {
+ max-height: 37rem;
+}
+
 
 /* Toogle */
 

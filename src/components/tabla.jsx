@@ -81,8 +81,8 @@ function Tabla({ beneficiarios, setModalOpen, setSeleccionada }) {
         className="dark:bg-custon-black border px-4 py-2 rounded-xl bg-white border-black dark:border-white"
         onChange={(e) => filtradoPorNombre(e.target.value)}
       />
-      <div className="table-wrapper">
-        <table className="w-full h-full overflow-auto">
+      <div className="table-wrapper overflow-auto max-h-custom">
+        <table className="w-full h-full">
           <thead className="w-full h-full">
             <tr className="w-full h-full text-custon-red font-semibold">
               <th className="w-1/12 h-full">Nombre</th>

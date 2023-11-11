@@ -35,6 +35,7 @@ function PlanificacionesGrilla({ archivos }) {
             <a
               className="bg-white flex flex-col text-black justify-center items-center rounded-lg gap-4 hoja"
               href={archivo.url}
+              key={archivo.id}
             >
               <span className="font-semibold text-3xl text-center">{archivo.title}</span>
               <span className="font-semibold text-xl text-center">{archivo.branch}</span>
