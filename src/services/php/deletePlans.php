@@ -11,11 +11,8 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if (isset($data['ids']) && is_array($data['ids']) && !empty($data['ids'])) {
-        // Escapar y formatear los IDs como una cadena separada por comas
-        $ids = implode(',', array_map('intval', $data['ids']));
-
-        $idsArray = array_map('intval', $data['ids']);
+    if (is_array($data) && !empty($data)) {
+        $idsArray = array_map('intval', $data);
         
         $success = true;
 
@@ -41,4 +38,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $conn->close();
+
 ?>

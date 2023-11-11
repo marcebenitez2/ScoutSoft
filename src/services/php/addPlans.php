@@ -1,5 +1,5 @@
 <?php
-require 'config.php'; 
+require 'config.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -15,7 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $branch = $data['rama'];
     $url = $data['archivo'];
 
-    $sql = "INSERT INTO plans (title, event, branch, url) VALUES ('$title', '$event', '$branch', '$url')";
+    // Verificar si $event es "Ninguno" y asignar NULL en ese caso
+    // Verificar si $event es "Ninguno" o nulo y asignar NULL en ese caso
+    $eventValue = ($event === "Ninguno" || $event === null) ? 'NULL' : "'$event'";
+
+    $sql = "INSERT INTO plans (title, event, branch, url) VALUES ('$title', $eventValue, '$branch', '$url')";
 
     if ($conn->query($sql) === TRUE) {
         echo json_encode(array("success" => true));
@@ -25,4 +29,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $conn->close();
-?>

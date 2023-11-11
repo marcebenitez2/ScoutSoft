@@ -24,7 +24,7 @@ function ModalEliminarArchivo({ isOpen, toClose, archivos }) {
     postBD(aEliminar,"http://localhost/deletePlans.php")
     setaEliminar([]);
     toClose(false);
-    // window.location.reload();
+    window.location.reload();
   }
 
   return (
