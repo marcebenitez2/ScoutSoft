@@ -14,6 +14,7 @@ import Scoutismo from "./pages/HomePages/scoutismo";
 import Consulta from "./pages/HomePages/consulta";
 import Calendario from "./pages/secciones/calendario";
 import Planificaciones from "./pages/secciones/planificaciones";
+import Consejos from "./pages/secciones/consejos";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -40,6 +41,7 @@ function App() {
           <Route path="/menu/inventario"element={auth ? <Inventario/> : <Login/>}/>
           <Route path="/menu/calendario"element={auth ? <Calendario/> : <Login/>}/>
           <Route path="/menu/planificaciones"element={auth ? <Planificaciones/> : <Login/>}/>
+          <Route path="/menu/consejos"element={auth ? <Consejos/> : <Login/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>

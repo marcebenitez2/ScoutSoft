@@ -48,7 +48,7 @@ function Navbar() {
           <span className="lgn:hidden">Planificaciones</span>
           <IoNewspaperSharp className="lgn:block hidden text-4xl" />
         </Link>
-        <Link>
+        <Link to={'/menu/consejos'}>
           <span className="lgn:hidden">Consejos</span>
           <FaPeopleGroup className="lgn:block hidden text-4xl" />
         </Link>
