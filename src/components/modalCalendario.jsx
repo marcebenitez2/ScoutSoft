@@ -188,6 +188,7 @@ function ModalCalendario({
                   >
                     <option>Evento</option>
                     <option>Salida</option>
+                    <option>Campamento</option>
                     <option>Consejo</option>
                   </select>
                 </label>
