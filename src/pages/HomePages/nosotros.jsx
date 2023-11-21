@@ -7,7 +7,7 @@ function Nosotros() {
   return (
     <main className="w-screen">
       <InfoNav />
-      <section className="w-full  flex justify-center items-center py-16 px-10">
+      <section className="w-full flex justify-center items-center py-16 px-10">
         <div className="flex gap-8 h-3/5 px-40 items-center xln:px-10 lgn:flex-col">
           <img
             src="/grupal.jpeg"
