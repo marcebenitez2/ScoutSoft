@@ -1,7 +1,7 @@
 import React from "react";
 import InfoNav from "../../components/infoNav";
-import badenpowell from "../../../public/badenpowell.jpg";
-import florDeLiz from "../../../public/florDeLizNegra.png";
+import badenpowell from "/badenpowell.jpg";
+import florDeLiz from "/florDeLizNegra.png";
 
 function Scoutismo() {
   return (
@@ -62,9 +62,9 @@ function Scoutismo() {
           </div>
         </div>
       </div>
-      <aside className="h-96 w-full bg-red-600 px-8 text-white flex flex-col gap-12">
+      <aside className="h-96 w-full bg-red-600 px-8 text-white flex flex-col gap-12 py-4">
         <h3 className=" text-2xl font-bold">La ley scout</h3>
-        <div className="w-full h-full grid grid-cols-5 ">
+        <div className="w-full h-full grid grid-cols-5 gap-x-10">
           <div>1. El scout cifra su honor en ser digno de confianza</div>
           <div>2. El scout es leal</div>
           <div>3. El scout util y actua sin esperar recompensa</div>
