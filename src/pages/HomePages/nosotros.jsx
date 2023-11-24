@@ -2,19 +2,21 @@ import React from "react";
 import InfoNav from "../../components/infoNav";
 import instagram from "../../assets/instagram.svg";
 import facebook from "../../assets/facebook.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 function Nosotros() {
   return (
     <main className="w-screen">
       <InfoNav />
-      <section className="w-full flex justify-center items-center py-16 px-10">
-        <div className="flex gap-8 h-3/5 px-40 items-center xln:px-10 lgn:flex-col">
+      <section className="w-full flex justify-center items-center py-16">
+        <div className="flex gap-8 h-3/5 px-40 items-center xln:px-10 lgn:flex-col lgn:px-2">
           <img
             src="/grupal.jpeg"
-            className="w-1/2 h-96 rounded-lg lgn:w-full"
+            className="w-1/2 h-96 rounded-lg lgn:w-full smn:h-60"
           />
           <div className="flex flex-col h-full basis-1/2 justify-between py-8">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 smn:text-base">
               <h3 className="font-semibold text-4xl text-red-600">
                 Sobre nosotros
               </h3>
@@ -50,7 +52,20 @@ function Nosotros() {
         </div>
       </section>
       <section className="w-full flex flex-col gap-4">
-        <aside className="w-full h-96 flex px-20 py-5 bg-custon-red justify-between 2xln:px-10 xln:px-2 xln:h-72">
+        <Swiper
+          slidesPerView={1}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide>
+            <img src="/banderas.jpg" className="rounded-xl w-44" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src="/flecha.jpg" className="rounded-xl w-52" />
+          </SwiperSlide>
+        </Swiper>
+
+        <aside className="w-full h-96 flex px-20 py-5 bg-custon-red justify-between 2xln:px-10 xln:px-2 xln:h-72 mdn:hidden">
           <img
             src="/banderas.jpg"
             className="rounded-xl w-72 2xln:w-56 xln:w-40 "
@@ -139,7 +154,6 @@ function Nosotros() {
           </div>
         </div>
       </section>
-     
     </main>
   );
 }
