@@ -2,8 +2,7 @@ import React from "react";
 import InfoNav from "../../components/infoNav";
 import instagram from "../../assets/instagram.svg";
 import facebook from "../../assets/facebook.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import Carrousel from "../../components/carrousel";
 
 function Nosotros() {
   return (
@@ -52,19 +51,7 @@ function Nosotros() {
         </div>
       </section>
       <section className="w-full flex flex-col gap-4">
-        <Swiper
-          slidesPerView={1}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          <SwiperSlide>
-            <img src="/banderas.jpg" className="rounded-xl w-44" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/flecha.jpg" className="rounded-xl w-52" />
-          </SwiperSlide>
-        </Swiper>
-
+        <Carrousel/>
         <aside className="w-full h-96 flex px-20 py-5 bg-custon-red justify-between 2xln:px-10 xln:px-2 xln:h-72 mdn:hidden">
           <img
             src="/banderas.jpg"
@@ -84,7 +71,7 @@ function Nosotros() {
             className="rounded-xl w-72 2xln:w-56 xln:w-40"
           />
         </aside>
-        <div className="px-10 py-4 flex flex-col gap-10">
+        <div className="px-10 py-4 flex flex-col gap-10 mdn:px-2">
           <div>
             <h3 className="text-4xl text-red-600 font-semibold">
               Nuestras secciones
@@ -93,7 +80,7 @@ function Nosotros() {
               Independientemente de la edad podemos compartir ideales
             </h6>
           </div>
-          <div className="grid w-3/4 m-auto grid-cols-3 gap-x-6 gap-y-6 lgn:w-full">
+          <div className="grid w-3/4 m-auto grid-cols-3 gap-x-6 gap-y-6 lgn:w-full mdn:flex flex-col mdn:text-center">
             <div className="flex flex-col gap-4">
               <h4 className="text-2xl text-red-600 font-semibold">Castores</h4>
               <p>
