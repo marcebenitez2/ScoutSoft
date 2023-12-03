@@ -15,7 +15,6 @@ function Calendario() {
   const [fecha, setFecha] = useState(new Date());
   const [eventoSeleccionado, setEventoSeleccionado] = useState(null);
 
-  // Funcion para seleccionar un dia del calendario (dia vacio) y agregarle un evento
   function onClickDay(value) {
     const fechaSeleccionada = format(value, "yyyy-MM-dd");
     setFecha(fechaSeleccionada);
