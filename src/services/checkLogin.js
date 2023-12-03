@@ -1,5 +1,3 @@
-// checkLogin.js
-
 export function checkLogin() {
   const nombreUsuarioLocal = localStorage.getItem("nombreUsuario");
   const rolUsuarioLocal = localStorage.getItem("rolUsuario");

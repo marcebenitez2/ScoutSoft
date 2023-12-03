@@ -22,31 +22,54 @@ function App() {
   );
   const [rolUsuario, setRolUsuario] = useState(null);
   const [ramaUsuario, setRamaUsuario] = useState(null);
-  const auth = checkLogin(); 
+  const auth = checkLogin();
 
-  console.log(auth)
-  
+  console.log(auth);
+
   return (
-    <UserContext.Provider value={{nombreUsuario,setNombreUsuario,rolUsuario,setRolUsuario,ramaUsuario,setRamaUsuario}}>
+    <UserContext.Provider
+      value={{
+        nombreUsuario,
+        setNombreUsuario,
+        rolUsuario,
+        setRolUsuario,
+        ramaUsuario,
+        setRamaUsuario,
+      }}
+    >
       <Router>
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/nosotros" element={<Nosotros/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/scoutismo" element={<Scoutismo />} />
           <Route path="/formulario" element={<Consulta />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={auth ? <Menu /> : <Login />} />
+          <Route path="/menu" element={auth ? <Menu /> : <Login />} />
+          <Route
+            path="/menu/beneficiarios"
+            element={auth ? <Beneficiarios /> : <Login />}
+          />
+          <Route
+            path="/menu/inventario"
+            element={auth ? <Inventario /> : <Login />}
+          />
+          <Route
+            path="/menu/calendario"
+            element={auth ? <Calendario /> : <Login />}
+          />
+          <Route
+            path="/menu/planificaciones"
+            element={auth ? <Planificaciones /> : <Login />}
+          />
+          <Route
+            path="/menu/consejos"
+            element={auth ? <Consejos /> : <Login />}
+          />
           <Route path="*" element={<Error />} />
-          <Route path="/menu" element={auth ? <Menu/> : <Login/>}/>
-          <Route path="/menu/beneficiarios"element={auth ? <Beneficiarios/> : <Login/>}/>
-          <Route path="/menu/inventario"element={auth ? <Inventario/> : <Login/>}/>
-          <Route path="/menu/calendario"element={auth ? <Calendario/> : <Login/>}/>
-          <Route path="/menu/planificaciones"element={auth ? <Planificaciones/> : <Login/>}/>
-          <Route path="/menu/consejos"element={auth ? <Consejos/> : <Login/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
   );
 }
-
 
 export default App;

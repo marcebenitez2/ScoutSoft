@@ -5,8 +5,15 @@ import { fetchBD } from "../services/fetchBD";
 import { useState } from "react";
 import Notificacion from "../components/notificacion";
 import ModalNotificaciones from "../components/modalNotificaciones";
+import { checkLogin } from "../services/checkLogin";
 
 function Menu() {
+  const auth = checkLogin();
+
+  if (!auth) {
+    window.location.href = "/login";
+  }
+  
   const [notificaciones, setNotificaciones] = useState([]);
   const [activas, setActivas] = useState([]);
   const [inactivas, setInactivas] = useState([]);
