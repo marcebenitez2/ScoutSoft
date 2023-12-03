@@ -9,12 +9,14 @@ import { MdInventory2 } from "react-icons/md";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { IoNewspaperSharp } from "react-icons/io5";
 import { FaPeopleGroup } from "react-icons/fa6";
+import { FaUsers } from "react-icons/fa6";
 
 function Navbar() {
   const navigate = useNavigate();
 
+  const rolUsuario = localStorage.getItem("rolUsuario");
+
   const logout = () => {
-    
     localStorage.removeItem("nombreUsuario");
     localStorage.removeItem("rolUsuario");
     localStorage.removeItem("ramaUsuario");
@@ -36,24 +38,27 @@ function Navbar() {
           <span className="lgn:hidden">Beneficiarios</span>
           <BsFillPersonLinesFill className="lgn:block hidden text-4xl" />
         </Link>
-        <Link to={'/menu/inventario'}>
+        <Link to={"/menu/inventario"}>
           <span className="lgn:hidden">Inventario</span>
           <MdInventory2 className="lgn:block hidden text-4xl" />
         </Link>
-        <Link to={'/menu/calendario'}>
+        <Link to={"/menu/calendario"}>
           <span className="lgn:hidden">Calendario</span>
           <BsFillCalendarDateFill className="lgn:block hidden text-4xl" />
         </Link>
-        <Link to={'/menu/planificaciones'}>
+        <Link to={"/menu/planificaciones"}>
           <span className="lgn:hidden">Planificaciones</span>
           <IoNewspaperSharp className="lgn:block hidden text-4xl" />
         </Link>
-        <Link to={'/menu/consejos'}>
+        <Link to={"/menu/consejos"}>
           <span className="lgn:hidden">Consejos</span>
           <FaPeopleGroup className="lgn:block hidden text-4xl" />
         </Link>
       </div>
       <div className="flex items-center gap-2 mdn:gap-0">
+        {rolUsuario === "admin" ? (
+          <FaUsers className="text-3xl"></FaUsers>
+        ) : null}
         <BiSolidLogOut onClick={logout} className="cursor-pointer text-4xl" />
         <ChangeTheme isNavbar={true} />
       </div>
