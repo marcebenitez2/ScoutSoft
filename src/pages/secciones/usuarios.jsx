@@ -8,18 +8,16 @@ import ModalUsuarios from "../../components/modalUsuarios";
 function Usuarios() {
   const [modalOpen, setModalOpen] = useState(false);
   const [usuarios, setUsuarios] = useState(null);
-  const [seleccionado, setSeleccionado] = useState(null)
+  const [seleccionado, setSeleccionado] = useState(null);
 
-
-  function fijarSeleccionado(usuario){
-    setSeleccionado(usuario)
-    setModalOpen(true)
+  function fijarSeleccionado(usuario) {
+    setSeleccionado(usuario);
+    setModalOpen(true);
   }
 
   useEffect(() => {
     fetchBD(setUsuarios, "http://localhost/users.php");
   }, []);
-
 
   return (
     <main className='className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white'>
@@ -57,8 +55,19 @@ function Usuarios() {
                     <td>{usuario.password}</td>
                     <td>{usuario.email}</td>
                     <td>{usuario.branch}</td>
-                    <td>{usuario.rol}</td>
-                    <td onClick={()=>fijarSeleccionado(usuario)} className="cursor-pointer">Editar</td>
+                    <td
+                      className={`${
+                        usuario.rol === "admin" ? "text-red-600" : null
+                      }`}
+                    >
+                      {usuario.rol}
+                    </td>
+                    <td
+                      onClick={() => fijarSeleccionado(usuario)}
+                      className="cursor-pointer"
+                    >
+                      Editar
+                    </td>
                   </tr>
                 );
               })}
@@ -66,7 +75,13 @@ function Usuarios() {
           </table>
         </div>
       </div>
-      <ModalUsuarios isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado} listaUsuarios={usuarios} setSeleccionado={setSeleccionado}/>
+      <ModalUsuarios
+        isOpen={modalOpen}
+        toClose={setModalOpen}
+        seleccionado={seleccionado}
+        listaUsuarios={usuarios}
+        setSeleccionado={setSeleccionado}
+      />
     </main>
   );
 }

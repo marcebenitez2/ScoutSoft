@@ -18,6 +18,9 @@ function ModalUsuarios({
   const [usuario, setUsuario] = useState(
     seleccionado ? seleccionado.username : ""
   );
+  const [nuevoUsuario, setNuevoUsuario] = useState(
+    seleccionado ? seleccionado.username : ""
+  );
   const [contrasenia, setContrasenia] = useState(
     seleccionado ? seleccionado.password : ""
   );
@@ -28,16 +31,20 @@ function ModalUsuarios({
   );
 
   const guardarCambios = (e) => {
+    setUsuario(nuevoUsuario);
     e.preventDefault();
 
     if (!nombre || !usuario || !contrasenia || !email) {
+      console.log(nombre, usuario, contrasenia, email);
       toast.error("Rellena todos los campos");
       return;
     }
 
+    // Si es para actualizar
     if (seleccionado) {
       const data = {
         nombre,
+        nuevoUsuario,
         usuario,
         contrasenia,
         email,
@@ -50,6 +57,7 @@ function ModalUsuarios({
       window.location.reload();
       return;
     } else {
+      // Si es para crear uno nuevo (Hay que verificar que ya no este creado)
       if (listaUsuarios.find((x) => x.username === usuario)) {
         toast.error("El usuario ya existe");
         return;
@@ -63,10 +71,10 @@ function ModalUsuarios({
           rama,
         };
         console.log(data);
-        // postBD(data, "http://localhost/addUser.php");
-        // toClose(false);
-        // window.location.reload();
-        // return;
+        postBD(data, "http://localhost/addUser.php");
+        toClose(false);
+        window.location.reload();
+        return;
       }
     }
 
@@ -98,8 +106,8 @@ function ModalUsuarios({
                 Usuario
                 <input
                   type="text"
-                  value={usuario}
-                  onChange={(e) => setUsuario(e.target.value)}
+                  value={nuevoUsuario}
+                  onChange={(e) => setNuevoUsuario(e.target.value)}
                   className="dark:bg-custon-black border rounded-md px-2 py-1 "
                 />
               </label>
@@ -141,8 +149,8 @@ function ModalUsuarios({
                     onChange={(e) => setRol(e.target.value)}
                     defaultValue={rol}
                   >
-                    <option>Administrador</option>
-                    <option>Usuario</option>
+                    <option value={"admin"}>Administrador</option>
+                    <option value={"user"}>Usuario</option>
                   </select>
                 </label>
               </div>
