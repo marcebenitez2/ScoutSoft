@@ -45,10 +45,10 @@ function ModalUsuarios({
         rama,
       };
       console.log(data);
-      // postBD(data, "http://localhost/editUser.php");
-      // toClose(false);
-      // window.location.reload();
-      // return;
+      postBD(data, "http://localhost/editUser.php");
+      toClose(false);
+      window.location.reload();
+      return;
     } else {
       if (listaUsuarios.find((x) => x.username === usuario)) {
         toast.error("El usuario ya existe");

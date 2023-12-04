@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2023 a las 15:22:09
+-- Tiempo de generación: 04-12-2023 a las 22:03:53
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.1.17
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,15 +31,17 @@ CREATE TABLE `accounts` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) DEFAULT NULL,
   `rol` enum('admin','user') DEFAULT NULL,
-  `branch` varchar(30) DEFAULT NULL
+  `branch` varchar(30) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `accounts`
 --
 
-INSERT INTO `accounts` (`username`, `password`, `rol`, `branch`) VALUES
-('marce', '123', 'admin', 'Todos');
+INSERT INTO `accounts` (`username`, `password`, `rol`, `branch`, `email`, `name`) VALUES
+('marce', '123', 'admin', 'Todos', 'marcebenitez0607@gmail.com', 'Marcelo Benitez');
 
 -- --------------------------------------------------------
 
@@ -103,7 +105,8 @@ INSERT INTO `beneficiaries` (`id`, `name`, `birth`, `direction`, `tel`, `mail`, 
 (36, 'Mateo', '2232-12-31', 'asd 12313', 1231231231, 'mateo@gnmaui.com', 'Manada', 1, 1, 1, '2111-12-12', '40197416'),
 (37, 'Nachoooo', '2002-06-09', 'casa blanca 1212', 1231231231, 'nacho@gmail.com', 'Cocina', 1, 1, 0, '3123-12-31', '44232236'),
 (38, 'la larva', '1231-12-12', 'marvo 123', 3415690350, 'asd@asd.com', 'Scout', 1, 1, 1, '1311-12-31', '72225553'),
-(39, 'Lucas', '2922-02-09', 'asda 23', 3415693020, 'lucas@gmail.com', 'Castores', 0, 1, 1, '2222-02-02', '44232211');
+(39, 'Lucas', '2922-02-09', 'asda 23', 3415693020, 'lucas@gmail.com', 'Castores', 0, 1, 1, '2222-02-02', '44232211'),
+(40, 'asd', '3222-02-23', 'aasd', 3415690470, 'asd@asd.com', 'Manada', 1, 1, 1, '2322-02-23', '44232238');
 
 -- --------------------------------------------------------
 
@@ -224,7 +227,8 @@ INSERT INTO `notifications` (`id`, `name`, `tel`, `mail`, `message`, `date`, `ac
 (8, 'Nombre8', 8901234567, 'correo8@example.com', 'Phasellus consectetur ex vitae tincidunt. Nullam eget dolor vitae purus blandit lacinia.', '2023-10-03', 0, 'marce'),
 (9, 'Mateo Donati ', 3123123131, 'mateo@gmail.com', 'hola tengo mucho amor adentro', '2023-10-11', 0, 'marce'),
 (10, 'nacho rojas ', 123123123, 'asd@asd.com', 'Hola tengo cancer!!!!', '2023-10-16', 0, 'marce'),
-(13, 'Lucas ', 123123, 'luicas@gmal.com', 'HOla tengo cghichgita', '2023-10-16', 0, 'marce');
+(13, 'Lucas ', 123123, 'luicas@gmal.com', 'HOla tengo cghichgita', '2023-10-16', 0, 'marce'),
+(15, 'Marcelo', 3415690470, 'marce@gmail.com', 'asldkjals alsdjas ldjalsdkjasl asldkjas ldkjasld j', '2023-11-14', 0, 'marce');
 
 -- --------------------------------------------------------
 
@@ -239,14 +243,6 @@ CREATE TABLE `plans` (
   `event` int(11) DEFAULT NULL,
   `url` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `plans`
---
-
-INSERT INTO `plans` (`id`, `title`, `branch`, `event`, `url`) VALUES
-(1, 'Planificacion campamento', 'Todos', NULL, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Planificacion-Prueba.docx?alt=media&token=421a670d-9ce9-48eb-b544-6f94bf896791'),
-(16, 'cvb', 'Manada', 1, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/ACargarPlanificacion.docx?alt=media&token=ecf04bad-d184-4783-827d-4ceadf9b3aba');
 
 --
 -- Índices para tablas volcadas
@@ -308,7 +304,7 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT de la tabla `beneficiaries`
 --
 ALTER TABLE `beneficiaries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `calendary`
@@ -326,13 +322,13 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT de la tabla `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `plans`
 --
 ALTER TABLE `plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
