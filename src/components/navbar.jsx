@@ -57,7 +57,10 @@ function Navbar() {
       </div>
       <div className="flex items-center gap-2 mdn:gap-0">
         {rolUsuario === "admin" ? (
-          <FaUsers className="text-3xl"></FaUsers>
+          <Link to={"/menu/usuarios"}>
+            {" "}
+            <FaUsers className="text-3xl"></FaUsers>
+          </Link>
         ) : null}
         <BiSolidLogOut onClick={logout} className="cursor-pointer text-4xl" />
         <ChangeTheme isNavbar={true} />

@@ -15,6 +15,7 @@ import Consulta from "./pages/HomePages/consulta";
 import Calendario from "./pages/secciones/calendario";
 import Planificaciones from "./pages/secciones/planificaciones";
 import Consejos from "./pages/secciones/consejos";
+import Usuarios from "./pages/secciones/usuarios";
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(
@@ -64,6 +65,10 @@ function App() {
           <Route
             path="/menu/consejos"
             element={auth ? <Consejos /> : <Login />}
+          />
+          <Route
+            path="/menu/usuarios"
+            element={auth ? <Usuarios /> : <Login />}
           />
           <Route path="*" element={<Error />} />
         </Routes>
