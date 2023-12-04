@@ -2,13 +2,18 @@ import React from "react";
 import { useState } from "react";
 import { ramas } from "../services/ramas";
 import { ToastContainer, toast } from "react-toastify";
-toast;
+import { postBD } from "../services/postBD";
 
-function ModalUsuarios({ isOpen, toClose, seleccionado }) {
+function ModalUsuarios({
+  isOpen,
+  toClose,
+  seleccionado,
+  listaUsuarios,
+  setSeleccionado,
+}) {
   if (!isOpen) {
     return null;
   }
-
   const [nombre, setNombre] = useState(seleccionado ? seleccionado.name : "");
   const [usuario, setUsuario] = useState(
     seleccionado ? seleccionado.username : ""
@@ -30,16 +35,47 @@ function ModalUsuarios({ isOpen, toClose, seleccionado }) {
       return;
     }
 
-    const data = {
-      nombre,
-      usuario,
-      contrasenia,
-      email,
-      rol,
-      rama,
-    };
+    if (seleccionado) {
+      const data = {
+        nombre,
+        usuario,
+        contrasenia,
+        email,
+        rol,
+        rama,
+      };
+      console.log(data);
+      // postBD(data, "http://localhost/editUser.php");
+      // toClose(false);
+      // window.location.reload();
+      // return;
+    } else {
+      if (listaUsuarios.find((x) => x.username === usuario)) {
+        toast.error("El usuario ya existe");
+        return;
+      } else {
+        const data = {
+          nombre,
+          usuario,
+          contrasenia,
+          email,
+          rol,
+          rama,
+        };
+        console.log(data);
+        // postBD(data, "http://localhost/addUser.php");
+        // toClose(false);
+        // window.location.reload();
+        // return;
+      }
+    }
 
-    
+    // postBD(data, "http://localhost/addUser.php");
+  };
+
+  const cerrarModal = () => {
+    setSeleccionado(null);
+    toClose(false);
   };
 
   return (
@@ -94,7 +130,7 @@ function ModalUsuarios({ isOpen, toClose, seleccionado }) {
                     defaultValue={rama}
                   >
                     {ramas.map((x) => (
-                      <option>{x.nombre}</option>
+                      <option key={x.id}>{x.nombre}</option>
                     ))}
                   </select>
                 </label>
@@ -113,7 +149,7 @@ function ModalUsuarios({ isOpen, toClose, seleccionado }) {
             </div>
             <div className="w-full flex justify-center">
               <button
-                onClick={() => toClose(false)}
+                onClick={cerrarModal}
                 className="w-1/5 h-10 dark:text-white mdn:w-2/5"
               >
                 Cancelar

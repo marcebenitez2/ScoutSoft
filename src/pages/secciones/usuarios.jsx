@@ -51,14 +51,14 @@ function Usuarios() {
             <tbody>
               {usuarios?.map((usuario) => {
                 return (
-                  <tr>
+                  <tr key={usuario.username}>
                     <td>{usuario.name}</td>
                     <td>{usuario.username}</td>
                     <td>{usuario.password}</td>
                     <td>{usuario.email}</td>
                     <td>{usuario.branch}</td>
                     <td>{usuario.rol}</td>
-                    <td onClick={()=>fijarSeleccionado(usuario)}>Editar</td>
+                    <td onClick={()=>fijarSeleccionado(usuario)} className="cursor-pointer">Editar</td>
                   </tr>
                 );
               })}
@@ -66,7 +66,7 @@ function Usuarios() {
           </table>
         </div>
       </div>
-      <ModalUsuarios isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado}/>
+      <ModalUsuarios isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado} listaUsuarios={usuarios} setSeleccionado={setSeleccionado}/>
     </main>
   );
 }

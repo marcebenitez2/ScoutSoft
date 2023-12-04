@@ -6,8 +6,8 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
   if (!isOpen) {
     return null;
   }
-  console.log(seleccionada)
-  const [id, setId] = useState(seleccionada ? seleccionada.id : null)
+  console.log(seleccionada);
+  const [id, setId] = useState(seleccionada ? seleccionada.id : null);
   const [nombre, setNombre] = useState(seleccionada ? seleccionada.name : null);
   const [stock, setStock] = useState(seleccionada ? seleccionada.stock : null);
   const [disponible, setDisponible] = useState(
@@ -16,7 +16,9 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
   const [descripcion, setDescripcion] = useState(
     seleccionada ? seleccionada.description : null
   );
-  const [rama, setRama] = useState(seleccionada ? seleccionada.branch : "Todos");
+  const [rama, setRama] = useState(
+    seleccionada ? seleccionada.branch : "Todos"
+  );
 
   const guardarCambios = (e) => {
     e.preventDefault();
