@@ -4,15 +4,23 @@ import { ramas } from "../services/ramas";
 import { ToastContainer, toast } from "react-toastify";
 toast;
 
-function ModalUsuarios({ isOpen, toClose }) {
+function ModalUsuarios({ isOpen, toClose, seleccionado }) {
   if (!isOpen) {
     return null;
   }
 
-  const [nombre, setNombre] = useState("");
-  const [usuario, setUsuario] = useState("");
-  const [contrasenia, setContrasenia] = useState("");
-  const [email, setEmail] = useState("");
+  const [nombre, setNombre] = useState(seleccionado ? seleccionado.name : "");
+  const [usuario, setUsuario] = useState(
+    seleccionado ? seleccionado.username : ""
+  );
+  const [contrasenia, setContrasenia] = useState(
+    seleccionado ? seleccionado.password : ""
+  );
+  const [email, setEmail] = useState(seleccionado ? seleccionado.email : "");
+  const [rol, setRol] = useState(seleccionado ? seleccionado.rol : "Usuario");
+  const [rama, setRama] = useState(
+    seleccionado ? seleccionado.branch : "Todos"
+  );
 
   const guardarCambios = (e) => {
     e.preventDefault();
@@ -21,6 +29,17 @@ function ModalUsuarios({ isOpen, toClose }) {
       toast.error("Rellena todos los campos");
       return;
     }
+
+    const data = {
+      nombre,
+      usuario,
+      contrasenia,
+      email,
+      rol,
+      rama,
+    };
+
+    
   };
 
   return (
@@ -69,7 +88,11 @@ function ModalUsuarios({ isOpen, toClose }) {
               <div className="flex w-full justify-around">
                 <label className="flex flex-col">
                   Rama
-                  <select className="dark:bg-custon-black border rounded-md px-2 py-1">
+                  <select
+                    className="dark:bg-custon-black border rounded-md px-2 py-1"
+                    onChange={(e) => setRama(e.target.value)}
+                    defaultValue={rama}
+                  >
                     {ramas.map((x) => (
                       <option>{x.nombre}</option>
                     ))}
@@ -77,7 +100,11 @@ function ModalUsuarios({ isOpen, toClose }) {
                 </label>
                 <label className="flex flex-col">
                   Rol
-                  <select className="dark:bg-custon-black border rounded-md px-2 py-1">
+                  <select
+                    className="dark:bg-custon-black border rounded-md px-2 py-1"
+                    onChange={(e) => setRol(e.target.value)}
+                    defaultValue={rol}
+                  >
                     <option>Administrador</option>
                     <option>Usuario</option>
                   </select>

@@ -8,14 +8,18 @@ import ModalUsuarios from "../../components/modalUsuarios";
 function Usuarios() {
   const [modalOpen, setModalOpen] = useState(false);
   const [usuarios, setUsuarios] = useState(null);
+  const [seleccionado, setSeleccionado] = useState(null)
+
+
+  function fijarSeleccionado(usuario){
+    setSeleccionado(usuario)
+    setModalOpen(true)
+  }
 
   useEffect(() => {
     fetchBD(setUsuarios, "http://localhost/users.php");
   }, []);
 
-  useEffect(() => {
-    console.log(usuarios);
-  }, [usuarios]);
 
   return (
     <main className='className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white'>
@@ -33,7 +37,7 @@ function Usuarios() {
           Agregar
         </button>
         <div className="w-full flex justify-center">
-          <table className="text-center w-3/4">
+          <table className="text-center w-5/6">
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -54,6 +58,7 @@ function Usuarios() {
                     <td>{usuario.email}</td>
                     <td>{usuario.branch}</td>
                     <td>{usuario.rol}</td>
+                    <td onClick={()=>fijarSeleccionado(usuario)}>Editar</td>
                   </tr>
                 );
               })}
@@ -61,7 +66,7 @@ function Usuarios() {
           </table>
         </div>
       </div>
-      <ModalUsuarios isOpen={modalOpen} toClose={setModalOpen} />
+      <ModalUsuarios isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado}/>
     </main>
   );
 }
