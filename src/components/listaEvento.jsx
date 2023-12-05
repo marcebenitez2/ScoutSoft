@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
-  const [eventosCopia, setEventosCopia] = useState([]);
+  const [eventosFiltrados, setEventosFiltrados] = useState([]);
 
   useEffect(() => {
-    setEventosCopia(eventos);
-  }, []);
+    setEventosFiltrados(eventos);
+  }, [eventos]);
 
   function seleccionarEvento(evento) {
     if (eventoSeleccionado === evento) {
@@ -17,24 +17,15 @@ function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
     setEventoSeleccionado(evento);
   }
 
-  function buscador(x) {
-    if (x === "") {
-      setEventosCopia(eventos);
-      return;
-    }
+  function buscador(texto) {
     const eventosFiltrados = eventos.filter((evento) => {
-      if (
-        evento.title.toLowerCase().includes(x.toLowerCase()) ||
-        evento.date.toLowerCase().includes(x.toLowerCase())
-      ) {
-        return true;
-      }
-      return false;
+      const titulo = evento.title.toLowerCase();
+      const fecha = evento.date.toLowerCase();
+      const textoMinuscula = texto.toLowerCase();
+      return titulo.includes(textoMinuscula) || fecha.includes(textoMinuscula);
     });
-    setEventosCopia(eventosFiltrados);
+    setEventosFiltrados(eventosFiltrados);
   }
-
-  console.log(eventosCopia);
 
   return (
     <main className="w-1/4 h-full flex flex-col gap-1">
@@ -43,7 +34,7 @@ function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
         onChange={(e) => buscador(e.target.value)}
         placeholder="Busca por titulo o fecha"
       />
-      {eventosCopia.map((evento) => (
+      {eventosFiltrados.map((evento) => (
         <div
           className="min-h-fit flex items-center px-4 border border-neutral-600 py-4 cursor-pointer hover:border-red-600 transition duration-200 rounded-lg"
           onClick={() => seleccionarEvento(evento)}

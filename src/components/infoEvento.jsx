@@ -1,6 +1,8 @@
 import React from "react";
+import { FaRegFileWord } from "react-icons/fa";
 
-function InfoEvento({ eventoSeleccionado , isOpen}) {
+function InfoEvento({ eventoSeleccionado, isOpen }) {
+  console.log(eventoSeleccionado);
   return (
     <main className="h-2/6 w-full">
       {eventoSeleccionado ? (
@@ -20,7 +22,20 @@ function InfoEvento({ eventoSeleccionado , isOpen}) {
               <p>Tipo: {eventoSeleccionado.type}</p>
               <p>Descripcion: {eventoSeleccionado.description}</p>
             </div>
-            <button className="h-12 w-64 bg-custon-red" onClick={()=>isOpen(true)}>Editar</button>
+            <button
+              className="h-12 w-64 bg-custon-red"
+              onClick={() => isOpen(true)}
+            >
+              Editar
+            </button>
+          </div>
+          <div className="flex w-full gap-5 mt-4">
+            {eventoSeleccionado.plans.map((planificacion) => (
+              <a href={planificacion.plan_url} className="flex gap-2 text-red-600">
+                <FaRegFileWord fill="white"/>
+                {planificacion.plan_title}
+              </a>
+            ))}
           </div>
         </div>
       ) : null}

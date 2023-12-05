@@ -26,6 +26,10 @@ function Calendario() {
     fetchBD(setEventos, "http://localhost/calendary.php");
   }, []);
 
+  useEffect(() => {
+    console.log(eventos)
+  }, [eventos])
+
   return (
     <main className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white">
       <Navbar />
