@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2023 a las 22:03:53
+-- Tiempo de generación: 05-12-2023 a las 20:30:55
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -41,7 +41,31 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`username`, `password`, `rol`, `branch`, `email`, `name`) VALUES
-('marce', '123', 'admin', 'Todos', 'marcebenitez0607@gmail.com', 'Marcelo Benitez');
+('Lucas123', 'Lucas123', 'user', 'Todos', 'Lucas@gmail.com', 'Lucas Quaroni'),
+('marce', '123', 'admin', 'Todos', 'marcebenitez0607@gmail.com', 'Marcelo ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `advices`
+--
+
+CREATE TABLE `advices` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
+  `branch` varchar(50) DEFAULT NULL,
+  `startTime` time DEFAULT NULL,
+  `urlFile` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `advices`
+--
+
+INSERT INTO `advices` (`id`, `title`, `date`, `location`, `branch`, `startTime`, `urlFile`) VALUES
+(1, 'asd', '3222-02-23', 'asd', 'Todos', '23:23:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -146,7 +170,7 @@ CREATE TABLE `calendary` (
   `endTime` time DEFAULT NULL,
   `location` varchar(50) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
-  `type` enum('evento','salida','reunion') DEFAULT NULL,
+  `type` enum('evento','salida') DEFAULT NULL,
   `branch` varchar(30) DEFAULT NULL,
   `endDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -245,6 +269,16 @@ CREATE TABLE `plans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `plans`
+--
+
+INSERT INTO `plans` (`id`, `title`, `branch`, `event`, `url`) VALUES
+(18, 'Curriculum', 'Rover', NULL, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/curriculum.pdf?alt=media&token=a60fc93a-7e6a-4a17-bd6b-ef0e782aa190'),
+(19, 'Campamento manada', 'Manada', 2, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/planificacion%20campamento%20aniversario%20manada.rtf?alt=media&token=b898abaa-ef98-490b-b8a0-0674135e976e'),
+(20, 'Otro campamento manada', 'Scout', 2, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/planificacion%20campamento%20aniversario%20manada.rtf?alt=media&token=3b274c34-a6ac-4d7e-9a9d-87cc6ed14d8a'),
+(21, 'Cv nuevo', 'Manada', NULL, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/curriculum.pdf?alt=media&token=e9e319fa-e28f-41fc-883f-baaf7b8ec43e');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -253,6 +287,13 @@ CREATE TABLE `plans` (
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`username`),
+  ADD KEY `branch` (`branch`);
+
+--
+-- Indices de la tabla `advices`
+--
+ALTER TABLE `advices`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `branch` (`branch`);
 
 --
@@ -301,6 +342,12 @@ ALTER TABLE `plans`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `advices`
+--
+ALTER TABLE `advices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `beneficiaries`
 --
 ALTER TABLE `beneficiaries`
@@ -310,7 +357,7 @@ ALTER TABLE `beneficiaries`
 -- AUTO_INCREMENT de la tabla `calendary`
 --
 ALTER TABLE `calendary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `inventory`
@@ -328,7 +375,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT de la tabla `plans`
 --
 ALTER TABLE `plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas
@@ -339,6 +386,12 @@ ALTER TABLE `plans`
 --
 ALTER TABLE `accounts`
   ADD CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`branch`) REFERENCES `branchs` (`namebranch`);
+
+--
+-- Filtros para la tabla `advices`
+--
+ALTER TABLE `advices`
+  ADD CONSTRAINT `advices_ibfk_1` FOREIGN KEY (`branch`) REFERENCES `branchs` (`namebranch`);
 
 --
 -- Filtros para la tabla `beneficiaries`
@@ -362,7 +415,7 @@ ALTER TABLE `inventory`
 -- Filtros para la tabla `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`userSystem`) REFERENCES `accounts` (`username`);
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`userSystem`) REFERENCES `accounts` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `plans`

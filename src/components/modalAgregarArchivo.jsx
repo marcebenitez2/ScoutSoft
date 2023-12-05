@@ -103,7 +103,6 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
                 <input
                   type="file"
                   onChange={(e) => {
-                    console.log(e.target.files[0]);
                     setArchivo(e.target.files[0]);
                   }}
                 />
