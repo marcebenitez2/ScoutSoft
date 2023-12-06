@@ -4,17 +4,20 @@ import { useState } from "react";
 import { postPlanificacionesFireBase } from "../services/fetchFirebase";
 import { postBD } from "../services/postBD";
 
-function ModalConsejo({ isOpen, toClose }) {
+function ModalConsejo({ isOpen, toClose, seleccionado }) {
   if (!isOpen) {
     return null;
   }
-  
-  const [fecha, setFecha] = useState("");
-  const [horaInicio, setHoraInicio] = useState("");
-  const [titulo, setTitulo] = useState("");
-  const [lugar, setLugar] = useState("");
-  const [rama, setRama] = useState("Todos");
-  const [archivo, setArchivo] = useState(null);
+
+  console.log(seleccionado);
+  const [fecha, setFecha] = useState(seleccionado ? seleccionado.fecha : "");
+  const [horaInicio, setHoraInicio] = useState(
+    seleccionado ? seleccionado.horaInicio : ""
+  );
+  const [titulo, setTitulo] = useState(seleccionado ? seleccionado.titulo : "");
+  const [lugar, setLugar] = useState(seleccionado ? seleccionado.lugar : "");
+  const [rama, setRama] = useState(seleccionado ? seleccionado.rama : "Todos");
+  const [archivo, setArchivo] = useState(seleccionado ? seleccionado.url : "");
 
   const guardarCambios = (e) => {
     e.preventDefault();
@@ -42,20 +45,33 @@ function ModalConsejo({ isOpen, toClose }) {
     //     });
     // }
 
-    const item = {
-      fecha: fecha,
-      horaInicio: horaInicio,
-      titulo: titulo,
-      lugar: lugar,
-      rama: rama,
-      archivo: archivo,
-    };
+    if (seleccionado.id) {
+      const item = {
+        id: seleccionado.id,
+        fecha: fecha,
+        horaInicio: horaInicio,
+        titulo: titulo,
+        lugar: lugar,
+        rama: rama,
+        archivo: archivo,
+      };
+      postBD(item, "http://localhost/addadvice.php");
+      toClose(false);
+      window.location.reload();
+    } else {
+      const item = {
+        fecha: fecha,
+        horaInicio: horaInicio,
+        titulo: titulo,
+        lugar: lugar,
+        rama: rama,
+        archivo: archivo,
+      };
 
-    // console.log(item);
-
-    postBD(item, "http://localhost/addadvice.php");
-    toClose(false);
-    window.location.reload();
+      postBD(item, "http://localhost/addadvice.php");
+      toClose(false);
+      window.location.reload();
+    }
   };
 
   return (
@@ -70,6 +86,7 @@ function ModalConsejo({ isOpen, toClose }) {
                   Fecha
                   <input
                     onChange={(e) => setFecha(e.target.value)}
+                    defaultValue={fecha}
                     type="date"
                     className="dark:bg-custon-black border rounded-md px-2 py-1"
                   />
@@ -78,6 +95,7 @@ function ModalConsejo({ isOpen, toClose }) {
                   Hora inicio
                   <input
                     onChange={(e) => setHoraInicio(e.target.value)}
+                    defaultValue={horaInicio}
                     type="time"
                     className="dark:bg-custon-black border rounded-md px-2 py-1"
                   />
@@ -87,6 +105,7 @@ function ModalConsejo({ isOpen, toClose }) {
                 Titulo
                 <input
                   onChange={(e) => setTitulo(e.target.value)}
+                  defaultValue={titulo}
                   type="text"
                   className="dark:bg-custon-black border rounded-md px-2 py-1"
                 />
@@ -95,6 +114,7 @@ function ModalConsejo({ isOpen, toClose }) {
                 Lugar
                 <input
                   onChange={(e) => setLugar(e.target.value)}
+                  defaultValue={lugar}
                   type="text"
                   className="dark:bg-custon-black border rounded-md px-2 py-1"
                 />
@@ -105,19 +125,24 @@ function ModalConsejo({ isOpen, toClose }) {
                   <select
                     className="bg-custon-black border rounded-md"
                     onChange={(e) => setRama(e.target.value)}
+                    defaultValue={rama}
                   >
                     {ramas.map((x) => (
                       <option key={x.id}>{x.nombre}</option>
                     ))}
                   </select>
                 </label>
-                <label className="w-full flex flex-col">
-                  Archivo{" "}
-                  <input
-                    type="file"
-                    onChange={(e) => setArchivo(e.target.files[0])}
-                  />
-                </label>
+                {seleccionado.url ? (
+                  <a href={seleccionado.url}>Archivo</a>
+                ) : (
+                  <label className="w-full flex flex-col">
+                    Archivo{" "}
+                    <input
+                      type="file"
+                      onChange={(e) => setArchivo(e.target.files[0])}
+                    />
+                  </label>
+                )}
               </div>
             </div>
             <div className="w-full flex justify-center">

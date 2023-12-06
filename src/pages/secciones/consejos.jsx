@@ -9,14 +9,16 @@ import { HiUserGroup } from "react-icons/hi";
 function Consejos() {
   const [modalOpen, setModalOpen] = useState(false);
   const [consejos, setConsejos] = useState([]);
+  const [seleccionado, setSeleccionado] = useState(null);
+
+  const cambiarSeleccionado = (x) => {
+    setSeleccionado(x);
+    setModalOpen(true);
+  };
 
   useEffect(() => {
     fetchBD(setConsejos, "http://localhost/advices.php");
   }, []);
-
-  useEffect(() => {
-    console.log(consejos);
-  }, [consejos]);
 
   return (
     <main className='className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white'>
@@ -38,8 +40,9 @@ function Consejos() {
         <div className="w-full flex flex-col gap-4 px-56">
           {consejos.map((x) => (
             <div
-              className="flex w-full h-20 bg-custon-red rounded-xl px-8 py-2 gap-10"
+              className="flex w-full h-20 bg-custon-red rounded-xl px-8 py-2 gap-10 cursor-pointer"
               key={x.id}
+              onClick={() => cambiarSeleccionado(x)}
             >
               <div className="h-full flex items-center">
                 <HiUserGroup size={50} />
@@ -60,7 +63,7 @@ function Consejos() {
           ))}
         </div>
       </div>
-      <ModalConsejo isOpen={modalOpen} toClose={setModalOpen} />
+      <ModalConsejo isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado} />
     </main>
   );
 }
