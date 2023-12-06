@@ -3,8 +3,9 @@ import { ramas } from "../services/ramas";
 import { useState } from "react";
 import { postPlanificacionesFireBase } from "../services/fetchFirebase";
 import { postBD } from "../services/postBD";
+import { FaRegFileArchive } from "react-icons/fa";
 
-function ModalConsejo({ isOpen, toClose, seleccionado }) {
+function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
   if (!isOpen) {
     return null;
   }
@@ -72,6 +73,13 @@ function ModalConsejo({ isOpen, toClose, seleccionado }) {
       toClose(false);
       window.location.reload();
     }
+
+    setSeleccionado(null);
+  };
+
+  const cerrarModal = () => {
+    toClose(false);
+    setSeleccionado(null);
   };
 
   return (
@@ -132,8 +140,23 @@ function ModalConsejo({ isOpen, toClose, seleccionado }) {
                     ))}
                   </select>
                 </label>
-                {seleccionado.url ? (
-                  <a href={seleccionado.url}>Archivo</a>
+                {seleccionado ? (
+                  seleccionado.url ? (
+                    <div className="w-full flex gap-8">
+                      <span>Archivo actual</span>
+                      <a href={seleccionado.url}>
+                        <FaRegFileArchive size={50} />
+                      </a>
+                    </div>
+                  ) : (
+                    <label className="w-full flex flex-col">
+                      Archivo{" "}
+                      <input
+                        type="file"
+                        onChange={(e) => setArchivo(e.target.files[0])}
+                      />
+                    </label>
+                  )
                 ) : (
                   <label className="w-full flex flex-col">
                     Archivo{" "}
@@ -147,7 +170,7 @@ function ModalConsejo({ isOpen, toClose, seleccionado }) {
             </div>
             <div className="w-full flex justify-center">
               <button
-                onClick={() => toClose(false)}
+                onClick={() => cerrarModal()}
                 className="w-1/5 h-10 dark:text-white mdn:w-2/5"
               >
                 Cancelar

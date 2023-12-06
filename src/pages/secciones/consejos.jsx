@@ -63,7 +63,7 @@ function Consejos() {
           ))}
         </div>
       </div>
-      <ModalConsejo isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado} />
+      <ModalConsejo isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado} setSeleccionado={setSeleccionado}/>
     </main>
   );
 }
