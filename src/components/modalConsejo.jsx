@@ -51,11 +51,11 @@ function ModalConsejo({ isOpen, toClose }) {
       archivo: archivo,
     };
 
-    console.log(item);
+    // console.log(item);
 
     postBD(item, "http://localhost/addadvice.php");
-    // toClose(false);
-    // window.location.reload();
+    toClose(false);
+    window.location.reload();
   };
 
   return (
