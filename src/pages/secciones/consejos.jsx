@@ -20,6 +20,8 @@ function Consejos() {
     fetchBD(setConsejos, "http://localhost/advices.php");
   }, []);
 
+  console.log(consejos);
+
   return (
     <main className='className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white'>
       <Navbar />
@@ -47,23 +49,48 @@ function Consejos() {
               <div className="h-full flex items-center">
                 <HiUserGroup size={50} />
               </div>
-              <div className="w-full flex flex-col">
-                <div className="w-full flex justify-between">
-                  <h3 className="text-xl font-semibold">{x.titulo}</h3>
-                  <span>{x.rama}</span>
+              <div className="w-full flex justify-around">
+                <div className="flex flex-col">
+                  <span className="font-semibold">Titulo</span>
+                  <span>{x.titulo}</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Fecha</span>
                   <span>{x.fecha}</span>
                 </div>
-                <div className="w-full flex gap-10">
+                <div className="flex flex-col">
+                  <span className="font-semibold">Lugar</span>
                   <span>{x.lugar}</span>
-                  <span>{x.horaInicio}</span>
-                  {x.url ? <a href={x.url}>Descargar informe</a> : null}
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Rama</span>
+                  <span>{x.rama}</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Archivo</span>
+                  {x.url ? (
+                    <a
+                      href={`http://localhost/${x.url}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span>Descargar</span>
+                    </a>
+                  ) : (
+                    <span>No hay archivo</span>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <ModalConsejo isOpen={modalOpen} toClose={setModalOpen} seleccionado={seleccionado} setSeleccionado={setSeleccionado}/>
+      <ModalConsejo
+        isOpen={modalOpen}
+        toClose={setModalOpen}
+        seleccionado={seleccionado}
+        setSeleccionado={setSeleccionado}
+      />
     </main>
   );
 }

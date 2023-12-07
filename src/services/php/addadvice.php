@@ -23,14 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($url === null) {
             $sql = "UPDATE advices SET title = '$title', date = '$date', startTime = '$startTime', location = '$location', branch = '$branch' WHERE id = $id";
         } else {
-            $sql = "UPDATE advices SET title = '$title', date = '$date', startTime = '$startTime', location = '$location', branch = '$branch', url = '$url' WHERE id = $id";
+            $sql = "UPDATE advices SET title = '$title', date = '$date', startTime = '$startTime', location = '$location', branch = '$branch', urlFile = '$url' WHERE id = $id";
         }
     } else {
         if ($url === null) {
             $sql = "INSERT INTO advices (title, date, startTime, location, branch) VALUES ('$title','$date','$startTime', '$location', '$branch');";
 
         } else {
-            $sql = "INSERT INTO advices (title, date, startTime, location, branch, url) VALUES ('$title', '$date', '$startTime', '$location', '$branch', '$url')";
+            $sql = "INSERT INTO advices (title, date, startTime, location, branch, urlFile) VALUES ('$title', '$date', '$startTime', '$location', '$branch', '$url')";
         }
     }
 

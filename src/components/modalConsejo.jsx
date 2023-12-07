@@ -9,8 +9,7 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
   if (!isOpen) {
     return null;
   }
-
-  console.log(seleccionado);
+  
   const [fecha, setFecha] = useState(seleccionado ? seleccionado.fecha : "");
   const [horaInicio, setHoraInicio] = useState(
     seleccionado ? seleccionado.horaInicio : ""
@@ -18,7 +17,9 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
   const [titulo, setTitulo] = useState(seleccionado ? seleccionado.titulo : "");
   const [lugar, setLugar] = useState(seleccionado ? seleccionado.lugar : "");
   const [rama, setRama] = useState(seleccionado ? seleccionado.rama : "Todos");
-  const [archivo, setArchivo] = useState(seleccionado ? seleccionado.url : "");
+  const [archivo, setArchivo] = useState(
+    seleccionado ? seleccionado.url : null
+  );
 
   const guardarCambios = (e) => {
     e.preventDefault();
@@ -28,53 +29,76 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
       return;
     }
 
-    // if (archivo) {
-    //   postPlanificacionesFireBase(archivo)
-    //     .then((url) => {
-    //       console.log(url);
-    //       const item = {
-    //         fecha: fecha,
-    //         horaInicio: horaInicio,
-    //         titulo: titulo,
-    //         lugar: lugar,
-    //         rama: rama,
-    //         archivo: url,
-    //       };
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error al enviar a Firebase Storage:", error);
-    //     });
-    // }
+    let item;
 
-    if (seleccionado.id) {
-      const item = {
-        id: seleccionado.id,
-        fecha: fecha,
-        horaInicio: horaInicio,
-        titulo: titulo,
-        lugar: lugar,
-        rama: rama,
-        archivo: archivo,
-      };
-      postBD(item, "http://localhost/addadvice.php");
-      toClose(false);
-      window.location.reload();
+    if (seleccionado) {
+      // Aca seria para actualizar un dato
+      if (archivo !== null && archivo !== undefined) {
+        postPlanificacionesFireBase(archivo).then((url) => {
+          item = {
+            id: seleccionado.id,
+            fecha: fecha,
+            horaInicio: horaInicio,
+            titulo: titulo,
+            lugar: lugar,
+            rama: rama,
+            archivo: url,
+          };
+          postBD(item, "http://localhost/addadvice.php");
+          toClose(false);
+          setSeleccionado(null);
+          console.log(item);
+          // window.location.reload();
+        });
+      } else {
+        item = {
+          id: seleccionado.id,
+          fecha: fecha,
+          horaInicio: horaInicio,
+          titulo: titulo,
+          lugar: lugar,
+          rama: rama,
+        };
+        postBD(item, "http://localhost/addadvice.php");
+        toClose(false);
+        setSeleccionado(null);
+        console.log(item);
+        // window.location.reload();
+      }
     } else {
-      const item = {
-        fecha: fecha,
-        horaInicio: horaInicio,
-        titulo: titulo,
-        lugar: lugar,
-        rama: rama,
-        archivo: archivo,
-      };
+      // Aca seria para agregar un dato
+      if (archivo !== null && archivo !== undefined) {
+        postPlanificacionesFireBase(archivo).then((url) => {
+          item = {
+            fecha: fecha,
+            horaInicio: horaInicio,
+            titulo: titulo,
+            lugar: lugar,
+            rama: rama,
+            archivo: url,
+          };
+          postBD(item, "http://localhost/addadvice.php");
+          toClose(false);
+          setSeleccionado(null);
+          console.log(item);
 
-      postBD(item, "http://localhost/addadvice.php");
-      toClose(false);
-      window.location.reload();
+          // window.location.reload();
+        });
+      } else {
+        item = {
+          fecha: fecha,
+          horaInicio: horaInicio,
+          titulo: titulo,
+          lugar: lugar,
+          rama: rama,
+        };
+        postBD(item, "http://localhost/addadvice.php");
+        toClose(false);
+        setSeleccionado(null);
+        console.log(item);
+        // window.location.reload();
+      }
     }
-
-    setSeleccionado(null);
   };
 
   const cerrarModal = () => {
