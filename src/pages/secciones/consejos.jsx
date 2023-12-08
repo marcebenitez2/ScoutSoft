@@ -50,24 +50,24 @@ function Consejos() {
                 <HiUserGroup size={50} />
               </div>
               <div className="w-full flex justify-around">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                   <span className="font-semibold">Titulo</span>
                   <span>{x.titulo}</span>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                   <span className="font-semibold">Fecha</span>
                   <span>{x.fecha}</span>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                   <span className="font-semibold">Lugar</span>
                   <span>{x.lugar}</span>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                   <span className="font-semibold">Rama</span>
                   <span>{x.rama}</span>
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-semibold">Archivo</span>
+                <div className="flex flex-col w-full">
+                  <span className="font-semibold">Archivo acta</span>
                   {x.url ? (
                     <a
                       href={x.url}

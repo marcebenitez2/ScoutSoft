@@ -49,7 +49,7 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
           toClose(false);
           setSeleccionado(null);
           console.log(item);
-          // window.location.reload();
+          window.location.reload();
         });
       } else {
         item = {
@@ -63,8 +63,8 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
         postBD(item, "http://localhost/addadvice.php");
         toClose(false);
         setSeleccionado(null);
-        console.log(item);
-        // window.location.reload();
+      
+        window.location.reload();
       }
     } else {
       // Aca seria para agregar un dato
@@ -81,9 +81,8 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
           postBD(item, "http://localhost/addadvice.php");
           toClose(false);
           setSeleccionado(null);
-          console.log(item);
-
-          // window.location.reload();
+      
+          window.location.reload();
         });
       } else {
         item = {
@@ -96,8 +95,8 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
         postBD(item, "http://localhost/addadvice.php");
         toClose(false);
         setSeleccionado(null);
-        console.log(item);
-        // window.location.reload();
+  
+        window.location.reload();
       }
     }
   };
