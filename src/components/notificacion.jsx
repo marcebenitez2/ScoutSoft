@@ -19,7 +19,7 @@ function Notificacion({ noti, modal, seleccionada }) {
         {noti.active !== "1" ? (
           <span>{noti.userSystem}</span>
         ) : (
-          <AiOutlineCheckCircle size={"25px"} onClick={() => seleccionar()} />
+          <AiOutlineCheckCircle className="cursor-pointer" size={"25px"} onClick={() => seleccionar()} />
         )}
       </div>
       <p>{noti.message}</p>
