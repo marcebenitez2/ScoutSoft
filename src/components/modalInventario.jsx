@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ramas } from "../services/ramas";
 import { postBD } from "../services/postBD";
+import { ToastContainer, toast } from "react-toastify";
 
 function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
   if (!isOpen) {
@@ -24,7 +25,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
     e.preventDefault();
 
     if (!nombre || !stock || !disponible || !descripcion || !rama) {
-      alert("Rellena todos los campos");
+      toast.error("Rellena todos los campos");
       return;
     }
 
@@ -119,6 +120,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
           </form>
         </section>
       ) : null}
+      <ToastContainer/>
     </main>
   );
 }

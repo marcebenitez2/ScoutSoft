@@ -70,7 +70,7 @@ function Consejos() {
                   <span className="font-semibold">Archivo</span>
                   {x.url ? (
                     <a
-                      href={`http://localhost/${x.url}`}
+                      href={x.url}
                       target="_blank"
                       rel="noreferrer"
                     >

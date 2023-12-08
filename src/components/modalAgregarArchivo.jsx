@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { ramas } from "../services/ramas";
 import { postPlanificacionesFireBase } from "../services/fetchFirebase";
+import { ToastContainer, toast } from "react-toastify";
 
 function ModalAgregarArchivo({ isOpen, toClose }) {
   if (!isOpen) {
@@ -20,15 +21,13 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
     e.preventDefault();
 
     if (!titulo || !rama || !archivo) {
-      alert("Rellena todos los campos");
+      toast.error("Rellena todos los campos");
       return;
     }
 
-    console.log(archivo);
 
     postPlanificacionesFireBase(archivo)
       .then((url) => {
-        console.log(url);
 
         const item = {
           titulo: titulo,
@@ -126,6 +125,7 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
           </form>
         </section>
       ) : null}
+      <ToastContainer />
     </main>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { postPlanificacionesFireBase } from "../services/fetchFirebase";
 import { postBD } from "../services/postBD";
 import { FaRegFileArchive } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
 
 function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
   if (!isOpen) {
@@ -25,7 +26,7 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
     e.preventDefault();
 
     if (!fecha || !horaInicio || !titulo || !lugar || !rama) {
-      alert("Rellena todos los campos");
+      toast.error("Rellena todos los campos");
       return;
     }
 
@@ -167,7 +168,7 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
                 {seleccionado ? (
                   seleccionado.url ? (
                     <div className="w-full flex gap-8">
-                      <span>Archivo actual</span>
+                      <span>Acta de consejo</span>
                       <a href={seleccionado.url}>
                         <FaRegFileArchive size={50} />
                       </a>
@@ -209,6 +210,7 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
           </form>
         </section>
       ) : null}
+      <ToastContainer/>
     </main>
   );
 }
