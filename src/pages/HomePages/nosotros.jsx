@@ -227,8 +227,8 @@ function Nosotros() {
       <main className="w-screen pb-52 bg-custon-white bg-gradient-to-t from-red-200 to-red-600">
         <section className="pt-20 w-full flex flex-col px-10 gap-12 items-center">
           <div className="font-semibold text-white text-center">
-            <h2 className="text-5xl">Grupo scout</h2>
-            <h1 className="text-7xl">San Miguel de Arcangel</h1>
+            <h2 className="text-5xl">Contestamos a la brevedad</h2>
+            <h1 className="text-7xl">No dudes en mandarnos un mensaje</h1>
           </div>
           <Formulario />
         </section>

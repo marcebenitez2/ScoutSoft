@@ -47,19 +47,14 @@ function ModalCalendario({
 
   const guardarCambios = (e) => {
     e.preventDefault();
-    console.log(
-      nombre,
-      lugar,
-      fecha,
-      fechaFin,
-      inicio,
-      fin,
-      rama,
-      tipo,
-      descripcion
-    );
+   
     if (!nombre || !lugar || !fecha || !inicio || !fin || !rama || !tipo) {
       toast.error("Rellena todos los campos");
+      return;
+    }
+
+    if(fecha > fechaFin){
+      toast.error("La fecha de inicio no puede ser mayor a la fecha de fin");
       return;
     }
 

@@ -58,7 +58,7 @@ function Formulario() {
           <label className="text-2xl font-semibold">Telefono</label>
           <input
             required
-            type="tel"
+            type="number"
             className="h-8 px-4 rounded-md text-black"
             onChange={(e) => settelefonoFormulario(e.target.value)}
           />
