@@ -5,7 +5,7 @@ import facebook from "../../assets/facebook.svg";
 import Carrousel from "../../components/carrousel";
 import badenpowell from "/badenpowell.jpg";
 import florDeLiz from "/florDeLizNegra.png";
-import Formulario from '../../components/formulario'
+import Formulario from "../../components/formulario";
 
 function Nosotros() {
   return (
@@ -23,22 +23,23 @@ function Nosotros() {
                 Sobre nosotros
               </h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-                porro accusamus rem, dolorem consequuntur placeat eveniet
-                repellendus minima magnam quae! Laborum error asperiores
-                molestiae impedit quia minima odio beatae nam!
+                Nuestro grupo es el hogar de una vibrante comunidad scout,
+                compuesta por 6 ramas que atienden a diversas edades y etapas de
+                desarrollo. Con más de 20 apasionados dirigentes, nos esforzamos
+                por inspirar a la próxima generación de líderes, fomentando
+                valores como el respeto, la solidaridad y la responsabilidad.
               </p>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae
-                iste asperiores, sunt inventore provident officia? Provident
-                optio corporis magni id illo. Animi deserunt sunt fugit ipsa
-                fuga maxime. Ut, sed.
+                Estamos orgullosos de ser miembros de la Asociación 'BPSA',
+                uniendo fuerzas con otros grupos scouts comprometidos con la
+                excelencia y la formación integral de nuestros miembros.
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Beatae, maxime dolores voluptates ullam quis nulla quae hic rem
-                neque qui. Totam, voluptates sunt! Architecto sequi magni,
-                possimus eum numquam consequuntur?
+                En el Grupo Scout San Miguel de Arcángel, no solo creamos
+                scouts, creamos experiencias significativas que perduran toda la
+                vida. Únete a nosotros en este emocionante viaje donde la
+                amistad, el aprendizaje y la diversión se entrelazan para formar
+                la base de una comunidad fuerte y unida.
               </p>
             </div>
             <div className="flex flex-col gap-4">
@@ -46,8 +47,10 @@ function Nosotros() {
                 9 de Julio 3535 - Rosario - Argentina
               </span>
               <div className="flex gap-2">
-                <img src={instagram} className="w-12" />
-                <img src={facebook} className="w-12" />
+                <a href="https://instagram.com/gs_sanmi?igshid=OGQ5ZDc2ODk2ZA==">
+                  <img src={instagram} className="w-12" />
+                </a>
+                {/* <img src={facebook} className="w-12" /> */}
               </div>
             </div>
           </div>
@@ -221,7 +224,7 @@ function Nosotros() {
           </div>
         </div>
       </aside>
-      <main className="w-screen h-screen bg-custon-white bg-gradient-to-t from-red-200 to-red-600">
+      <main className="w-screen pb-52 bg-custon-white bg-gradient-to-t from-red-200 to-red-600">
         <section className="pt-20 w-full flex flex-col px-10 gap-12 items-center">
           <div className="font-semibold text-white text-center">
             <h2 className="text-5xl">Grupo scout</h2>
