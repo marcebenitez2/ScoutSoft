@@ -199,7 +199,7 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
                 Cancelar
               </button>
               <button
-                className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5 text-white"
+                className="bg-custon-red  h-10 rounded-xl font-semibold mdn:w-2/5 text-white"
                 onClick={(e) => guardarCambios(e)}
               >
                 Guardar cambios
