@@ -22,7 +22,7 @@ function Planificaciones() {
           modalOpen || deleteModalOpen ? "blur" : ""
         } flex flex-col gap-4`}
       >
-        <h1 className="text-3xl text-center dark:text-white">
+        <h1 className="text-2xl text-center dark:text-white">
           Planificaciones
         </h1>
         <div className="flex absolute right-20 ">
@@ -42,7 +42,11 @@ function Planificaciones() {
         {archivos ? <PlanificacionesGrilla archivos={archivos} /> : null}
       </div>
       <ModalAgregarArchivo isOpen={modalOpen} toClose={setModalOpen} />
-      <ModalEliminarArchivo isOpen={deleteModalOpen} toClose={setDeleteModalOpen} archivos={archivos}/>
+      <ModalEliminarArchivo
+        isOpen={deleteModalOpen}
+        toClose={setDeleteModalOpen}
+        archivos={archivos}
+      />
     </main>
   );
 }

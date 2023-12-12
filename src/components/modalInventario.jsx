@@ -47,7 +47,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
     <main>
       {isOpen ? (
         <section className="h-screen w-screen top-0 left-0 flex items-center justify-center fixed dark:text-white text-black">
-          <form className="w-2/5 h-1/2 dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
+          <form className="w-2/5  dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
             <h3 className="text-2xl">
               {seleccionada ? "Editar Item" : "Agregar nuevo"}
             </h3>
@@ -84,7 +84,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
               <label className="flex flex-col">
                 Descripcion
                 <textarea
-                  className="dark:bg-custon-black border rounded-md h-40 "
+                  className="dark:bg-custon-black border rounded-md px-2 py-1 max-h-40"
                   onChange={(e) => setDescripcion(e.target.value)}
                   style={{ resize: "none" }}
                   value={descripcion}
@@ -120,7 +120,7 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
           </form>
         </section>
       ) : null}
-      <ToastContainer/>
+      <ToastContainer />
     </main>
   );
 }

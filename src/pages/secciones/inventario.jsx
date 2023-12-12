@@ -5,11 +5,13 @@ import { useEffect } from "react";
 import { fetchBD } from "../../services/fetchBD";
 import TablaInventario from "../../components/tablaInventario";
 import ModalInventario from "../../components/modalInventario";
+import ModalDeleteItem from "../../components/modalEliminarItem";
 
 function Inventario() {
   const [inventario, setInventario] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [seleccionada, setSeleccionada] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     fetchBD(setInventario, "http://localhost/inventory.php");
@@ -23,11 +25,14 @@ function Inventario() {
         <Navbar />
         <div
           className={`w-full h-full ${
-            modalOpen ? "blur" : ""
+            modalOpen || deleteModalOpen ? "blur" : ""
           } flex flex-col gap-4`}
         >
           <h1 className="text-3xl text-center dark:text-white">Inventario</h1>
-          <button className="px-4 py-1 text-white absolute right-20">
+          <button
+            className="px-4 py-1 text-white absolute right-20"
+            onClick={() => setDeleteModalOpen(true)}
+          >
             Eliminar
           </button>
           <TablaInventario
@@ -37,6 +42,11 @@ function Inventario() {
           />
         </div>
       </div>
+      <ModalDeleteItem
+        isOpen={deleteModalOpen}
+        toClose={setDeleteModalOpen}
+        inventario={inventario}
+      />
       <ModalInventario
         isOpen={modalOpen}
         toClose={setModalOpen}

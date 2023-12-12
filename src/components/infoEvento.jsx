@@ -4,7 +4,7 @@ import { FaRegFileWord } from "react-icons/fa";
 function InfoEvento({ eventoSeleccionado, isOpen }) {
   console.log(eventoSeleccionado);
   return (
-    <main className="h-2/6 w-full">
+    <main className=" w-full">
       {eventoSeleccionado ? (
         <div className="w-full h-full border border-neutral-600 rounded-xl animate-fade-right animate-once px-12">
           {" "}
@@ -31,8 +31,11 @@ function InfoEvento({ eventoSeleccionado, isOpen }) {
           </div>
           <div className="flex w-full gap-5 mt-4">
             {eventoSeleccionado.plans.map((planificacion) => (
-              <a href={planificacion.plan_url} className="flex gap-2 text-red-600">
-                <FaRegFileWord fill="white"/>
+              <a
+                href={planificacion.plan_url}
+                className="flex gap-2 text-red-600"
+              >
+                <FaRegFileWord fill="white" />
                 {planificacion.plan_title}
               </a>
             ))}

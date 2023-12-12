@@ -13,6 +13,7 @@ function ModalCalendario({
   if (!isOpen) {
     return null;
   }
+  console.log(eventoSeleccionado);
 
   const [id, setId] = useState(
     eventoSeleccionado ? eventoSeleccionado.id : null
@@ -47,13 +48,13 @@ function ModalCalendario({
 
   const guardarCambios = (e) => {
     e.preventDefault();
-   
+
     if (!nombre || !lugar || !fecha || !inicio || !fin || !rama || !tipo) {
       toast.error("Rellena todos los campos");
       return;
     }
 
-    if(fecha > fechaFin){
+    if (fecha > fechaFin) {
       toast.error("La fecha de inicio no puede ser mayor a la fecha de fin");
       return;
     }
@@ -89,18 +90,23 @@ function ModalCalendario({
       descripcion: descripcion,
       tipo: tipo,
       rama: rama,
-    }
+    };
     postBD(evento, "http://localhost/deleteEvent.php");
     toClose(false);
     window.location.reload();
-  }
+  };
 
   return (
     <main>
       {isOpen ? (
         <section className="h-screen w-screen top-0 left-0 flex items-center justify-center fixed dark:text-white text-black">
-          <form className="w-2/5 h-3/5 dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
-            <h3 className="text-2xl">Agregar evento</h3>
+          <form className="w-2/5  dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
+            {eventoSeleccionado ? (
+              <h3 className="text-2xl">Editar evento</h3>
+            ) : (
+              <h3 className="text-2xl">Agregar evento</h3>
+            )}
+
             <div className="flex flex-col gap-4 w-full">
               <div className="flex w-full justify-between gap-2">
                 <label className="flex flex-col w-full">
@@ -212,7 +218,12 @@ function ModalCalendario({
                 </button>
               </div>
               {eventoSeleccionado ? (
-                <button className="w-1/3 py-2 m-auto" onClick={(e)=>eliminarEvento(e)}>Eliminar</button>
+                <button
+                  className="w-1/3 py-2 m-auto"
+                  onClick={(e) => eliminarEvento(e)}
+                >
+                  Eliminar
+                </button>
               ) : null}
             </div>
           </form>

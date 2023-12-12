@@ -60,7 +60,7 @@ function Login() {
   return (
     <main className="w-screen h-screen flex items-center justify-center dark:bg-custon-black">
       <ChangeTheme />
-      <form className="w-2/5 h-2/4 bg-custon-red rounded-2xl gap-4 flex flex-col items-center py-9 px-28 justify-between 2xln:px-20 xln:px-14 lgn:px-7 mdn:w-3/4 smn:w-5/6 smn:h-3/5">
+      <form className="w-2/5 bg-custon-red rounded-2xl gap-4 flex flex-col items-center py-9 px-28 justify-between 2xln:px-20 xln:px-14 lgn:px-7 mdn:w-3/4 smn:w-5/6 smn:h-3/5">
         <h1 className="text-5xl font-bold text-white">Login</h1>
         <div className="flex flex-col w-full gap-2">
           <div className="flex flex-col w-full">
@@ -73,7 +73,7 @@ function Login() {
             />
           </div>
           <div className="flex flex-col w-full font-semibold">
-            <label className="text-white text-xl">contra:</label>
+            <label className="text-white text-xl">Contraseña:</label>
             <input
               type="password"
               className="h-10 dark:bg-custon-black dark:text-white px-4 font-semibold"
