@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2023 a las 20:30:55
+-- Tiempo de generación: 12-12-2023 a las 15:27:17
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -41,7 +41,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`username`, `password`, `rol`, `branch`, `email`, `name`) VALUES
-('Lucas123', 'Lucas123', 'user', 'Todos', 'Lucas@gmail.com', 'Lucas Quaroni'),
+('Lucas', 'Lucas123', 'user', 'Todos', 'Lucas@gmail.com', 'Lucas Quaroni'),
 ('marce', '123', 'admin', 'Todos', 'marcebenitez0607@gmail.com', 'Marcelo ');
 
 -- --------------------------------------------------------
@@ -65,7 +65,13 @@ CREATE TABLE `advices` (
 --
 
 INSERT INTO `advices` (`id`, `title`, `date`, `location`, `branch`, `startTime`, `urlFile`) VALUES
-(1, 'asd', '3222-02-23', 'asd', 'Todos', '23:23:00', NULL);
+(14, 'Consejo unidad', '3232-02-23', 'Casa Pantera', 'Todos', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=0f21d353-cc96-4a0e-8cb7-92e13ede1154'),
+(15, 'Consejo grupoo', '3232-02-23', 'Sede grupo Scout', 'Haditas', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=25e8239f-3395-47ee-98fe-d1f442aae782'),
+(16, 'Consejo manada', '3222-02-23', 'Casa akela', 'Todos', '23:22:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=b02d46d0-9536-46d5-ad88-f041d1bcd080'),
+(17, 'Presentacion', '2023-12-11', 'Insituto ', 'Todos', '20:00:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=d5ae923e-c288-4a5e-9207-48c888572d6b'),
+(18, 'asd', '2322-03-02', 'asd', 'Todos', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=1ae64ead-0070-4693-9708-97e1b006505b'),
+(19, 'asdasdd', '3232-02-23', 'assdasd', 'Todos', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=c9549537-65d9-413f-bc54-0e9bece131d2'),
+(20, 'Consejo de todo el grupo para el campamento final ', '2024-01-07', 'Sede grupo Scout ', 'Todos', '18:00:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=a769de2c-eec0-4af2-b46e-fdd5118bc8ce');
 
 -- --------------------------------------------------------
 
@@ -93,7 +99,7 @@ CREATE TABLE `beneficiaries` (
 --
 
 INSERT INTO `beneficiaries` (`id`, `name`, `birth`, `direction`, `tel`, `mail`, `branch`, `personal_file`, `medical_file`, `active`, `cuota`, `dni`) VALUES
-(1, 'Lucas  Queso', '1990-05-15', 'asdasd', 1234567890, 'juan.perez@email.com', 'Castores', 1, 0, 0, '2023-10-01', '11111111'),
+(1, 'Lucas  Queso a', '1990-05-15', 'asdasd', 1234567890, 'juan.perez@email.com', 'Castores', 1, 0, 0, '2023-10-01', '11111111'),
 (2, 'María López', '1985-03-20', 'Avenida 456', 9876543210, 'maria.lopez@email.com', 'Haditas', 0, 1, 1, '2023-09-15', '28071519'),
 (3, 'Pedro Ramírez', '1992-08-10', 'Calle 789', 5555555555, 'pedro.ramirez@email.com', 'Manada', 1, 1, 0, '2023-10-05', '41687658'),
 (4, 'Carlos Rodríguez', '1988-12-30', 'Avenida 789', 4444444444, 'carlos.rodriguez@email.com', 'Scout', 1, 0, 1, '2023-10-10', '24223736'),
@@ -180,8 +186,9 @@ CREATE TABLE `calendary` (
 --
 
 INSERT INTO `calendary` (`id`, `title`, `date`, `startTime`, `endTime`, `location`, `description`, `type`, `branch`, `endDate`) VALUES
-(1, 'Campamento aniversario', '2023-12-02', '07:00:00', '15:00:00', 'Zavalla', 'Campamento de zavalla aniversario. Salen en colectivo a la manana que nos pasa a buscar por el grupo', 'evento', 'Todos', NULL),
-(2, 'Campamento de verano', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Agua de oro', 'Campamento de fin de año. Quiza lleguemos un poco mas tarde', 'salida', 'Todos', '2024-01-10');
+(2, 'Campamento de veranooo', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Agua de oroo', 'Campamento de fin de año. Quiza lleguemos un poco mas tarde', 'salida', 'Todos', '2024-01-10'),
+(43, 'asdd', '2023-11-17', '23:23:00', '23:02:00', 'aSD', 'ASD', 'evento', 'Todos', '2023-11-17'),
+(44, 'Campamento fin de ano', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Rio Tercero', 'Contramos 3 colectivos, salimos a las 8 puntual. ', '', 'Todos', '2024-01-10');
 
 -- --------------------------------------------------------
 
@@ -203,7 +210,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `name`, `stock`, `available`, `description`, `branch`) VALUES
-(11, 'Carpones ', 5, 2, 'Todas sanas', 'Manada'),
+(11, 'Carpones', 5, 2, 'Todas sanas', 'Manada'),
 (12, 'Carpas canadienses', 10, 6, 'Carpas tipo canadiense', 'Castores'),
 (13, 'Carpas iglúes', 10, 4, 'Carpas de tipo iglú', 'Haditas'),
 (14, 'Hachas', 10, 7, 'Hachas para campamento', 'Scout'),
@@ -214,10 +221,7 @@ INSERT INTO `inventory` (`id`, `name`, `stock`, `available`, `description`, `bra
 (19, 'Sillas plegables', 10, 4, 'Sillas portátiles', 'Todos'),
 (20, 'Termos', 10, 5, 'Termos para bebidas', 'Rover'),
 (21, 'Carpones', 10, 5, 'Holaaaa', 'Todos'),
-(22, 'Carpones', 10, 5, 'Holaaaa', 'Todos'),
-(23, 'sarasaa', 123, 21, 'adasdasdas asdasd asd asd', 'Haditas'),
-(24, 'Lucas?', 3, 2, 'Tierne dos patas rotas', 'Manada'),
-(25, 'Funciona?', 10, 1, 'Todas sanas', 'Todos');
+(22, 'Carpones', 10, 5, 'Holaaaa', 'Todos');
 
 -- --------------------------------------------------------
 
@@ -249,10 +253,7 @@ INSERT INTO `notifications` (`id`, `name`, `tel`, `mail`, `message`, `date`, `ac
 (6, 'Nombre6', 6789012345, 'correo6@example.com', 'Fusce id malesuada nulla. Integer eget felis id mi auctor congue.', '2023-10-03', 0, 'marce'),
 (7, 'Nombre7', 7890123456, 'correo7@example.com', 'Suspendisse vehicula sapien eu gravida. Fusce quis dolor ut est euismod dapibus.', '2023-10-03', 0, 'marce'),
 (8, 'Nombre8', 8901234567, 'correo8@example.com', 'Phasellus consectetur ex vitae tincidunt. Nullam eget dolor vitae purus blandit lacinia.', '2023-10-03', 0, 'marce'),
-(9, 'Mateo Donati ', 3123123131, 'mateo@gmail.com', 'hola tengo mucho amor adentro', '2023-10-11', 0, 'marce'),
-(10, 'nacho rojas ', 123123123, 'asd@asd.com', 'Hola tengo cancer!!!!', '2023-10-16', 0, 'marce'),
-(13, 'Lucas ', 123123, 'luicas@gmal.com', 'HOla tengo cghichgita', '2023-10-16', 0, 'marce'),
-(15, 'Marcelo', 3415690470, 'marce@gmail.com', 'asldkjals alsdjas ldjalsdkjasl asldkjas ldkjasld j', '2023-11-14', 0, 'marce');
+(9, 'Mateo Donati ', 3123123131, 'mateo@gmail.com', 'hola tengo mucho amor adentro', '2023-10-11', 0, 'marce');
 
 -- --------------------------------------------------------
 
@@ -276,7 +277,7 @@ INSERT INTO `plans` (`id`, `title`, `branch`, `event`, `url`) VALUES
 (18, 'Curriculum', 'Rover', NULL, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/curriculum.pdf?alt=media&token=a60fc93a-7e6a-4a17-bd6b-ef0e782aa190'),
 (19, 'Campamento manada', 'Manada', 2, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/planificacion%20campamento%20aniversario%20manada.rtf?alt=media&token=b898abaa-ef98-490b-b8a0-0674135e976e'),
 (20, 'Otro campamento manada', 'Scout', 2, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/planificacion%20campamento%20aniversario%20manada.rtf?alt=media&token=3b274c34-a6ac-4d7e-9a9d-87cc6ed14d8a'),
-(21, 'Cv nuevo', 'Manada', NULL, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/curriculum.pdf?alt=media&token=e9e319fa-e28f-41fc-883f-baaf7b8ec43e');
+(23, 'Planificacion manada campamento fin de ano', 'Manada', 44, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=e25287af-47c3-46b9-b726-b8cb5d56e276');
 
 --
 -- Índices para tablas volcadas
@@ -345,7 +346,7 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT de la tabla `advices`
 --
 ALTER TABLE `advices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `beneficiaries`
@@ -357,7 +358,7 @@ ALTER TABLE `beneficiaries`
 -- AUTO_INCREMENT de la tabla `calendary`
 --
 ALTER TABLE `calendary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `inventory`
@@ -375,7 +376,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT de la tabla `plans`
 --
 ALTER TABLE `plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restricciones para tablas volcadas

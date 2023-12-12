@@ -27,6 +27,9 @@ function Inventario() {
           } flex flex-col gap-4`}
         >
           <h1 className="text-3xl text-center dark:text-white">Inventario</h1>
+          <button className="px-4 py-1 text-white absolute right-20">
+            Eliminar
+          </button>
           <TablaInventario
             inventario={inventario}
             setModalOpen={setModalOpen}
