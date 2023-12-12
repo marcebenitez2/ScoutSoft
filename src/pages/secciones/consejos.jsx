@@ -10,7 +10,7 @@ function Consejos() {
   const [modalOpen, setModalOpen] = useState(false);
   const [consejos, setConsejos] = useState([]);
   const [seleccionado, setSeleccionado] = useState(null);
-  const [ordenados, setOrdenados] = useState([])
+  const [ordenados, setOrdenados] = useState([]);
 
   const cambiarSeleccionado = (x) => {
     setSeleccionado(x);
@@ -26,11 +26,10 @@ function Consejos() {
       return new Date(b.fecha) - new Date(a.fecha);
     });
     setOrdenados(consejosOrdenados);
-  }, [consejos])
-
+  }, [consejos]);
 
   return (
-    <main className='w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white'>
+    <main className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white">
       <Navbar />
       <div
         className={`w-full h-full ${
@@ -38,14 +37,14 @@ function Consejos() {
         } flex flex-col gap-4`}
       >
         <h1 className="text-3xl text-center dark:text-white">Consejos</h1>
-        <div className="flex absolute right-20 ">
-          <button
-            onClick={() => setModalOpen(true)}
-            className="bg-custon-red px-4 py-1 "
-          >
-            Agregar
-          </button>
-        </div>
+
+        <button
+          onClick={() => setModalOpen(true)}
+          className="bg-custon-red px-4 py-1 absolute right-20"
+        >
+          Agregar
+        </button>
+
         <div className="w-full flex flex-col gap-4 px-20">
           {ordenados.map((x) => (
             <div
@@ -76,11 +75,7 @@ function Consejos() {
                 <div className="flex flex-col w-full">
                   <span className="font-semibold">Archivo acta</span>
                   {x.url ? (
-                    <a
-                      href={x.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
+                    <a href={x.url} target="_blank" rel="noreferrer">
                       <span>Descargar</span>
                     </a>
                   ) : (

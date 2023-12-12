@@ -38,7 +38,7 @@ function Calendario() {
         <h1 className="text-3xl text-center dark:text-white">Calendario</h1>
         <div className="flex w-full h-full">
           <div className="flex flex-col h-full w-full justify-between">
-            <div className="w-full h-3/5 flex items-center justify-center">
+            <div className="w-full h-fit flex items-center justify-center">
               <Calendar onClickDay={onClickDay} />
             </div>
             <InfoEvento

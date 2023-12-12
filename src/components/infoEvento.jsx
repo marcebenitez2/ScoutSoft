@@ -4,7 +4,7 @@ import { FaRegFileWord } from "react-icons/fa";
 function InfoEvento({ eventoSeleccionado, isOpen }) {
   console.log(eventoSeleccionado);
   return (
-    <main className=" w-full">
+    <main className=" w-full ">
       {eventoSeleccionado ? (
         <div className="w-full h-full border border-neutral-600 rounded-xl animate-fade-right animate-once px-12">
           {" "}
