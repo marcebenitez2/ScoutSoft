@@ -48,7 +48,6 @@ function ModalConsejo({ isOpen, toClose, seleccionado, setSeleccionado }) {
           postBD(item, "http://localhost/addadvice.php");
           toClose(false);
           setSeleccionado(null);
-          console.log(item);
           window.location.reload();
         });
       } else {

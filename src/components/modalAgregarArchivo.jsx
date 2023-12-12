@@ -36,7 +36,7 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
           archivo: url,
         };
 
-        console.log(item);
+     
 
         postBD(item, "http://localhost/addPlans.php");
         toClose(false);
@@ -89,7 +89,7 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
                 Rama
                 <select
                   className="dark:bg-custon-black border rounded-md px-2 py-1"
-                  value={rama}
+                  defaultValue={rama}
                   onChange={(e) => setRama(e.target.value)}
                 >
                   {ramas.map((rama) => (
