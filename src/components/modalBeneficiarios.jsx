@@ -93,7 +93,7 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
     <main>
       {isOpen ? (
         <section className="h-screen w-screen top-0 left-0 flex items-center justify-center fixed dark:text-white text-black">
-          <form className="w-1/2  dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center justify-between py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms]">
+          <form className="w-1/2  dark:bg-custon-black rounded-xl border border-gray-600 flex flex-col items-center justify-between py-4 px-6 xln:w-2/4 mdn:w-4/5 animate-fade-up animate-once animate-duration-[800ms] gap-4">
             <h3 className="text-2xl">
               {seleccionada ? "Editar Beneficiario" : "Agregar nuevo"}
             </h3>
@@ -214,16 +214,16 @@ function ModalBeneficiarios({ isOpen, toClose, seleccionada, beneficiarios }) {
                 />
               </article>
             </div>
-            <div className="flex w-full justify-center">
+            <div className="flex w-full justify-center gap-4">
               <button
                 onClick={() => toClose(false)}
-                className="w-1/5 h-10 dark:text-white mdn:w-2/5"
+                className=" px-4 h-10 dark:text-white mdn:w-2/5"
               >
                 Cancelar
               </button>
               <button
                 onClick={(e) => guardarCambios(e)}
-                className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5 text-white"
+                className="bg-custon-red px-1 h-10 rounded-xl font-semibold mdn:w-2/5 text-white"
               >
                 Guardar cambios
               </button>

@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function PlanificacionesGrilla({ archivos }) {
   const [buscador, setBuscador] = useState("");
@@ -20,8 +18,10 @@ function PlanificacionesGrilla({ archivos }) {
   };
 
   useEffect(() => {
-    setCopia(archivos);
-  }, []);
+    // Ordenar los archivos por id de mayor a menor antes de establecerlos en el estado
+    const archivosOrdenados = [...archivos].sort((a, b) => parseInt(b.id) - parseInt(a.id));
+    setCopia(archivosOrdenados);
+  }, [archivos]);
 
   return (
     <section className="w-full h-full flex flex-col gap-4">

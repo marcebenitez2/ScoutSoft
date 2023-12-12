@@ -1,12 +1,16 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
   const [eventosFiltrados, setEventosFiltrados] = useState([]);
 
   useEffect(() => {
-    setEventosFiltrados(eventos);
+    // Ordenar los eventos por fecha de mayor a menor antes de establecerlos en el estado
+    const eventosOrdenados = [...eventos].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB - dateA; // Cambiado para ordenar de mayor a menor fecha
+    });
+    setEventosFiltrados(eventosOrdenados);
   }, [eventos]);
 
   function seleccionarEvento(evento) {
@@ -18,7 +22,11 @@ function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
   }
 
   function buscador(texto) {
-    const eventosFiltrados = eventos.filter((evento) => {
+    const eventosFiltrados = eventos.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB - dateA; // Cambiado para ordenar de mayor a menor fecha
+    }).filter((evento) => {
       const titulo = evento.title.toLowerCase();
       const fecha = evento.date.toLowerCase();
       const textoMinuscula = texto.toLowerCase();
@@ -36,6 +44,7 @@ function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
       />
       {eventosFiltrados.map((evento) => (
         <div
+          key={evento.id}
           className="min-h-fit flex items-center px-4 border border-neutral-600 py-4 cursor-pointer hover:border-red-600 transition duration-200 rounded-lg"
           onClick={() => seleccionarEvento(evento)}
         >

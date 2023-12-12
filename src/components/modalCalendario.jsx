@@ -48,17 +48,6 @@ function ModalCalendario({
 
   const guardarCambios = (e) => {
     e.preventDefault();
-
-    if (!nombre || !lugar || !fecha || !inicio || !fin || !rama || !tipo) {
-      toast.error("Rellena todos los campos");
-      return;
-    }
-
-    if (fecha > fechaFin) {
-      toast.error("La fecha de inicio no puede ser mayor a la fecha de fin");
-      return;
-    }
-
     const evento = {
       id: id,
       nombre: nombre,
@@ -71,6 +60,18 @@ function ModalCalendario({
       tipo: tipo,
       rama: rama,
     };
+    console.log(evento);
+    
+    if (!nombre || !lugar || !fecha || !inicio || !fin || !rama || !tipo) {
+      toast.error("Rellena todos los campos");
+      return;
+    }
+
+    if (fecha > fechaFin) {
+      toast.error("La fecha de inicio no puede ser mayor a la fecha de fin");
+      return;
+    }
+
 
     postBD(evento, "http://localhost/addEvent.php");
     toClose(false);
@@ -187,10 +188,9 @@ function ModalCalendario({
                     defaultValue={tipo}
                     onChange={(e) => setTipo(e.target.value)}
                   >
-                    <option>Evento</option>
-                    <option>Salida</option>
-                    <option>Campamento</option>
-                    <option>Consejo</option>
+                    <option value={"evento"}>Evento</option>
+                    <option value={"salida"}>Salida</option>
+                    <option value={"campamento"}>Campamento</option>
                   </select>
                 </label>
               </div>

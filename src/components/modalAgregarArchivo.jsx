@@ -110,12 +110,12 @@ function ModalAgregarArchivo({ isOpen, toClose }) {
               <div className="w-full flex justify-center">
                 <button
                   onClick={() => toClose(false)}
-                  className="w-1/5 h-10 dark:text-white mdn:w-2/5"
+                  className="px-6 py-2 dark:text-white mdn:w-2/5"
                 >
                   Cancelar
                 </button>
                 <button
-                  className="bg-custon-red w-1/5 h-10 rounded-xl font-semibold mdn:w-2/5 text-white"
+                  className="bg-custon-red  px-1 py-2 rounded-xl font-semibold mdn:w-2/5 text-white"
                   onClick={(e) => guardarCambios(e)}
                 >
                   Guardar cambios

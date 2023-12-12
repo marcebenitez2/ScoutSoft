@@ -10,6 +10,7 @@ function Consejos() {
   const [modalOpen, setModalOpen] = useState(false);
   const [consejos, setConsejos] = useState([]);
   const [seleccionado, setSeleccionado] = useState(null);
+  const [ordenados, setOrdenados] = useState([])
 
   const cambiarSeleccionado = (x) => {
     setSeleccionado(x);
@@ -20,7 +21,13 @@ function Consejos() {
     fetchBD(setConsejos, "http://localhost/advices.php");
   }, []);
 
-  console.log(consejos);
+  useEffect(() => {
+    const consejosOrdenados = consejos.sort((a, b) => {
+      return new Date(b.fecha) - new Date(a.fecha);
+    });
+    setOrdenados(consejosOrdenados);
+  }, [consejos])
+
 
   return (
     <main className='w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white'>
@@ -40,7 +47,7 @@ function Consejos() {
           </button>
         </div>
         <div className="w-full flex flex-col gap-4 px-20">
-          {consejos.map((x) => (
+          {ordenados.map((x) => (
             <div
               className="flex w-full  bg-custon-red rounded-xl px-8 py-2 gap-10 cursor-pointer"
               key={x.id}

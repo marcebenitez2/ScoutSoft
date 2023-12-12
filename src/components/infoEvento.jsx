@@ -34,6 +34,7 @@ function InfoEvento({ eventoSeleccionado, isOpen }) {
               <a
                 href={planificacion.plan_url}
                 className="flex gap-2 text-red-600"
+                key={planificacion.plan_url}
               >
                 <FaRegFileWord fill="white" />
                 {planificacion.plan_title}

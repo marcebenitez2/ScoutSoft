@@ -14,6 +14,8 @@ function Planificaciones() {
     fetchBD(setArchivos, "http://localhost/plans.php");
   }, []);
 
+  console.log(archivos)
+
   return (
     <main className='className="w-screen h-screen flex flex-col pt-4 pb-6 px-16 gap-4 mdn:px-0 mdn:pt-0 overflow-x-hidden dark:bg-custon-black dark:text-white'>
       <Navbar />
