@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2023 a las 15:27:17
+-- Tiempo de generación: 12-12-2023 a las 21:51:17
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -65,13 +65,8 @@ CREATE TABLE `advices` (
 --
 
 INSERT INTO `advices` (`id`, `title`, `date`, `location`, `branch`, `startTime`, `urlFile`) VALUES
-(14, 'Consejo unidad', '3232-02-23', 'Casa Pantera', 'Todos', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=0f21d353-cc96-4a0e-8cb7-92e13ede1154'),
-(15, 'Consejo grupoo', '3232-02-23', 'Sede grupo Scout', 'Haditas', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=25e8239f-3395-47ee-98fe-d1f442aae782'),
-(16, 'Consejo manada', '3222-02-23', 'Casa akela', 'Todos', '23:22:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=b02d46d0-9536-46d5-ad88-f041d1bcd080'),
-(17, 'Presentacion', '2023-12-11', 'Insituto ', 'Todos', '20:00:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=d5ae923e-c288-4a5e-9207-48c888572d6b'),
-(18, 'asd', '2322-03-02', 'asd', 'Todos', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=1ae64ead-0070-4693-9708-97e1b006505b'),
-(19, 'asdasdd', '3232-02-23', 'assdasd', 'Todos', '23:23:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/undefined?alt=media&token=c9549537-65d9-413f-bc54-0e9bece131d2'),
-(20, 'Consejo de todo el grupo para el campamento final ', '2024-01-07', 'Sede grupo Scout ', 'Todos', '18:00:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=a769de2c-eec0-4af2-b46e-fdd5118bc8ce');
+(21, 'Consejo rama Raider ', '2023-12-20', 'Casa Vanina (Balbo 4156)', 'Raider', '19:00:00', 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/consejo.rtf?alt=media&token=1871ceb8-1da7-43d1-9fdc-e96c40fc9ed1'),
+(22, 'Consejo manada', '2023-12-20', 'Casa Akela', 'Manada', '15:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -176,7 +171,7 @@ CREATE TABLE `calendary` (
   `endTime` time DEFAULT NULL,
   `location` varchar(50) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
-  `type` enum('evento','salida') DEFAULT NULL,
+  `type` enum('evento','salida','campamento') DEFAULT NULL,
   `branch` varchar(30) DEFAULT NULL,
   `endDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -186,9 +181,8 @@ CREATE TABLE `calendary` (
 --
 
 INSERT INTO `calendary` (`id`, `title`, `date`, `startTime`, `endTime`, `location`, `description`, `type`, `branch`, `endDate`) VALUES
-(2, 'Campamento de veranooo', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Agua de oroo', 'Campamento de fin de año. Quiza lleguemos un poco mas tarde', 'salida', 'Todos', '2024-01-10'),
-(43, 'asdd', '2023-11-17', '23:23:00', '23:02:00', 'aSD', 'ASD', 'evento', 'Todos', '2023-11-17'),
-(44, 'Campamento fin de ano', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Rio Tercero', 'Contramos 3 colectivos, salimos a las 8 puntual. ', '', 'Todos', '2024-01-10');
+(2, 'Campamento de veranooo', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Agua de oroo', 'Campamento de fin de año. Quiza lleguemos un poco mas tardeee', 'campamento', 'Todos', '2024-01-10'),
+(44, 'Campamento fin de anio', '2024-01-05', '07:00:00', '18:00:00', 'Cordoba, Rio Tercero', 'Contramos 3 colectivos, salimos a las 8 puntual. ', 'campamento', 'Todos', '2024-01-10');
 
 -- --------------------------------------------------------
 
@@ -210,18 +204,14 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `name`, `stock`, `available`, `description`, `branch`) VALUES
-(11, 'Carpones', 5, 2, 'Todas sanas', 'Manada'),
-(12, 'Carpas canadienses', 10, 6, 'Carpas tipo canadiense', 'Castores'),
-(13, 'Carpas iglúes', 10, 4, 'Carpas de tipo iglú', 'Haditas'),
-(14, 'Hachas', 10, 7, 'Hachas para campamento', 'Scout'),
-(15, 'Parrillas', 10, 3, 'Parrillas para asar', 'Raider'),
+(13, 'Carpas iglúes', 10, 4, 'Todas sanas', 'Haditas'),
 (16, 'Linternas', 10, 8, 'Linternas portátiles', 'Manada'),
 (17, 'Colchonetas', 10, 2, 'Colchonetas inflables', 'Cocina'),
 (18, 'Mochilas', 10, 9, 'Mochilas para excursiones', 'Scout'),
 (19, 'Sillas plegables', 10, 4, 'Sillas portátiles', 'Todos'),
 (20, 'Termos', 10, 5, 'Termos para bebidas', 'Rover'),
 (21, 'Carpones', 10, 5, 'Holaaaa', 'Todos'),
-(22, 'Carpones', 10, 5, 'Holaaaa', 'Todos');
+(22, 'Carpones', 10, 5, 'Todas sanas', 'Todos');
 
 -- --------------------------------------------------------
 
@@ -253,7 +243,9 @@ INSERT INTO `notifications` (`id`, `name`, `tel`, `mail`, `message`, `date`, `ac
 (6, 'Nombre6', 6789012345, 'correo6@example.com', 'Fusce id malesuada nulla. Integer eget felis id mi auctor congue.', '2023-10-03', 0, 'marce'),
 (7, 'Nombre7', 7890123456, 'correo7@example.com', 'Suspendisse vehicula sapien eu gravida. Fusce quis dolor ut est euismod dapibus.', '2023-10-03', 0, 'marce'),
 (8, 'Nombre8', 8901234567, 'correo8@example.com', 'Phasellus consectetur ex vitae tincidunt. Nullam eget dolor vitae purus blandit lacinia.', '2023-10-03', 0, 'marce'),
-(9, 'Mateo Donati ', 3123123131, 'mateo@gmail.com', 'hola tengo mucho amor adentro', '2023-10-11', 0, 'marce');
+(9, 'Mateo Donati ', 3123123131, 'mateo@gmail.com', 'hola tengo mucho amor adentro', '2023-10-11', 0, 'marce'),
+(16, 'Marcelo Benitez', 3415690470, 'marcebenitez0607@gmail.com', 'Hola queria saber cuanto vale el campamento aniversario', '2023-12-12', 1, NULL),
+(17, 'Lucas Quaroni', 3415455555, 'lucas@gmail.com', 'HOla queria saber de que dia a que dia es el campamento de verano', '2023-12-12', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -274,9 +266,7 @@ CREATE TABLE `plans` (
 --
 
 INSERT INTO `plans` (`id`, `title`, `branch`, `event`, `url`) VALUES
-(18, 'Curriculum', 'Rover', NULL, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/curriculum.pdf?alt=media&token=a60fc93a-7e6a-4a17-bd6b-ef0e782aa190'),
 (19, 'Campamento manada', 'Manada', 2, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/planificacion%20campamento%20aniversario%20manada.rtf?alt=media&token=b898abaa-ef98-490b-b8a0-0674135e976e'),
-(20, 'Otro campamento manada', 'Scout', 2, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/planificacion%20campamento%20aniversario%20manada.rtf?alt=media&token=3b274c34-a6ac-4d7e-9a9d-87cc6ed14d8a'),
 (23, 'Planificacion manada campamento fin de ano', 'Manada', 44, 'https://firebasestorage.googleapis.com/v0/b/scout-51810.appspot.com/o/Documento.rtf?alt=media&token=e25287af-47c3-46b9-b726-b8cb5d56e276');
 
 --
@@ -336,7 +326,8 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `plans`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `event` (`event`);
+  ADD KEY `event` (`event`),
+  ADD KEY `fk_plans_branch` (`branch`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -346,7 +337,7 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT de la tabla `advices`
 --
 ALTER TABLE `advices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `beneficiaries`
@@ -370,7 +361,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT de la tabla `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `plans`
@@ -422,6 +413,7 @@ ALTER TABLE `notifications`
 -- Filtros para la tabla `plans`
 --
 ALTER TABLE `plans`
+  ADD CONSTRAINT `fk_plans_branch` FOREIGN KEY (`branch`) REFERENCES `branchs` (`namebranch`),
   ADD CONSTRAINT `plans_ibfk_1` FOREIGN KEY (`event`) REFERENCES `calendary` (`id`);
 COMMIT;
 
