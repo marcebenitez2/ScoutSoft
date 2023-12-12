@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { postBD } from "../services/postBD";
 
 function ModalDeleteItem({ isOpen, toClose, inventario }) {
   if (!isOpen) {
@@ -10,7 +12,14 @@ function ModalDeleteItem({ isOpen, toClose, inventario }) {
 
   function guardarCambios(e) {
     e.preventDefault();
-    console.log(AEliminar);
+
+    if (AEliminar.length === 0) {
+      toast.error("Selecciona al menos un item");
+    }
+    postBD(AEliminar, "http://localhost/deleteItem.php");
+    setAEliminar([]);
+    toClose(false);
+    window.location.reload();
   }
 
   return (
@@ -29,10 +38,15 @@ function ModalDeleteItem({ isOpen, toClose, inventario }) {
                         value={item.id}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setAEliminar([...AEliminar, e.target.value]);
+                            setAEliminar([
+                              ...AEliminar,
+                              Number(e.target.value),
+                            ]);
                           } else {
                             setAEliminar(
-                              AEliminar.filter((id) => id !== e.target.value)
+                              AEliminar.filter(
+                                (id) => id !== Number(e.target.value)
+                              )
                             );
                           }
                         }}
@@ -60,6 +74,7 @@ function ModalDeleteItem({ isOpen, toClose, inventario }) {
           </form>
         </section>
       ) : null}
+      <ToastContainer />
     </main>
   );
 }

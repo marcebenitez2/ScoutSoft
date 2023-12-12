@@ -7,7 +7,6 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
   if (!isOpen) {
     return null;
   }
-  console.log(seleccionada);
   const [id, setId] = useState(seleccionada ? seleccionada.id : null);
   const [nombre, setNombre] = useState(seleccionada ? seleccionada.name : null);
   const [stock, setStock] = useState(seleccionada ? seleccionada.stock : null);

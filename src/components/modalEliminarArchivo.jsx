@@ -20,7 +20,7 @@ function ModalEliminarArchivo({ isOpen, toClose, archivos }) {
   
 
   function handleGuardarCambios() {
-    console.log(aEliminar);
+
     postBD(aEliminar,"http://localhost/deletePlans.php")
     setaEliminar([]);
     toClose(false);
