@@ -4,13 +4,24 @@ function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
   const [eventosFiltrados, setEventosFiltrados] = useState([]);
 
   useEffect(() => {
-    // Ordenar los eventos por fecha de mayor a menor antes de establecerlos en el estado
-    const eventosOrdenados = [...eventos].sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateB - dateA; // Cambiado para ordenar de mayor a menor fecha
-    });
-    setEventosFiltrados(eventosOrdenados);
+    const fechaActual = new Date();
+
+    // Filtrar eventos que no han ocurrido o ocurrieron en la última semana
+    const eventosFiltrados = eventos
+      .filter((evento) => {
+        const fechaEvento = new Date(evento.date);
+        const unaSemanaAtras = new Date();
+        unaSemanaAtras.setDate(fechaActual.getDate() - 7);
+
+        return fechaEvento >= fechaActual || (fechaEvento >= unaSemanaAtras && fechaEvento <= fechaActual);
+      })
+      .sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA;
+      });
+
+    setEventosFiltrados(eventosFiltrados);
   }, [eventos]);
 
   function seleccionarEvento(evento) {
@@ -22,16 +33,21 @@ function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
   }
 
   function buscador(texto) {
-    const eventosFiltrados = eventos.sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateB - dateA; // Cambiado para ordenar de mayor a menor fecha
-    }).filter((evento) => {
-      const titulo = evento.title.toLowerCase();
-      const fecha = evento.date.toLowerCase();
-      const textoMinuscula = texto.toLowerCase();
-      return titulo.includes(textoMinuscula) || fecha.includes(textoMinuscula);
-    });
+    const eventosFiltrados = eventos
+      .filter((evento) => {
+        const titulo = evento.title.toLowerCase();
+        const fecha = evento.date.toLowerCase();
+        const textoMinuscula = texto.toLowerCase();
+        return (
+          titulo.includes(textoMinuscula) || fecha.includes(textoMinuscula)
+        );
+      })
+      .sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA;
+      });
+
     setEventosFiltrados(eventosFiltrados);
   }
 
@@ -40,7 +56,7 @@ function ListaEvento({ eventos, setEventoSeleccionado, eventoSeleccionado }) {
       <input
         className="bg-transparent border rounded-lg px-2 py-1"
         onChange={(e) => buscador(e.target.value)}
-        placeholder="Busca por titulo o fecha"
+        placeholder="Busca por título o fecha"
       />
       {eventosFiltrados.map((evento) => (
         <div
