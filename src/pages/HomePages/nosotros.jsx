@@ -1,8 +1,6 @@
 import React from "react";
 import InfoNav from "../../components/infoNav";
 import instagram from "../../assets/instagram.svg";
-import facebook from "../../assets/facebook.svg";
-import Carrousel from "../../components/carrousel";
 import badenpowell from "/badenpowell.jpg";
 import florDeLiz from "/florDeLizNegra.png";
 import Formulario from "../../components/formulario";
@@ -57,7 +55,7 @@ function Nosotros() {
         </div>
       </section>
       <section className="w-full flex flex-col gap-4">
-        <Carrousel />
+  
         <aside className="w-full h-96 flex px-20 py-5 bg-custon-red justify-between 2xln:px-10 xln:px-2 xln:h-72 mdn:hidden">
           <img
             src="/banderas.jpg"
