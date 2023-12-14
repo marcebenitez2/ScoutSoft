@@ -12,9 +12,8 @@ function ModalNotificaciones({ isOpen, toClose, seleccionada, texto }) {
       nombre: seleccionada.name,
       usuario: nombreUsuario,
     };
-    console.log(data);
-    updateBD("http://localhost/changeNoti.php", data, nombreUsuario);
-    window.location.reload();
+    updateBD("https://php-scout.000webhostapp.com/changeNoti.php", data);
+    // window.location.reload();
   };
 
   return (

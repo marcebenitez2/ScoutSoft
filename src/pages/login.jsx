@@ -19,21 +19,44 @@ function Login() {
   const iniciarSesion = async (e) => {
     e.preventDefault();
     try {
-      const data = {
-        usuario: usuario,
-        contra: contra,
-      };
-      const response = await fetch("http://localhost/login.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) {
-        throw new Error("Error al iniciar sesión");
-      }
-      const responseData = await response.json();
+      // const data = {
+      //   usuario: usuario,
+      //   contra: contra,
+      // };
+
+      // const response = await fetch("http://localhost/login.php", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // });
+      // if (!response.ok) {
+      //   throw new Error("Error al iniciar sesión");
+      // }
+      // const responseData = await response.json();
+
+
+      // ---------------------------------------------
+
+      let headersList = {
+        "Content-Type": "application/json"
+       }
+       
+       let bodyContent = JSON.stringify({
+         "usuario":"marce",
+         "contra":"123"
+       });
+       
+       let response = await fetch("https://php-scout.000webhostapp.com/login.php", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       const responseData = await response.text();
+       console.log(responseData);
+       
 
       if (responseData.status === "success") {
         localStorage.setItem("nombreUsuario", responseData.username);

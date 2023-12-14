@@ -28,6 +28,11 @@ function ModalInventario({ isOpen, toClose, seleccionada, inventario }) {
       return;
     }
 
+    if (disponible > stock) {
+      toast.error("El disponible no puede ser mayor al stock");
+      return;
+    }
+
     const item = {
       id: id,
       nombre: nombre,

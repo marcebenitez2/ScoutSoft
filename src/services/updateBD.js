@@ -5,10 +5,14 @@ export const updateBD = async (url, data) => {
       headers: {
         "Content-Type": "application/json", 
       },
-      body: JSON.stringify(data), 
+      body: JSON.stringify(data)
+      
     });
-  
+
+    // Ver la respuesta en la consola
+    console.log("Respuesta del servidor:", response);
+
   } catch (error) {
-    console.log(error);
+    console.log("Error en la solicitud:", error);
   }
 };

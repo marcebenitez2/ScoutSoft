@@ -21,7 +21,7 @@ function Menu() {
   const [seleccionada, setSeleccionada] = useState(null);
 
   useEffect(() => {
-    fetchBD(setNotificaciones, "http://localhost/notification.php");
+    fetchBD(setNotificaciones, "https://php-scout.000webhostapp.com/notification.php");
   }, []);
 
   useEffect(() => {
